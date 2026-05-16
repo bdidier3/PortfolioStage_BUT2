@@ -42,7 +42,7 @@
               <img
                 src="/images/Trace4_renovate.png"
                 alt="Documentation Renovate utilis&eacute;e pour la configuration"
-                style="width:100%; border-radius:8px; cursor:zoom-in; display:block;"
+                class="trace-image"
                 @click="openImage('/images/Trace4_renovate.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
@@ -52,11 +52,12 @@
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="success" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;4 montre la page de documentation de Renovate que j&rsquo;ai utilis&eacute;e pour
-                  configurer l&rsquo;outil sur le d&eacute;p&ocirc;t GitLab d&rsquo;EzGED. Renovate scanne le
-                  <code>pyproject.toml</code> et cr&eacute;e des merge requests quand une d&eacute;pendance a
-                  une nouvelle version. C&rsquo;est cette documentation qui m&rsquo;a permis de comprendre
-                  les options de configuration disponibles (automerge, regroupement, planification).
+                  La Trace n&deg;4 montre la documentation de
+                  <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer">Renovate</a>,
+                  l&rsquo;outil choisi pour automatiser les mises &agrave; jour de d&eacute;pendances. Cette doc sert de r&eacute;f&eacute;rence
+                  pour comprendre comment Renovate d&eacute;tecte les versions &agrave; mettre &agrave; jour et g&eacute;n&egrave;re des
+                  Merge Requests sur GitLab. Dans le contexte EzGED, elle a &eacute;t&eacute; indispensable pour d&eacute;finir
+                  la configuration (regroupement, planification, automerge) avant d&rsquo;appliquer la mise en place.
                 </p>
               </v-card>
             </v-col>
@@ -68,10 +69,10 @@
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="success" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;5 montre les commits sur la branche <code>gestions_deps</code> dans
-                  GitLab. On y voit les merge requests g&eacute;n&eacute;r&eacute;es par Renovate pour les mises &agrave; jour
-                  de d&eacute;pendances, et les commits li&eacute;s &agrave; la configuration de l&rsquo;outil. Ces MR
-                  contiennent le changelog et une estimation du risque de r&eacute;gression.
+                  La Trace n&deg;5 montre les Merge Requests (MR) g&eacute;n&eacute;r&eacute;es par Renovate sur la branche
+                  <code class="inline-code">gestions_deps</code> dans GitLab. Ces MR regroupent les mises &agrave; jour
+                  de d&eacute;pendances, affichent le changelog et une estimation du risque. Elles prouvent que
+                  l&rsquo;automatisation fonctionne et qu&rsquo;elle s&rsquo;int&egrave;gre bien au flux de revue de l&rsquo;&eacute;quipe.
                 </p>
               </v-card>
             </v-col>
@@ -79,11 +80,12 @@
               <img
                 src="/images/Trace5_MRRenovate.png"
                 alt="Commits GitLab sur la branche gestions_deps"
-                style="width:100%; border-radius:8px; cursor:zoom-in; display:block;"
+                class="trace-image"
                 @click="openImage('/images/Trace5_MRRenovate.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;5</strong> &mdash; Commits sur la branche <code>gestions_deps</code> dans GitLab
+                <strong>Trace n&deg;5</strong> &mdash; Merge Requests Renovate sur la branche
+                <code class="inline-code">gestions_deps</code> dans GitLab
               </p>
             </v-col>
           </v-row>
@@ -93,30 +95,29 @@
             <p class="mb-3">
               Pour
               <v-chip color="success" size="x-small" class="mx-1">identifier et comparer des outils de mise &agrave; jour automatique de d&eacute;pendances</v-chip>,
-              j&rsquo;ai fait une veille sur Renovate et Dependabot. La contrainte principale &eacute;tait la
-              compatibilit&eacute; avec l&rsquo;instance GitLab interne d&rsquo;EzDEV. Dependabot est natif GitHub
-              et ne fonctionne pas sur les GitLab auto-h&eacute;berg&eacute;s, ce qui l&rsquo;a &eacute;limin&eacute; d&rsquo;entr&eacute;e.
-              J&rsquo;ai quand m&ecirc;me test&eacute; les deux sur des d&eacute;p&ocirc;ts de test pour avoir une comparaison
-              objective avant de pr&eacute;senter mon choix &agrave; l&rsquo;&eacute;quipe.
+              j&rsquo;ai men&eacute; une veille sur
+              <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer">Renovate</a>
+              et
+              <a href="https://docs.github.com/en/code-security/dependabot" target="_blank" rel="noopener noreferrer">Dependabot</a>.
+              La contrainte principale &eacute;tait la compatibilit&eacute; avec l&rsquo;instance GitLab interne d&rsquo;EzDEV.
+              Dependabot &eacute;tant centr&eacute; sur GitHub, il ne r&eacute;pondait pas au besoin. La Trace n&deg;4 situe
+              la documentation qui a servi &agrave; comparer les fonctionnalit&eacute;s et &agrave; justifier le choix.
             </p>
             <p class="mb-3">
               Pour
               <v-chip color="success" size="x-small" class="mx-1">configurer Renovate sur un projet GitLab</v-chip>,
-              j&rsquo;ai cr&eacute;&eacute; un <code>renovate.json</code> &agrave; la racine du projet avec les options
-              adapt&eacute;es&nbsp;: automerge pour les patchs mineurs, regroupement par type de d&eacute;pendance et
-              planification en dehors des heures de travail. Le plus compliqu&eacute; a &eacute;t&eacute; de faire tourner
-              Renovate en self-hosted sur le GitLab interne (Trace n&deg;5), parce que la configuration
-              diff&egrave;re pas mal de la version GitHub. J&rsquo;ai d&ucirc; configurer un pipeline CI d&eacute;di&eacute; et
-              r&eacute;gler les droits du runner pour que les MR se cr&eacute;ent automatiquement.
+              j&rsquo;ai mis en place un fichier <code class="inline-code">renovate.json</code> et un pipeline
+              <code class="inline-code">.gitlab-ci.yml</code> afin d&rsquo;ex&eacute;cuter Renovate en mode self-hosted.
+              Les options importantes concernaient le regroupement, la planification et l&rsquo;automerge des
+              petites mises &agrave; jour. La Trace n&deg;5 montre les MR cr&eacute;&eacute;es automatiquement, preuve que la
+              configuration fonctionne dans notre GitLab interne.
             </p>
             <p>
               Pour
               <v-chip color="success" size="x-small" class="mx-1">r&eacute;diger une documentation technique exploitable par l&rsquo;&eacute;quipe</v-chip>,
-              j&rsquo;ai structur&eacute; un document en plusieurs parties&nbsp;: pr&eacute;sentation des outils &eacute;valu&eacute;s,
-              proc&eacute;dure d&rsquo;installation de Renovate, &eacute;tapes de la mont&eacute;e de version et points de
-              vigilance. Ce document a &eacute;t&eacute; valid&eacute; par Florian Masy et publi&eacute; sur le Wiki GitLab.
-              L&rsquo;id&eacute;e c&rsquo;&eacute;tait que n&rsquo;importe qui dans l&rsquo;&eacute;quipe puisse reproduire le processus
-              sans avoir &agrave; me demander.
+              j&rsquo;ai structur&eacute; un document pas &agrave; pas : pr&eacute;sentation des outils &eacute;valu&eacute;s,
+              proc&eacute;dure d&rsquo;installation, &eacute;tapes de la mont&eacute;e de version et points de vigilance.
+              Cette documentation a été publiée sur Gitlab pour que l&rsquo;&eacute;quipe puisse reproduire le processus sans d&eacute;pendre de moi.
             </p>
           </div>
         </v-window-item>
@@ -139,7 +140,7 @@
               <img
                 src="/images/Trace6_commits.png"
                 alt="Historique de commits GitLab"
-                style="width:100%; border-radius:8px; cursor:zoom-in; display:block;"
+                class="trace-image"
                 @click="openImage('/images/Trace6_commits.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
@@ -150,11 +151,11 @@
               <v-card variant="outlined" color="success" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
                   La Trace n&deg;6 montre l&rsquo;historique de mes commits sur GitLab pendant le stage.
-                  On y voit la progression du travail&nbsp;: depuis les premiers scripts d&rsquo;audit
-                  jusqu&rsquo;aux corrections de la suite de tests dynamiques. Les messages suivent
-                  la convention <code>feat:</code> / <code>fix:</code> / <code>docs:</code>, les
-                  branches sont nomm&eacute;es par fonctionnalit&eacute; et chaque int&eacute;gration passe par
-                  une Merge Request valid&eacute;e par Florian Masy.
+                  C&rsquo;est la preuve du suivi au fil de l&rsquo;eau : chaque &eacute;tape est versionn&eacute;e et reli&eacute;e
+                  &agrave; une fonctionnalit&eacute; pr&eacute;cise. Les messages suivent la convention
+                  <code class="inline-code">feat:</code> / <code class="inline-code">fix:</code> /
+                  <code class="inline-code">docs:</code>, les branches sont nomm&eacute;es par fonctionnalit&eacute; et
+                  chaque int&eacute;gration passe par une Merge Request valid&eacute;e par Florian Masy.
                 </p>
               </v-card>
             </v-col>
@@ -166,25 +167,29 @@
               Pour
               <v-chip color="success" size="x-small" class="mx-1">g&eacute;rer son travail avec des branches Git nomm&eacute;es</v-chip>,
               chaque fonctionnalit&eacute; ou correctif a &eacute;t&eacute; d&eacute;velopp&eacute; sur une branche d&eacute;di&eacute;e
-              (<code>feat/libcst-visitor</code>, <code>fix/coverage-path-normalization</code>, etc.).
-              Cette convention a &eacute;t&eacute; adopt&eacute;e d&egrave;s le d&eacute;but du stage. Elle facilite les revues et
-              &eacute;vite de polluer la branche principale avec du travail en cours.
+              (<code class="inline-code">feat/libcst-visitor</code>, <code class="inline-code">fix/coverage-path-normalization</code>, etc.).
+              Cette pratique, recommand&eacute;e par
+              <a href="https://git-scm.com/docs/git-branch" target="_blank" rel="noopener noreferrer">Git</a>,
+              facilite les revues et &eacute;vite de polluer la branche principale.
             </p>
             <p class="mb-3">
               Pour
               <v-chip color="success" size="x-small" class="mx-1">r&eacute;diger des messages de commit clairs et atomiques</v-chip>,
-              j&rsquo;ai appliqu&eacute; une convention avec pr&eacute;fixes (<code>feat:</code>, <code>fix:</code>,
-              <code>docs:</code>). Chaque commit correspond &agrave; une modification coh&eacute;rente et
-              ind&eacute;pendante. &Ccedil;a permet &agrave; Florian Masy de lire l&rsquo;historique sans ouvrir chaque diff,
-              et de revenir facilement sur un changement pr&eacute;cis si besoin.
+              j&rsquo;ai appliqu&eacute; une convention avec pr&eacute;fixes
+              (<code class="inline-code">feat:</code>, <code class="inline-code">fix:</code>,
+              <code class="inline-code">docs:</code>) inspir&eacute;e des bonnes pratiques
+              <a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener noreferrer">Conventional Commits</a>.
+              Chaque commit correspond &agrave; une modification coh&eacute;rente et ind&eacute;pendante, ce qui rend
+              l&rsquo;historique lisible et facilite les retours en arri&egrave;re.
             </p>
             <p>
               Pour
               <v-chip color="success" size="x-small" class="mx-1">soumettre son travail via des Merge Requests GitLab</v-chip>,
-              chaque branche a &eacute;t&eacute; int&eacute;gr&eacute;e par une MR avec une description des changements.
-              Les revues de Florian Masy ont permis d&rsquo;identifier des ajustements,
-              notamment sur la normalisation des chemins et la gestion des contextes de tests.
-              C&rsquo;est aussi via les MR que j&rsquo;ai appris &agrave; d&eacute;couper mon travail en morceaux
+              chaque branche a &eacute;t&eacute; int&eacute;gr&eacute;e via une MR avec une description claire, en suivant
+              les bonnes pratiques
+              <a href="https://docs.gitlab.com/ee/user/project/merge_requests/" target="_blank" rel="noopener noreferrer">GitLab</a>.
+              Les revues ont permis d&rsquo;identifier des ajustements, notamment sur la normalisation des chemins
+              et la gestion des contextes de tests. Ce flux m&rsquo;a appris &agrave; d&eacute;couper le travail en morceaux
               raisonnables plut&ocirc;t que de tout envoyer d&rsquo;un coup.
             </p>
           </div>
@@ -394,3 +399,28 @@ const suiviSavoirFaire = [
   },
 ]
 </script>
+
+<style scoped>
+.trace-image {
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trace-image:hover {
+  filter: brightness(0.75);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.inline-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  background: #111111;
+  color: #e6e6e6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+</style>

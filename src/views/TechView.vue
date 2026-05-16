@@ -42,7 +42,7 @@
               <img
                 src="/images/Trace1_technique.png"
                 alt="Interface HTML g&eacute;n&eacute;r&eacute;e par le script d'analyse"
-                style="width:100%; border-radius:8px; cursor:zoom-in; display:block;"
+                class="trace-image"
                 @click="openImage('/images/Trace1_technique.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
@@ -52,11 +52,13 @@
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="error" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;1 montre l&rsquo;interface HTML produite par mon script, g&eacute;n&eacute;r&eacute;e avec Jinja2.
-                  Elle liste les fichiers Python d&rsquo;EzGED qui utilisent au moins une d&eacute;pendance externe.
-                  Chaque fichier est d&eacute;pliable et affiche un tableau&nbsp;: ligne de l&rsquo;appel, statut
-                  (TEST&Eacute; ou NON TEST&Eacute;), appel d&eacute;tect&eacute; avec ses param&egrave;tres, et fonction parente
-                  avec son score de couverture.
+                  La Trace n&deg;1 montre l&rsquo;interface HTML produite par le script d'analyse de code dans le cadre de la migration, g&eacute;n&eacute;r&eacute;e avec
+                  <a href="https://jinja.palletsprojects.com/en/stable/" target="_blank" rel="noopener noreferrer">Jinja2</a>.
+                  Elle liste les fichiers Python d&rsquo;EzGED qui utilisent au moins une d&eacute;pendance externe
+                  (cadre rouge). Chaque fichier est d&eacute;pliable et affiche un tableau : le statut de
+                  couverture (cadre jaune avec <code class="inline-code">TESTE</code> ou <code class="inline-code">NON TESTE</code>)
+                  et l&rsquo;appel d&eacute;tect&eacute; dans le code (cadre bleu), avec le nom de la fonction parente pour
+                  situer l&rsquo;appel dans son contexte.
                 </p>
               </v-card>
             </v-col>
@@ -68,10 +70,12 @@
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="error" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;2 montre le fichier <code>pyproject.toml</code> d&rsquo;EzGED. On y voit
-                  la section <code>[project]</code> avec la liste des d&eacute;pendances d&eacute;clar&eacute;es
-                  (<code>paquet==version</code>). C&rsquo;est ce fichier qui d&eacute;finit le p&eacute;rim&egrave;tre
-                  de l&rsquo;analyse&nbsp;: les imports &agrave; rechercher dans le code.
+                  La Trace n&deg;2 montre le fichier <code class="inline-code">pyproject.toml</code> du projet EzGED.
+                  C&rsquo;est le fichier de r&eacute;f&eacute;rence qui d&eacute;clare les d&eacute;pendances et les informations
+                  de configuration du projet Python. Le cadre rouge met en &eacute;vidence la liste des d&eacute;pendances
+                  d&eacute;clar&eacute;es (<code class="inline-code">paquet==version</code>) dans
+                  <code class="inline-code">dependencies</code> de la section <code class="inline-code">[project]</code>.
+                  Ce fichier d&eacute;finit le p&eacute;rim&egrave;tre d&rsquo;analyse : les imports &agrave; rechercher dans le code.
                 </p>
               </v-card>
             </v-col>
@@ -79,11 +83,11 @@
               <img
                 src="/images/Trace2_pyproject.png"
                 alt="Fichier pyproject.toml d&rsquo;EzGED"
-                style="width:100%; border-radius:8px; cursor:zoom-in; display:block;"
+                class="trace-image"
                 @click="openImage('/images/Trace2_pyproject.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;2</strong> &mdash; Fichier <code>pyproject.toml</code> du projet EzGED
+                <strong>Trace n&deg;2</strong> &mdash; Fichier <code class="inline-code">pyproject.toml</code> du projet EzGED
               </p>
             </v-col>
           </v-row>
@@ -94,37 +98,41 @@
             <p class="mb-3">
               Pour
               <v-chip color="error" size="x-small" class="mx-1">lire et exploiter un fichier pyproject.toml avec tomllib</v-chip>,
-              j&rsquo;ai utilis&eacute; le module <code>tomllib</code> int&eacute;gr&eacute; &agrave; Python depuis la 3.11 pour
-              extraire la liste des d&eacute;pendances visible sur la Trace n&deg;2. La cl&eacute; <code>dependencies</code>
-              de la section <code>[project]</code> donne directement les paquets &agrave; analyser. J&rsquo;ai aussi
-              utilis&eacute; <code>importlib.metadata</code> pour faire correspondre les noms de distribution aux
-              vrais noms de modules importables, car ce n&rsquo;est pas toujours identique&nbsp;: <code>Pillow</code>
-              s&rsquo;importe sous le nom <code>PIL</code>, par exemple. Sans ce mapping, le script ignorait
-              certaines d&eacute;pendances sans le signaler, ce qui aurait faux&eacute; les r&eacute;sultats.
+              j&rsquo;ai utilis&eacute; le module
+              <a href="https://docs.python.org/3/library/tomllib.html" target="_blank" rel="noopener noreferrer">tomllib</a>
+              (Python 3.11+) pour extraire la liste des d&eacute;pendances visible dans le cadre rouge en Trace n&deg;2. La cl&eacute;
+              <code class="inline-code">dependencies</code> de la section <code class="inline-code">[project]</code>
+              donne directement les paquets &agrave; analyser. J&rsquo;ai compl&eacute;t&eacute; par
+              <a href="https://docs.python.org/3/library/importlib.metadata.html" target="_blank" rel="noopener noreferrer">importlib.metadata</a>
+              pour faire correspondre un nom de distribution &agrave; un vrai nom de module importable (ex:
+              <code class="inline-code">Pillow</code> &rarr; <code class="inline-code">PIL</code>). Sans ce mapping,
+              le script raterait des appels et fausserait l&rsquo;audit.
             </p>
             <p class="mb-3">
               Pour
               <v-chip color="error" size="x-small" class="mx-1">utiliser LibCST pour d&eacute;tecter les usages de d&eacute;pendances</v-chip>,
-              le script parcourt l&rsquo;arbre syntaxique concret de chaque fichier Python d&rsquo;EzGED et
-              r&eacute;cup&egrave;re tous les appels li&eacute;s &agrave; une d&eacute;pendance du <code>pyproject.toml</code>. J&rsquo;ai choisi
-              LibCST plut&ocirc;t que le module <code>ast</code> parce qu&rsquo;il donne acc&egrave;s au num&eacute;ro
-              de ligne pr&eacute;cis de chaque appel, ce qui est n&eacute;cessaire pour croiser avec la
-              couverture. Sur la Trace n&deg;1, la colonne &laquo;&nbsp;Appel d&eacute;tect&eacute;&nbsp;&raquo; affiche le
-              r&eacute;sultat&nbsp;: par exemple <code>requests.Session()</code> dans <code>pastell.py</code>.
-              Le plus dur a &eacute;t&eacute; la gestion des alias (<code>import requests as req</code>) et des
-              appels imbriqu&eacute;s, qui n&eacute;cessitent de suivre le contexte des imports tout au long du fichier.
+              le script repose sur un visiteur
+              <a href="https://libcst.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer">LibCST</a>
+              qui parcourt l&rsquo;arbre syntaxique de chaque fichier Python. J&rsquo;ai choisi LibCST plut&ocirc;t que
+              <a href="https://docs.python.org/3/library/ast.html" target="_blank" rel="noopener noreferrer">ast</a>
+              parce qu&rsquo;il fournit la position exacte via
+              <code class="inline-code">PositionProvider</code>, indispensable pour savoir si la ligne est couverte
+              par les tests. Sur la Trace n&deg;1, le cadre bleu montre un appel d&eacute;tect&eacute; (avec ses param&egrave;tres)
+              et le cadre jaune le statut de couverture. La difficult&eacute; principale a &eacute;t&eacute; la gestion des alias
+              (<code class="inline-code">import numpy as np</code>) et des imports cibl&eacute;s
+              (<code class="inline-code">from PIL import Image</code>) afin de reconstruire le nom r&eacute;el de l&rsquo;appel.
             </p>
             <p>
               Pour la
               <v-chip color="error" size="x-small" class="mx-1">lecture d&rsquo;un fichier .coverage avec l&rsquo;API coverage.py</v-chip>,
-              le script lit le fichier <code>.coverage</code> g&eacute;n&eacute;r&eacute; par pytest. C&rsquo;est en fait une base
-              SQLite qui enregistre toutes les lignes ex&eacute;cut&eacute;es pendant les tests. L&rsquo;API coverage.py
-              donne, pour chaque fichier source, la liste des lignes couvertes. Le script croise ces
-              donn&eacute;es avec les appels d&eacute;tect&eacute;s par LibCST&nbsp;: si la ligne d&rsquo;un appel est dans la liste,
-              le badge <code>TEST&Eacute;</code> s&rsquo;affiche sur la Trace n&deg;1, sinon c&rsquo;est
-              <code>NON TEST&Eacute;</code>. Le probl&egrave;me le plus concret a &eacute;t&eacute; la normalisation des
-              chemins&nbsp;: le <code>.coverage</code> enregistre des chemins qui ne correspondent pas
-              toujours &agrave; ceux du code source (absolu vs relatif, s&eacute;parateurs Windows/Linux).
+              le script lit le fichier <code class="inline-code">.coverage</code> g&eacute;n&eacute;r&eacute; par
+              <a href="https://docs.pytest.org/en/stable/" target="_blank" rel="noopener noreferrer">pytest</a>
+              avec le module
+              <a href="https://coverage.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer">coverage.py</a>.
+              Ce fichier est une base SQLite qui enregistre les lignes ex&eacute;cut&eacute;es. L&rsquo;API fournit, par fichier,
+              la liste des lignes couvertes : si la ligne d&rsquo;un appel est pr&eacute;sente, le badge
+              <code class="inline-code">TESTE</code> s&rsquo;affiche, sinon <code class="inline-code">NON TESTE</code>.
+              Le point sensible a &eacute;t&eacute; la normalisation des chemins (absolu/relatif, Windows/Linux).
             </p>
           </div>
         </v-window-item>
@@ -147,22 +155,24 @@
               <img
                 src="/images/Trace3_buildtest.png"
                 alt="Fonctions build_test_class et build_tests"
-                style="width:100%; border-radius:8px; cursor:zoom-in; display:block;"
+                class="trace-image"
                 @click="openImage('/images/Trace3_buildtest.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;3</strong> &mdash; Fonctions <code>build_test_class</code> et <code>build_tests</code> du script
+                <strong>Trace n&deg;3</strong> &mdash; Fonctions <code class="inline-code">build_test_class</code> et
+                <code class="inline-code">build_tests</code> du script de création de suites de tests dynamiques
               </p>
             </v-col>
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="error" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;3 montre les deux m&eacute;thodes centrales de <code>test_dependencies.py</code>.
-                  <code>build_test_class</code> cr&eacute;e une classe dynamique qui h&eacute;rite de la classe source,
-                  garde uniquement la m&eacute;thode cible et met les autres <code>test_*</code> &agrave;
-                  <code>None</code>. <code>build_tests</code> lit le JSON et regroupe les classes dans
-                  une <code>TestSuite</code> par librairie. Le but est de v&eacute;rifier la compatibilit&eacute;
-                  d&rsquo;EzGED apr&egrave;s une mont&eacute;e de version sans &eacute;crire les tests &agrave; la main.
+                  La Trace n&deg;3 pr&eacute;sente le script qui g&eacute;n&egrave;re des tests automatiquement &agrave; partir
+                  d&rsquo;un fichier JSON. Son but est de v&eacute;rifier rapidement la compatibilit&eacute; apr&egrave;s une
+                  mise &agrave; jour de versions, sans &eacute;crire tous les tests &agrave; la main. La trace montre ensuite
+                  les deux fonctions cl&eacute;s du script : <code class="inline-code">build_tests</code> (lecture du JSON)
+                  et <code class="inline-code">build_test_class</code> (g&eacute;n&eacute;ration de classes).
+                  On y voit comment les appels sont regroup&eacute;s par librairie, puis transform&eacute;s en suites de tests.
+                  Chaque test est isol&eacute; dans sa propre classe d&eacute;riv&eacute;e pour &eacute;viter les conflits de contexte.
                 </p>
               </v-card>
             </v-col>
@@ -173,37 +183,38 @@
             <p class="mb-3">
               Pour
               <v-chip color="error" size="x-small" class="mx-1">charger et exploiter un fichier JSON structur&eacute; en Python</v-chip>,
-              <code>build_tests</code> lit <code>test_dependencies.json</code> via le module standard
-              <code>json</code>. Ce fichier a une structure &agrave; trois niveaux&nbsp;: librairie, appel de
-              fonction, liste de tests (avec <code>"fichier"</code>, <code>"class"</code> et
-              <code>"method"</code>). Ce format a &eacute;t&eacute; propos&eacute; par Florian Masy lors d&rsquo;une revue,
-              parce que regrouper par librairie facilite la construction d&rsquo;une <code>TestSuite</code>
-              par librairie. J&rsquo;ai aussi d&ucirc; g&eacute;rer les doublons&nbsp;: un m&ecirc;me test peut couvrir plusieurs
-              appels, et il ne doit appara&icirc;tre qu&rsquo;une seule fois pour ne pas &ecirc;tre ex&eacute;cut&eacute; en double.
+              la fonction <code class="inline-code">build_tests</code> lit un fichier JSON pass&eacute; en param&egrave;tre via le module standard
+              <a href="https://docs.python.org/3/library/json.html" target="_blank" rel="noopener noreferrer">json</a>.
+              La Trace n&deg;3 montre o&ugrave; cette lecture est faite. Le JSON est organis&eacute; en trois niveaux :
+              librairie, appel de fonction, liste de tests
+              (<code class="inline-code">"fichier"</code>, <code class="inline-code">"class"</code>, <code class="inline-code">"method"</code>).
+              Ce format, valid&eacute; en revue, simplifie la cr&eacute;ation d&rsquo;une <code class="inline-code">TestSuite</code>
+              par librairie. J&rsquo;ai g&eacute;r&eacute; les doublons pour ne pas ex&eacute;cuter un test deux fois.
             </p>
             <p class="mb-3">
               Pour
               <v-chip color="error" size="x-small" class="mx-1">importer dynamiquement des modules Python avec importlib</v-chip>,
-              <code>build_test_class</code> utilise <code>importlib.import_module()</code> avec le chemin
-              converti par <code>formater_chemin_module</code>. Cette m&eacute;thode transforme un chemin fichier
-              (<code>eztest/tests/test_pastell.py</code>) en notation point&eacute;e
-              (<code>tests.test_pastell</code>). Sans <code>importlib</code>, impossible de charger des
-              classes dont les noms ne sont connus qu&rsquo;&agrave; l&rsquo;ex&eacute;cution. Ce qui m&rsquo;a pos&eacute; le plus de
-              probl&egrave;mes, c&rsquo;est le r&eacute;pertoire de recherche&nbsp;: <code>import_module</code> cherche
-              relativement au <code>sys.path</code> courant, donc le script devait s&rsquo;ex&eacute;cuter depuis
-              le bon dossier.
+              <code class="inline-code">build_test_class</code> utilise
+              <a href="https://docs.python.org/3/library/importlib.html#importlib.import_module" target="_blank" rel="noopener noreferrer">importlib.import_module()</a>
+              avec le chemin converti par <code class="inline-code">formater_chemin_module</code> (Trace n&deg;3).
+              Cette m&eacute;thode transforme un chemin fichier
+              (<code class="inline-code">eztest/tests/test_pastell.py</code>) en notation point&eacute;e
+              (<code class="inline-code">tests.test_pastell</code>). Sans import dynamique, impossible de charger des classes
+              dont les noms ne sont connus qu&rsquo;&agrave; l&rsquo;ex&eacute;cution. Le point sensible est le
+              <code class="inline-code">sys.path</code> : le script doit s&rsquo;ex&eacute;cuter depuis le bon dossier.
             </p>
             <p>
               Pour
               <v-chip color="error" size="x-small" class="mx-1">construire dynamiquement des classes de tests avec unittest.TestCase</v-chip>,
-              <code>build_test_class</code> utilise <code>type()</code> pour cr&eacute;er une classe qui
-              h&eacute;rite de la source. Dans <code>attrs</code>, on ne met que la m&eacute;thode cibl&eacute;e, les
-              autres sont mises &agrave; <code>None</code>. La classe est expos&eacute;e dans <code>globals()</code>
-              pour que pytest la d&eacute;tecte. Le gros probl&egrave;me a &eacute;t&eacute; le m&eacute;lange des contextes&nbsp;: deux
-              classes dynamiques h&eacute;ritant de la m&ecirc;me source partageaient leur <code>setUp</code>,
-              ce qui provoquait des <code>AttributeError</code>. Isoler chaque test dans sa propre classe
-              d&eacute;riv&eacute;e a r&eacute;gl&eacute; le probl&egrave;me. La suite a produit 155 failed, 159 passed et 6 errors
-              en 84s, ce qui a identifi&eacute; les incompatibilit&eacute;s li&eacute;es aux mont&eacute;es de version.
+              <code class="inline-code">build_test_class</code> s&rsquo;appuie sur
+              <a href="https://docs.python.org/3/library/unittest.html" target="_blank" rel="noopener noreferrer">unittest</a>
+              et <code class="inline-code">type()</code> pour cr&eacute;er une classe qui h&eacute;rite de la classe source.
+              Dans <code class="inline-code">attrs</code>, on ne garde que la m&eacute;thode cibl&eacute;e ; les autres sont mises &agrave;
+              <code class="inline-code">None</code>. La classe est expos&eacute;e dans <code class="inline-code">globals()</code>
+              pour que pytest la d&eacute;tecte (Trace n&deg;3). Le gros probl&egrave;me a &eacute;t&eacute; le m&eacute;lange des contextes :
+              deux classes dynamiques h&eacute;ritant de la m&ecirc;me source partageaient leur <code class="inline-code">setUp</code>,
+              ce qui provoquait des <code class="inline-code">AttributeError</code>. Isoler chaque test dans sa propre classe
+              d&eacute;riv&eacute;e a r&eacute;gl&eacute; le probl&egrave;me.
             </p>
           </div>
         </v-window-item>
@@ -405,3 +416,28 @@ const techSavoirFaire = [
   },
 ]
 </script>
+
+<style scoped>
+.trace-image {
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trace-image:hover {
+  filter: brightness(0.75);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.inline-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  background: #111111;
+  color: #e6e6e6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+</style>

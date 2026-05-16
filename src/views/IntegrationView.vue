@@ -26,7 +26,7 @@
         <!-- COMPETENCE 5 -->
         <v-window-item value="comp5">
           <h3 class="text-h5 font-weight-bold mb-3">
-            Audit initial du code EzGED avec ruff et deptry
+            Prendre en main un projet existant 
           </h3>
           <div class="mb-3">
             <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
@@ -41,21 +41,22 @@
               <img
                 src="/images/Trace7_ruff.png"
                 alt="Sortie ruff sur le projet EzGED (4958 erreurs)"
-                style="width:100%; border-radius:8px; cursor:zoom-in; display:block;"
+                class="trace-image"
                 @click="openImage('/images/Trace7_ruff.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;7</strong> &mdash; Sortie de <code>ruff check</code> sur le projet EzGED
+                <strong>Trace n&deg;7</strong> &mdash; Sortie de <code class="inline-code">ruff check</code> sur le projet EzGED
               </p>
             </v-col>
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="info" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;7 montre la sortie de <code>ruff check</code> lanc&eacute; sur l&rsquo;ensemble du
-                  code EzGED. R&eacute;sultat&nbsp;: 4958 erreurs sur plusieurs centaines de fichiers.
-                  On y voit les codes d&rsquo;erreur (F401 imports inutilis&eacute;s, E501 lignes trop longues,
-                  F841 variables mortes, F821 appels non d&eacute;finis, E722 except g&eacute;n&eacute;riques).
-                  Ce premier audit a donn&eacute; une vision globale de l&rsquo;&eacute;tat du code avant la migration.
+                  La Trace n&deg;7 montre la sortie de
+                  <a href="https://docs.astral.sh/ruff/" target="_blank" rel="noopener noreferrer">Ruff</a>,
+                  un linter Python utilis&eacute; pour un audit rapide du code avant la migration vers Python 3.13.
+                  On y voit les codes d&rsquo;erreur (F401 imports inutilis&eacute;s, (E713 syntaxe d&eacute;pr&eacute;ci&eacute;e, etc) et un total de 4958 probl&egrave;mes, dont 68 en syntaxe Python 2. Ce rapport a &eacute;t&eacute; essentiel pour classer les anomalies par s&eacute;v&eacute;rit&eacute; et planifier les corrections.
+                  de 4958 probl&egrave;mes. Ce r&eacute;sultat a servi &agrave; classer les anomalies et &agrave; rep&eacute;rer
+                  les zones &agrave; traiter en priorit&eacute;.
                 </p>
               </v-card>
             </v-col>
@@ -67,12 +68,13 @@
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="info" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;8 montre la sortie de <code>deptry</code> sur EzGED. Cet outil croise
-                  les imports du code avec les d&eacute;pendances d&eacute;clar&eacute;es dans <code>pyproject.toml</code>.
-                  Il a sorti des erreurs DEP001 (modules manquants), DEP002 (paquets d&eacute;clar&eacute;s mais
-                  jamais import&eacute;s comme <code>pandas</code>, <code>pyjwt</code> ou <code>paramiko</code>)
-                  et DEP003 (d&eacute;pendances transitives). Ce r&eacute;sultat compl&egrave;te l&rsquo;audit ruff en se
-                  concentrant sur la coh&eacute;rence des d&eacute;pendances.
+                  La Trace n&deg;8 montre la sortie de
+                  <a href="https://deptry.com/" target="_blank" rel="noopener noreferrer">deptry</a>,
+                  l&rsquo;outil qui v&eacute;rifie la coh&eacute;rence entre le code et les d&eacute;pendances d&eacute;clar&eacute;es.
+                  Il compare les imports avec <code class="inline-code">pyproject.toml</code> et met en avant
+                  les erreurs DEP001 (modules manquants), DEP002 (paquets d&eacute;clar&eacute;s mais jamais import&eacute;s)
+                  et DEP003 (d&eacute;pendances transitives). Ce r&eacute;sultat compl&egrave;te Ruff en se concentrant
+                  sur la gestion des d&eacute;pendances.
                 </p>
               </v-card>
             </v-col>
@@ -80,11 +82,11 @@
               <img
                 src="/images/Trace8_deptry.png"
                 alt="Sortie deptry sur le projet EzGED"
-                style="width:100%; border-radius:8px; cursor:zoom-in; display:block;"
+                class="trace-image"
                 @click="openImage('/images/Trace8_deptry.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;8</strong> &mdash; Sortie de <code>deptry</code> sur le projet EzGED
+                <strong>Trace n&deg;8</strong> &mdash; Sortie de <code class="inline-code">deptry</code> sur le projet EzGED
               </p>
             </v-col>
           </v-row>
@@ -94,35 +96,34 @@
             <p class="mb-3">
               Pour
               <v-chip color="info" size="x-small" class="mx-1">d&eacute;ployer et utiliser des outils d&rsquo;analyse statique (ruff, deptry)</v-chip>,
-              j&rsquo;ai install&eacute; ruff et deptry via <code>uv</code> dans l&rsquo;environnement virtuel du projet.
-              Deux commandes principales&nbsp;: <code>uv run ruff check ezged lib</code> et
-              <code>uv run deptry ezged lib</code>. Ruff est un linter Python &eacute;crit en Rust, il
-              analyse tout le projet en quelques secondes. Deptry croise les imports du code avec les
-              d&eacute;pendances d&eacute;clar&eacute;es dans <code>pyproject.toml</code> pour trouver les paquets
-              inutilis&eacute;s (DEP002) ou manquants (DEP001). J&rsquo;ai configur&eacute; deptry pour ignorer les
-              modules internes d&rsquo;EzGED qui g&eacute;n&eacute;raient des faux positifs.
+              j&rsquo;ai install&eacute; Ruff et deptry via
+              <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a>
+              dans l&rsquo;environnement du projet. Les commandes principales &eacute;taient
+              <code class="inline-code">uv run ruff check ezged lib</code> et
+              <code class="inline-code">uv run deptry ezged lib</code>. Ruff analyse le code rapidement,
+              et deptry compare les imports aux d&eacute;pendances d&eacute;clar&eacute;es dans
+              <code class="inline-code">pyproject.toml</code>. J&rsquo;ai configur&eacute; deptry pour ignorer certains
+              modules internes afin d&rsquo;&eacute;viter les faux positifs.
             </p>
             <p class="mb-3">
               Pour
               <v-chip color="info" size="x-small" class="mx-1">identifier et classifier les anomalies d&rsquo;un projet Python existant</v-chip>,
-              j&rsquo;ai class&eacute; les 4958 erreurs ruff par code et s&eacute;v&eacute;rit&eacute;. Les F401 (imports inutilis&eacute;s)
-              repr&eacute;sentaient une grosse partie du total mais ne bloquent pas la migration. Les erreurs
-              critiques pour Python 3.13 (syntaxe d&eacute;pr&eacute;ci&eacute;e, modules supprim&eacute;s de la stdlib)
-              &eacute;taient moins nombreuses mais urgentes. J&rsquo;ai aussi rep&eacute;r&eacute; 68 fichiers avec de la
-              syntaxe Python 2 (op&eacute;rateur <code>&lt;&gt;</code>, <code>print</code> sans parenth&egrave;ses)
-              et 2 fichiers critiques utilisant le module <code>imp</code> supprim&eacute; en Python 3.12.
-              J&rsquo;ai r&eacute;dig&eacute; un rapport d&rsquo;analyse sur GitLab en s&eacute;parant ce qui pouvait &ecirc;tre corrig&eacute;
-              automatiquement (<code>ruff check --fix</code>) de ce qui demandait une intervention manuelle.
+              j&rsquo;ai class&eacute; les 4958 erreurs Ruff par code et par s&eacute;v&eacute;rit&eacute;. Les erreurs de
+              style (ex: F401 imports inutilis&eacute;s) ne bloquent pas la migration, alors que les erreurs
+              li&eacute;es &agrave; Python 3.13 (syntaxes d&eacute;pr&eacute;ci&eacute;es, modules supprim&eacute;s de la stdlib)
+              sont prioritaires. Le rapport a aussi mis en &eacute;vidence 68 fichiers en syntaxe Python 2 et
+              des usages critiques du module <code class="inline-code">imp</code>. J&rsquo;ai produit un r&eacute;sum&eacute;
+              distinguant les corrections automatiques de celles &agrave; traiter manuellement.
             </p>
             <p>
               Pour
               <v-chip color="info" size="x-small" class="mx-1">solliciter les d&eacute;veloppeurs pour comprendre l&rsquo;architecture</v-chip>,
-              certaines d&eacute;pendances signal&eacute;es comme inutilis&eacute;es par deptry (notamment
-              <code>paramiko</code> et <code>pyjwt</code>) ont &eacute;t&eacute; soumises &agrave; J&eacute;r&eacute;my Hindgray pour
-              confirmation. Ces paquets pouvaient &ecirc;tre charg&eacute;s dynamiquement via <code>eval()</code>
-              ou <code>getattr()</code> dans des parties du projet non couvertes par le scan.
-              Ces &eacute;changes m&rsquo;ont &eacute;vit&eacute; de supprimer des d&eacute;pendances encore n&eacute;cessaires et m&rsquo;ont
-              aid&eacute; &agrave; comprendre la structure globale du projet.
+              certaines d&eacute;pendances signal&eacute;es comme inutilis&eacute;es par deptry (ex:
+              <code class="inline-code">paramiko</code>, <code class="inline-code">pyjwt</code>) ont &eacute;t&eacute; revues
+              avec J&eacute;r&eacute;my Hindgray. Certaines pouvaient &ecirc;tre charg&eacute;es dynamiquement via
+              <code class="inline-code">eval()</code> ou <code class="inline-code">getattr()</code>.
+              Ces &eacute;changes ont &eacute;vit&eacute; de supprimer des d&eacute;pendances encore utiles et m&rsquo;ont aid&eacute;
+              &agrave; mieux comprendre l&rsquo;architecture globale.
             </p>
           </div>
         </v-window-item>
@@ -307,3 +308,28 @@ const integrationSavoirFaire = [
   },
 ]
 </script>
+
+<style scoped>
+.trace-image {
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trace-image:hover {
+  filter: brightness(0.75);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.inline-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  background: #111111;
+  color: #e6e6e6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+</style>
