@@ -1,9 +1,0 @@
-{
-  "files.encoding": "utf8",
-  "files.autoGuessEncoding": false,
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 500,
-  "[vue]": {
-    "editor.defaultFormatter": "Vue.volar"
-  }
-}

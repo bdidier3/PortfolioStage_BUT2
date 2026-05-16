@@ -8,4 +8,8 @@ build/
 .vscode/
 coverage/
 *.tsbuildinfo
-*.bak   
+*.bak
+rap/
+.dist/
+.claude/
+node_modules/
