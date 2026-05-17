@@ -166,15 +166,43 @@
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="error" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;3 pr&eacute;sente le script qui g&eacute;n&egrave;re des tests automatiquement &agrave; partir
-                  d&rsquo;un fichier JSON. Son but est de v&eacute;rifier rapidement la compatibilit&eacute; apr&egrave;s une
-                  mise &agrave; jour de versions, sans &eacute;crire tous les tests &agrave; la main. La trace montre ensuite
-                  les deux fonctions cl&eacute;s du script : <code class="inline-code">build_tests</code> (lecture du JSON)
-                  et <code class="inline-code">build_test_class</code> (g&eacute;n&eacute;ration de classes).
-                  On y voit comment les appels sont regroup&eacute;s par librairie, puis transform&eacute;s en suites de tests.
-                  Chaque test est isol&eacute; dans sa propre classe d&eacute;riv&eacute;e pour &eacute;viter les conflits de contexte.
+                 La Trace n°3 présente deux fonctions clés d'un script de création de suites de tests dynamiques.
+                 L'objectif de ce script, développé dans le cadre de ma mission de migration vers Python 3.13,
+                 est de construire automatiquement des tests unitaires ciblés à partir d’un fichier JSON. On y voit
+                 <code class="inline-code">build_tests</code> qui parcourt les entrées pour créer une suite par librairie,
+                 et <code class="inline-code">build_test_class</code> qui génère une classe unique par test. Cette organisation
+                 permet de vérifier rapidement la compatibilité du code après la mise à jour des dépendances, de manière reproductible
+                 et sans réécrire les tests à la main.
                 </p>
               </v-card>
+            </v-col>
+          </v-row>
+          <v-divider class="my-4" />
+
+          <v-row class="mb-4" align="start">
+            <v-col cols="12" md="5">
+              <v-card variant="outlined" color="error" class="pa-3 mb-3" rounded="lg">
+                <p class="text-body-2 mb-0">
+                  La Trace n°4 présente un extrait du fichier de configuration JSON source, utilisé par mon script de
+                  création de suites de tests dynamiques, créé dans le cadre de ma mission de migration vers Python 3.13
+                  pour cibler les tests à exécuter. Comme on le voit sur l'image, il est structuré en trois niveaux : les
+                  traits rouges indiquent le nom de la librairie externe, les traits verts précisent l'appel de fonction exact,
+                  et les cadres jaunes regroupent les informations du test unitaire à lancer (fichier, classe, méthode).
+                  C’est la preuve visuelle du format d’entrée exigé par ce script. Ce choix d'organisation permet de construire
+                  dynamiquement les bonnes suites de tests lors des montées de version, sans réécrire manuellement des cas de test.
+                </p>
+              </v-card>
+            </v-col>
+            <v-col cols="12" md="7">
+              <img
+                src="/images/Trace4_jsonfile.png"
+                alt="Fichier JSON des tests dynamiques"
+                class="trace-image"
+                @click="openImage('/images/Trace4_jsonfile.png')"
+              />
+              <p class="text-caption text-medium-emphasis mt-2">
+                <strong>Trace n&deg;4</strong> &mdash; Fichier JSON source utilis&eacute; pour g&eacute;n&eacute;rer les suites de tests
+              </p>
             </v-col>
           </v-row>
           <v-divider class="my-4" />
@@ -183,38 +211,33 @@
             <p class="mb-3">
               Pour
               <v-chip color="error" size="x-small" class="mx-1">charger et exploiter un fichier JSON structur&eacute; en Python</v-chip>,
-              la fonction <code class="inline-code">build_tests</code> lit un fichier JSON pass&eacute; en param&egrave;tre via le module standard
+              j&rsquo;ai d&eacute;fini un format lisible et je l&rsquo;ai lu avec le module standard
               <a href="https://docs.python.org/3/library/json.html" target="_blank" rel="noopener noreferrer">json</a>.
-              La Trace n&deg;3 montre o&ugrave; cette lecture est faite. Le JSON est organis&eacute; en trois niveaux :
-              librairie, appel de fonction, liste de tests
+              Comme on le voit sur la Trace n&deg;4, ce fichier est organis&eacute; de mani&egrave;re tr&egrave;s pr&eacute;cise :
+              les traits rouges montrent la librairie externe, les traits verts ciblent l&rsquo;appel de la fonction,
+              et les cadres jaunes contiennent les d&eacute;tails du test &agrave; ex&eacute;cuter
               (<code class="inline-code">"fichier"</code>, <code class="inline-code">"class"</code>, <code class="inline-code">"method"</code>).
-              Ce format, valid&eacute; en revue, simplifie la cr&eacute;ation d&rsquo;une <code class="inline-code">TestSuite</code>
-              par librairie. J&rsquo;ai g&eacute;r&eacute; les doublons pour ne pas ex&eacute;cuter un test deux fois.
+              Cette structure permet de cibler exactement ce qu&rsquo;on veut tester.
             </p>
             <p class="mb-3">
               Pour
               <v-chip color="error" size="x-small" class="mx-1">importer dynamiquement des modules Python avec importlib</v-chip>,
-              <code class="inline-code">build_test_class</code> utilise
+              le script utilise la commande
               <a href="https://docs.python.org/3/library/importlib.html#importlib.import_module" target="_blank" rel="noopener noreferrer">importlib.import_module()</a>
-              avec le chemin converti par <code class="inline-code">formater_chemin_module</code> (Trace n&deg;3).
-              Cette m&eacute;thode transforme un chemin fichier
-              (<code class="inline-code">eztest/tests/test_pastell.py</code>) en notation point&eacute;e
-              (<code class="inline-code">tests.test_pastell</code>). Sans import dynamique, impossible de charger des classes
-              dont les noms ne sont connus qu&rsquo;&agrave; l&rsquo;ex&eacute;cution. Le point sensible est le
-              <code class="inline-code">sys.path</code> : le script doit s&rsquo;ex&eacute;cuter depuis le bon dossier.
+              visible dans le cadre rouge de la Trace n&deg;3. Le script lit le chemin du fichier dans le JSON
+              (par exemple <code class="inline-code">eztest/tests/test.py</code>) et le transforme en un format que
+              Python comprend. C&rsquo;est une &eacute;tape obligatoire, car le script ne conna&icirc;t le nom des fichiers
+              &agrave; tester qu&rsquo;au moment o&ugrave; il s&rsquo;ex&eacute;cute.
             </p>
             <p>
               Pour
               <v-chip color="error" size="x-small" class="mx-1">construire dynamiquement des classes de tests avec unittest.TestCase</v-chip>,
-              <code class="inline-code">build_test_class</code> s&rsquo;appuie sur
-              <a href="https://docs.python.org/3/library/unittest.html" target="_blank" rel="noopener noreferrer">unittest</a>
-              et <code class="inline-code">type()</code> pour cr&eacute;er une classe qui h&eacute;rite de la classe source.
-              Dans <code class="inline-code">attrs</code>, on ne garde que la m&eacute;thode cibl&eacute;e ; les autres sont mises &agrave;
-              <code class="inline-code">None</code>. La classe est expos&eacute;e dans <code class="inline-code">globals()</code>
-              pour que pytest la d&eacute;tecte (Trace n&deg;3). Le gros probl&egrave;me a &eacute;t&eacute; le m&eacute;lange des contextes :
-              deux classes dynamiques h&eacute;ritant de la m&ecirc;me source partageaient leur <code class="inline-code">setUp</code>,
-              ce qui provoquait des <code class="inline-code">AttributeError</code>. Isoler chaque test dans sa propre classe
-              d&eacute;riv&eacute;e a r&eacute;gl&eacute; le probl&egrave;me.
+              j&rsquo;ai utilis&eacute; la fonction <code class="inline-code">type()</code> (mise en &eacute;vidence dans le cadre bleu
+              de la Trace n&deg;3) pour cr&eacute;er une nouvelle classe pour chaque test. J&rsquo;ai ensuite regroup&eacute;
+              ces tests dans une <code class="inline-code">unittest.TestSuite()</code> (visible dans le cadre vert).
+              Le but de cette technique est d&rsquo;isoler chaque test pour qu&rsquo;ils ne partagent pas leur
+              configuration de d&eacute;part (<code class="inline-code">setUp</code>). Cela &eacute;vite les bugs et rend la
+              v&eacute;rification beaucoup plus fiable lors de la migration vers Python 3.13.
             </p>
           </div>
         </v-window-item>
@@ -225,44 +248,53 @@
             Bilan &amp; Analyse
           </h3>
 
-          <h4 class="text-body-1 font-weight-bold mb-3">R&eacute;sum&eacute; des savoir-faire &eacute;l&eacute;mentaires</h4>
-          <v-row class="mb-6">
-            <v-col cols="12" md="6" v-for="sf in techSavoirFaire" :key="sf.title">
-              <v-card variant="outlined" class="pa-3 h-100" rounded="lg">
-                <v-chip color="error" size="small" class="mb-2">{{ sf.title }}</v-chip>
-                <p class="text-body-2 mb-1"><strong>Contexte d'utilisation :</strong> {{ sf.contexteUtilisation }}</p>
-                <p class="text-body-2 mb-1"><strong>Contexte d'apprentissage :</strong> {{ sf.contexteApprentissage }}</p>
-                <p class="text-body-2"><strong>Difficult&eacute; :</strong> {{ sf.difficulte }}</p>
-              </v-card>
-            </v-col>
-          </v-row>
+          <v-card
+            v-for="comp in bilanCompetences"
+            :key="comp.id"
+            variant="outlined"
+            class="pa-4 mb-6"
+            rounded="lg"
+          >
+            <h4 class="text-body-1 font-weight-bold mb-4">{{ comp.title }}</h4>
 
-          <h4 class="text-body-1 font-weight-bold mb-3">&Eacute;valuation justifi&eacute;e du niveau d&rsquo;expertise</h4>
-          <v-row>
-            <v-col cols="12" md="6">
-              <v-card variant="outlined" class="pa-4" rounded="lg">
-                <h4 class="text-subtitle-2 font-weight-bold mb-2">Avant le stage</h4>
-                <p class="text-body-2">
-                  Niveau <strong>faible</strong>. J&rsquo;avais vu les bases de Python et les tests unitaires
-                  en cours de BUT, mais jamais dans un contexte de migration ou de projet industriel.
-                  LibCST, coverage.py, tomllib et importlib.metadata m&rsquo;&eacute;taient compl&egrave;tement inconnus.
-                  Je n&rsquo;avais jamais g&eacute;n&eacute;r&eacute; de tests dynamiquement ni manipul&eacute; un arbre syntaxique.
-                </p>
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-card variant="outlined" class="pa-4" rounded="lg">
-                <h4 class="text-subtitle-2 font-weight-bold mb-2">Apr&egrave;s le stage</h4>
-                <p class="text-body-2">
-                  Niveau <strong>bon</strong>. Je suis capable d&rsquo;analyser automatiquement les usages de
-                  d&eacute;pendances via LibCST, de croiser les r&eacute;sultats avec la couverture de tests,
-                  et de g&eacute;n&eacute;rer des suites de tests dynamiques cibl&eacute;es par librairie. La progression
-                  vient de six semaines de pratique quotidienne sur EzGED, avec des revues r&eacute;guli&egrave;res
-                  de Florian Masy qui m&rsquo;ont pouss&eacute; &agrave; am&eacute;liorer mon approche &agrave; chaque it&eacute;ration.
-                </p>
-              </v-card>
-            </v-col>
-          </v-row>
+            <h5 class="text-body-1 font-weight-bold mb-3">R&eacute;sum&eacute; des savoir-faire &eacute;l&eacute;mentaires</h5>
+            <v-row class="mb-4">
+              <v-col cols="12" md="6" v-for="sf in comp.savoirFaire" :key="sf.title">
+                <v-card variant="outlined" class="pa-3 h-100" rounded="lg">
+                  <v-chip color="error" size="small" class="mb-2">{{ sf.title }}</v-chip>
+                  <p class="text-body-2 mb-1"><strong>Contexte d'utilisation :</strong> {{ sf.contexteUtilisation }}</p>
+                  <p class="text-body-2 mb-1"><strong>Contexte d'apprentissage :</strong> {{ sf.contexteApprentissage }}</p>
+                  <p class="text-body-2"><strong>Difficult&eacute; :</strong> {{ sf.difficulte }}</p>
+                </v-card>
+              </v-col>
+            </v-row>
+
+            <h5 class="text-body-1 font-weight-bold mb-3">&Eacute;valuation du niveau</h5>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-card variant="outlined" class="pa-4" rounded="lg">
+                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Avant le stage</h6>
+                  <p class="text-body-2 mb-2">
+                    Niveau <strong>{{ comp.evaluation.beforeLevel }}</strong>.
+                  </p>
+                  <p class="text-body-2 mb-0">
+                    {{ comp.evaluation.beforeText }}
+                  </p>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-card variant="outlined" class="pa-4" rounded="lg">
+                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Apr&egrave;s le stage</h6>
+                  <p class="text-body-2 mb-2">
+                    Niveau <strong>{{ comp.evaluation.afterLevel }}</strong>.
+                  </p>
+                  <p class="text-body-2 mb-0">
+                    {{ comp.evaluation.afterText }}
+                  </p>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-card>
         </v-window-item>
 
       </v-window>
@@ -377,42 +409,66 @@ function onMouseUp() {
   dragging.value = false
 }
 
-const techSavoirFaire = [
+const bilanCompetences = [
   {
-    title: "Utiliser LibCST pour détecter les usages de dépendances",
-    contexteUtilisation: "Détection automatique des imports et appels liés à chaque dépendance dans le code EzGED, alimentant l'interface HTML Jinja2 (trace n°1, semaines 2-3).",
-    contexteApprentissage: "Appris entièrement en stage à partir de la documentation LibCST, sans base préalable en analyse syntaxique.",
-    difficulte: "Élevée — la manipulation du CST demande de comprendre la structure interne du code Python et de gérer les alias d'imports.",
+    id: "comp1",
+    title: "Compétence 1 — Analyse automatique du code et couverture de tests",
+    savoirFaire: [
+      {
+        title: "Utiliser LibCST pour détecter les usages de dépendances",
+        contexteUtilisation: "Détection automatique des imports et appels liés à chaque dépendance dans le code EzGED, alimentant l'interface HTML Jinja2 (trace n°1).",
+        contexteApprentissage: "Appris entièrement en stage à partir de la documentation LibCST, sans base préalable en analyse syntaxique.",
+        difficulte: "Élevée — la manipulation du CST demande de comprendre la structure interne du code Python et de gérer les alias d'imports.",
+      },
+      {
+        title: "Lire et exploiter un fichier pyproject.toml avec tomllib",
+        contexteUtilisation: "Extraction automatique de la liste des dépendances depuis le pyproject.toml d'EzGED, point d'entrée du script d'analyse (trace n°2).",
+        contexteApprentissage: "Module découvert en stage, couplé avec importlib.metadata pour résoudre les correspondances noms de paquets / noms de modules.",
+        difficulte: "Faible pour la lecture du TOML ; moyenne pour le mapping distribution/module avec importlib.metadata.",
+      },
+      {
+        title: "Lecture d'un fichier .coverage avec l'API coverage.py",
+        contexteUtilisation: "Croisement des données de couverture avec les appels détectés par LibCST pour identifier les zones non testées (trace n°1).",
+        contexteApprentissage: "Appris en stage via la documentation. Le fichier .coverage est une base SQLite, j'ai dû comprendre son format interne.",
+        difficulte: "Moyenne — la normalisation des chemins entre le .coverage et le code source a demandé une fonction dédiée.",
+      },
+    ],
+    evaluation: {
+      beforeLevel: "mauvais",
+      beforeText: "Je connaissais seulement les bases de Python et je n'avais jamais analysé un projet réel avec LibCST ou coverage.py.",
+      afterLevel: "bon",
+      afterText: "Je sais analyser les usages de dépendances, croiser avec la couverture de tests et produire un rapport clair pour l'équipe.",
+    },
   },
   {
-    title: "Lire et exploiter un fichier pyproject.toml avec tomllib",
-    contexteUtilisation: "Extraction automatique de la liste des dépendances depuis le pyproject.toml d'EzGED, point d'entrée du script d'analyse (trace n°2, semaine 3).",
-    contexteApprentissage: "Module découvert en stage, couplé avec importlib.metadata pour résoudre les correspondances noms de paquets / noms de modules.",
-    difficulte: "Faible pour la lecture du TOML ; moyenne pour le mapping distribution/module avec importlib.metadata.",
-  },
-  {
-    title: "Lecture d'un fichier .coverage avec l'API coverage.py",
-    contexteUtilisation: "Croisement des données de couverture avec les appels détectés par LibCST pour identifier les zones non testées (trace n°1, semaines 3-4).",
-    contexteApprentissage: "Appris en stage via la documentation. Le fichier .coverage est une base SQLite, j'ai dû comprendre son format interne.",
-    difficulte: "Moyenne — la normalisation des chemins entre le .coverage et le code source a demandé une fonction dédiée.",
-  },
-  {
-    title: "Charger et exploiter un fichier JSON structuré en Python",
-    contexteUtilisation: "Lecture du JSON regroupé par librairie pour construire dynamiquement les suites de tests (trace n°3, semaines 5-6).",
-    contexteApprentissage: "Bases JSON vues en cours de BUT, approfondissement de la déduplication et restructuration du format sur proposition de Florian Masy.",
-    difficulte: "Faible pour la lecture ; moyenne pour la déduplication et la redéfinition du format à trois niveaux.",
-  },
-  {
-    title: "Importer dynamiquement des modules Python avec importlib",
-    contexteUtilisation: "Chargement à l'exécution des classes de tests référencées dans le JSON, car les noms ne sont connus qu'au runtime (trace n°3, semaines 5-6).",
-    contexteApprentissage: "Découvert en stage. L'import dynamique n'a jamais été abordé en cours de BUT.",
-    difficulte: "Moyenne — la gestion du sys.path et la conversion chemin fichier / notation pointée ont posé des problèmes multi-environnements.",
-  },
-  {
-    title: "Construire dynamiquement des classes de tests avec unittest",
-    contexteUtilisation: "Génération automatique de classes TestCase par librairie à partir du JSON pour vérifier la compatibilité après montée de version (trace n°3, semaines 5-6).",
-    contexteApprentissage: "Bases unittest vues en cours, mécanisme type() pour la création dynamique appris entièrement en stage.",
-    difficulte: "Élevée — le mélange des contextes setUp/tearDown entre classes dynamiques a nécessité plusieurs jours de débogage.",
+    id: "comp2",
+    title: "Compétence 2 — Suites de tests dynamiques à partir d'un JSON",
+    savoirFaire: [
+      {
+        title: "Charger et exploiter un fichier JSON structuré en Python",
+        contexteUtilisation: "Lecture du JSON regroupé par librairie pour construire dynamiquement les suites de tests (trace n°4).",
+        contexteApprentissage: "Bases JSON vues en cours de BUT, approfondissement de la déduplication et restructuration du format sur proposition de Florian Masy.",
+        difficulte: "Faible pour la lecture ; moyenne pour la déduplication et la redéfinition du format à trois niveaux.",
+      },
+      {
+        title: "Importer dynamiquement des modules Python avec importlib",
+        contexteUtilisation: "Chargement à l'exécution des classes de tests référencées dans le JSON, car les noms ne sont connus qu'au runtime (trace n°3).",
+        contexteApprentissage: "Découvert en stage. L'import dynamique n'a jamais été abordé en cours de BUT.",
+        difficulte: "Moyenne — la gestion du sys.path et la conversion chemin fichier / notation pointée ont posé des problèmes multi-environnements.",
+      },
+      {
+        title: "Construire dynamiquement des classes de tests avec unittest",
+        contexteUtilisation: "Génération automatique de classes TestCase par librairie à partir du JSON pour vérifier la compatibilité après montée de version (trace n°3).",
+        contexteApprentissage: "Bases unittest vues en cours, mécanisme type() pour la création dynamique appris entièrement en stage.",
+        difficulte: "Élevée — le mélange des contextes setUp/tearDown entre classes dynamiques a nécessité plusieurs jours de débogage.",
+      },
+    ],
+    evaluation: {
+      beforeLevel: "moyen",
+      beforeText: "Je savais lire un JSON simple et écrire des tests unitaires classiques, mais je n'avais jamais créé de suites dynamiques.",
+      afterLevel: "bon",
+      afterText: "Je peux générer des suites de tests dynamiques à partir d'un JSON et isoler chaque test pour fiabiliser la migration.",
+    },
   },
 ]
 </script>

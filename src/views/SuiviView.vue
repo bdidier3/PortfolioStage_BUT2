@@ -40,24 +40,24 @@
           <v-row class="mb-4" align="start">
             <v-col cols="12" md="7">
               <img
-                src="/images/Trace4_renovate.png"
+                src="/images/Trace5_renovate.png"
                 alt="Documentation Renovate utilis&eacute;e pour la configuration"
                 class="trace-image"
-                @click="openImage('/images/Trace4_renovate.png')"
+                @click="openImage('/images/Trace5_renovate.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;4</strong> &mdash; Documentation Renovate consult&eacute;e pour configurer l&rsquo;outil
+                <strong>Trace n&deg;5</strong> &mdash; Documentation Renovate consult&eacute;e pour configurer l&rsquo;outil
               </p>
             </v-col>
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="success" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;4 montre la documentation de
-                  <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer">Renovate</a>,
-                  l&rsquo;outil choisi pour automatiser les mises &agrave; jour de d&eacute;pendances. Cette doc sert de r&eacute;f&eacute;rence
-                  pour comprendre comment Renovate d&eacute;tecte les versions &agrave; mettre &agrave; jour et g&eacute;n&egrave;re des
-                  Merge Requests sur GitLab. Dans le contexte EzGED, elle a &eacute;t&eacute; indispensable pour d&eacute;finir
-                  la configuration (regroupement, planification, automerge) avant d&rsquo;appliquer la mise en place.
+                  La Trace n°5 montre un extrait de la documentation que j'ai rédigée pour intégrer Renovate,
+                  l’outil choisi pour automatiser la veille des dépendances. Le cadre rouge met en évidence
+                  la configuration du pipeline du fichier <code class="inline-code">.gitlab-ci.yml</code>. Les cadres verts montrent les règles globales
+                  appliquées au projet <code class="inline-code">renovate.json</code>, avec un focus précis dans le cadre jaune sur les gestionnaires
+                  de paquets. Dans le cadre de ma mission de migration, cette documentation permet à l'équipe de reproduire
+                  l'installation facilement.
                 </p>
               </v-card>
             </v-col>
@@ -69,22 +69,27 @@
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="success" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;5 montre les Merge Requests (MR) g&eacute;n&eacute;r&eacute;es par Renovate sur la branche
-                  <code class="inline-code">gestions_deps</code> dans GitLab. Ces MR regroupent les mises &agrave; jour
-                  de d&eacute;pendances, affichent le changelog et une estimation du risque. Elles prouvent que
-                  l&rsquo;automatisation fonctionne et qu&rsquo;elle s&rsquo;int&egrave;gre bien au flux de revue de l&rsquo;&eacute;quipe.
+                 La Trace n°6 montre le résultat concret du robot Renovate sur notre GitLab. Les cadres
+                 bleus indiquent que l'outil crée automatiquement une « Issue » (qui sert de tableau de
+                 bord de suivi global) et plusieurs « Merge Requests » (MR) pour proposer les mises à jour.
+                 Pour limiter les risques, Renovate sépare intelligemment les mises à jour : le trait rouge
+                 souligne justement une MR « major » qui regroupe les grandes montées de version (les plus risquées),
+                 tandis qu'il génère d'autres MR isolées pour les correctifs mineurs, qui sont beaucoup plus sûrs. Enfin,
+                 le cadre jaune cible le tableau de bord de la MR : il liste le nom de la dépendance, le changement de version,
+                  l'âge de la mise à jour et un indice de confiance basé sur la communauté pour évaluer facilement le risque de
+                  casse avant de valider.
                 </p>
               </v-card>
             </v-col>
             <v-col cols="12" md="7">
               <img
-                src="/images/Trace5_MRRenovate.png"
+                src="/images/Trace6_MRRenovate.png"
                 alt="Commits GitLab sur la branche gestions_deps"
                 class="trace-image"
-                @click="openImage('/images/Trace5_MRRenovate.png')"
+                @click="openImage('/images/Trace6_MRRenovate.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;5</strong> &mdash; Merge Requests Renovate sur la branche
+                <strong>Trace n&deg;6</strong> &mdash; Merge Requests Renovate sur la branche
                 <code class="inline-code">gestions_deps</code> dans GitLab
               </p>
             </v-col>
@@ -95,29 +100,33 @@
             <p class="mb-3">
               Pour
               <v-chip color="success" size="x-small" class="mx-1">identifier et comparer des outils de mise &agrave; jour automatique de d&eacute;pendances</v-chip>,
-              j&rsquo;ai men&eacute; une veille sur
+              j&rsquo;ai men&eacute; une veille technologique approfondie pour comparer
               <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer">Renovate</a>
               et
               <a href="https://docs.github.com/en/code-security/dependabot" target="_blank" rel="noopener noreferrer">Dependabot</a>.
-              La contrainte principale &eacute;tait la compatibilit&eacute; avec l&rsquo;instance GitLab interne d&rsquo;EzDEV.
-              Dependabot &eacute;tant centr&eacute; sur GitHub, il ne r&eacute;pondait pas au besoin. La Trace n&deg;4 situe
-              la documentation qui a servi &agrave; comparer les fonctionnalit&eacute;s et &agrave; justifier le choix.
+              Dans le cadre du projet, le crit&egrave;re bloquant &eacute;tait la compatibilit&eacute; avec le serveur GitLab interne
+              de l&rsquo;entreprise (EzDEV). Dependabot &eacute;tant optimis&eacute; pour GitHub, j&rsquo;ai logiquement s&eacute;lectionn&eacute;
+              Renovate. La Trace n&deg;5 montre justement le manuel technique qui est le r&eacute;sultat direct de cette recherche.
             </p>
             <p class="mb-3">
               Pour
               <v-chip color="success" size="x-small" class="mx-1">configurer Renovate sur un projet GitLab</v-chip>,
-              j&rsquo;ai mis en place un fichier <code class="inline-code">renovate.json</code> et un pipeline
-              <code class="inline-code">.gitlab-ci.yml</code> afin d&rsquo;ex&eacute;cuter Renovate en mode self-hosted.
-              Les options importantes concernaient le regroupement, la planification et l&rsquo;automerge des
-              petites mises &agrave; jour. La Trace n&deg;5 montre les MR cr&eacute;&eacute;es automatiquement, preuve que la
-              configuration fonctionne dans notre GitLab interne.
+              j&rsquo;ai mis en place les deux fichiers cl&eacute;s visibles sur la Trace n&deg;5. Le cadre rouge montre
+              le pipeline CI/CD qui permet d&rsquo;ex&eacute;cuter Renovate de mani&egrave;re autonome sur notre serveur.
+              Les cadres verts d&eacute;finissent les r&egrave;gles du robot, comme le blocage de la fusion automatique
+              (<code class="inline-code">automerge: false</code>) pour garder le contr&ocirc;le. Enfin, le cadre jaune
+              montre une r&egrave;gle avanc&eacute;e que j&rsquo;ai configur&eacute;e : cibler pr&eacute;cis&eacute;ment les paquets Python
+              (<code class="inline-code">pip_requirements</code>, <code class="inline-code">poetry</code>...) pour les regrouper.
+              La Merge Request g&eacute;n&eacute;r&eacute;e sur la Trace n&deg;6 prouve que cette configuration est un succ&egrave;s.
             </p>
             <p>
               Pour
               <v-chip color="success" size="x-small" class="mx-1">r&eacute;diger une documentation technique exploitable par l&rsquo;&eacute;quipe</v-chip>,
-              j&rsquo;ai structur&eacute; un document pas &agrave; pas : pr&eacute;sentation des outils &eacute;valu&eacute;s,
-              proc&eacute;dure d&rsquo;installation, &eacute;tapes de la mont&eacute;e de version et points de vigilance.
-              Cette documentation a été publiée sur Gitlab pour que l&rsquo;&eacute;quipe puisse reproduire le processus sans d&eacute;pendre de moi.
+              j&rsquo;ai structur&eacute; mon document (Trace n&deg;5) sous forme de tutoriel pas &agrave; pas tr&egrave;s visuel.
+              J&rsquo;y ai inclus la pr&eacute;sentation de l&rsquo;outil, les scripts exacts &agrave; copier-coller
+              (comme vus dans les cadres rouge et vert), et un guide pour interpr&eacute;ter les r&eacute;sultats.
+              Mon objectif &eacute;tait de rendre l&rsquo;&eacute;quipe totalement autonome, afin qu&rsquo;&agrave; la fin de mon stage,
+              n&rsquo;importe quel d&eacute;veloppeur puisse reproduire ce processus sur d&rsquo;autres projets sans d&eacute;pendre de moi.
             </p>
           </div>
         </v-window-item>
@@ -138,24 +147,23 @@
           <v-row class="mb-4" align="start">
             <v-col cols="12" md="7">
               <img
-                src="/images/Trace6_commits.png"
+                src="/images/Trace7_commits.png"
                 alt="Historique de commits GitLab"
                 class="trace-image"
-                @click="openImage('/images/Trace6_commits.png')"
+                @click="openImage('/images/Trace7_commits.png')"
               />
               <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;6</strong> &mdash; Historique de commits sur GitLab
+                <strong>Trace n&deg;7</strong> &mdash; Historique de commits sur GitLab
               </p>
             </v-col>
             <v-col cols="12" md="5">
               <v-card variant="outlined" color="success" class="pa-3 mb-3" rounded="lg">
                 <p class="text-body-2 mb-0">
-                  La Trace n&deg;6 montre l&rsquo;historique de mes commits sur GitLab pendant le stage.
-                  C&rsquo;est la preuve du suivi au fil de l&rsquo;eau : chaque &eacute;tape est versionn&eacute;e et reli&eacute;e
-                  &agrave; une fonctionnalit&eacute; pr&eacute;cise. Les messages suivent la convention
-                  <code class="inline-code">feat:</code> / <code class="inline-code">fix:</code> /
-                  <code class="inline-code">docs:</code>, les branches sont nomm&eacute;es par fonctionnalit&eacute; et
-                  chaque int&eacute;gration passe par une Merge Request valid&eacute;e par Florian Masy.
+                  La Trace n°7 montre l’historique de mes commits sur le GitLab de l'entreprise (EzDEV), réalisé pendant ma
+                  mission d'analyse et de migration vers Python 3.13. L'image met en évidence mon environnement de travail
+                  avec la branche de développement (cadre rouge), l'historique des actions détaillées (cadre bleu) et le
+                  déclenchement de la validation du code (cadre vert). C’est la preuve visuelle que j'ai adopté les normes de
+                  l'équipe pour versionner chaque étape de ma mission de manière sécurisée.
                 </p>
               </v-card>
             </v-col>
@@ -166,31 +174,29 @@
             <p class="mb-3">
               Pour
               <v-chip color="success" size="x-small" class="mx-1">g&eacute;rer son travail avec des branches Git nomm&eacute;es</v-chip>,
-              chaque fonctionnalit&eacute; ou correctif a &eacute;t&eacute; d&eacute;velopp&eacute; sur une branche d&eacute;di&eacute;e
-              (<code class="inline-code">feat/libcst-visitor</code>, <code class="inline-code">fix/coverage-path-normalization</code>, etc.).
-              Cette pratique, recommand&eacute;e par
-              <a href="https://git-scm.com/docs/git-branch" target="_blank" rel="noopener noreferrer">Git</a>,
-              facilite les revues et &eacute;vite de polluer la branche principale.
+              j'ai isol&eacute; la cr&eacute;ation de mes scripts d'analyse sur une branche d&eacute;di&eacute;e, visible
+              dans le cadre rouge (<code class="inline-code">gestions_deps</code>). Mon objectif
+              &eacute;tait de d&eacute;velopper et de tester mes outils sans jamais risquer d'impacter ou de casser
+              la branche principale du projet. Travailler sur une branche s&eacute;par&eacute;e
+              est une bonne pratique indispensable pour collaborer efficacement en &eacute;quipe.
             </p>
             <p class="mb-3">
               Pour
               <v-chip color="success" size="x-small" class="mx-1">r&eacute;diger des messages de commit clairs et atomiques</v-chip>,
-              j&rsquo;ai appliqu&eacute; une convention avec pr&eacute;fixes
-              (<code class="inline-code">feat:</code>, <code class="inline-code">fix:</code>,
-              <code class="inline-code">docs:</code>) inspir&eacute;e des bonnes pratiques
-              <a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener noreferrer">Conventional Commits</a>.
-              Chaque commit correspond &agrave; une modification coh&eacute;rente et ind&eacute;pendante, ce qui rend
-              l&rsquo;historique lisible et facilite les retours en arri&egrave;re.
+              j'ai veill&eacute; &agrave; d&eacute;couper mon travail en petites actions ind&eacute;pendantes. Comme le
+              montre le cadre bleu, au lieu d'enregistrer toutes mes modifications d'un coup sous un message
+              vague, je d&eacute;taille l'action exacte (ex: "Modification du script d'audit avec libcst en ajoutant
+              un filtre HTML"). La m&eacute;thode consiste &agrave; r&eacute;aliser un commit d&egrave;s
+              qu'une sous-fonctionnalit&eacute; est termin&eacute;e. Le but est de rendre
+              l’historique lisible et de faciliter un &eacute;ventuel retour en arri&egrave;re pr&eacute;cis en cas d'erreur.
             </p>
             <p>
               Pour
               <v-chip color="success" size="x-small" class="mx-1">soumettre son travail via des Merge Requests GitLab</v-chip>,
-              chaque branche a &eacute;t&eacute; int&eacute;gr&eacute;e via une MR avec une description claire, en suivant
-              les bonnes pratiques
-              <a href="https://docs.gitlab.com/ee/user/project/merge_requests/" target="_blank" rel="noopener noreferrer">GitLab</a>.
-              Les revues ont permis d&rsquo;identifier des ajustements, notamment sur la normalisation des chemins
-              et la gestion des contextes de tests. Ce flux m&rsquo;a appris &agrave; d&eacute;couper le travail en morceaux
-              raisonnables plut&ocirc;t que de tout envoyer d&rsquo;un coup.
+              j'utilise le bouton mis en &eacute;vidence par le cadre vert (Create merge request). Une fois mon
+              code termin&eacute; sur ma branche, je d&eacute;clenche manuellement cette demande. L'objectif est de notifier l'&eacute;quipe, pour qu'ils puissent
+              relire mon code, valider ma m&eacute;thode et approuver mon travail avant de le fusionner d&eacute;finitivement
+              avec le reste du logiciel EzGED.
             </p>
           </div>
         </v-window-item>
@@ -201,51 +207,53 @@
             Bilan &amp; Analyse
           </h3>
 
-          <h4 class="text-body-1 font-weight-bold mb-3">R&eacute;sum&eacute; des savoir-faire &eacute;l&eacute;mentaires</h4>
-          <v-row class="mb-6">
-            <v-col cols="12" md="6" v-for="sf in suiviSavoirFaire" :key="sf.title">
-              <v-card variant="outlined" class="pa-3 h-100" rounded="lg">
-                <v-chip color="success" size="small" class="mb-2">{{ sf.title }}</v-chip>
-                <p class="text-body-2 mb-1"><strong>Contexte d'utilisation :</strong> {{ sf.contexteUtilisation }}</p>
-                <p class="text-body-2 mb-1"><strong>Contexte d'apprentissage :</strong> {{ sf.contexteApprentissage }}</p>
-                <p class="text-body-2"><strong>Difficult&eacute; :</strong> {{ sf.difficulte }}</p>
-              </v-card>
-            </v-col>
-          </v-row>
+          <v-card
+            v-for="comp in bilanCompetences"
+            :key="comp.id"
+            variant="outlined"
+            class="pa-4 mb-6"
+            rounded="lg"
+          >
+            <h4 class="text-body-1 font-weight-bold mb-4">{{ comp.title }}</h4>
 
-          <h4 class="text-body-1 font-weight-bold mb-3">&Eacute;valuation justifi&eacute;e du niveau d&rsquo;expertise</h4>
-          <v-row>
-            <v-col cols="12" md="6">
-              <v-card variant="outlined" class="pa-4" rounded="lg">
-                <h4 class="text-subtitle-2 font-weight-bold mb-2">Avant le stage</h4>
-                <p class="text-body-2 mb-2">
-                  <strong>Comp&eacute;tence 3 :</strong> Niveau <strong>faible</strong>. Aucune exp&eacute;rience de
-                  veille structur&eacute;e ni de documentation technique &agrave; destination d&rsquo;une &eacute;quipe.
-                  Renovate et Dependabot m&rsquo;&eacute;taient totalement inconnus.
-                </p>
-                <p class="text-body-2">
-                  <strong>Comp&eacute;tence 4 :</strong> Niveau <strong>moyen</strong>. Bases Git acquises
-                  en cours de BUT, mais peu d&rsquo;exp&eacute;rience des branches et MR en contexte professionnel.
-                  Les commits n&rsquo;avaient pas de convention particuli&egrave;re.
-                </p>
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-card variant="outlined" class="pa-4" rounded="lg">
-                <h4 class="text-subtitle-2 font-weight-bold mb-2">Apr&egrave;s le stage</h4>
-                <p class="text-body-2 mb-2">
-                  <strong>Comp&eacute;tence 3 :</strong> Niveau <strong>bon</strong>. Capable de mener une
-                  veille structur&eacute;e, tester des outils en conditions r&eacute;elles et r&eacute;diger une
-                  documentation directement utilisable par l&rsquo;&eacute;quipe.
-                </p>
-                <p class="text-body-2">
-                  <strong>Comp&eacute;tence 4 :</strong> Niveau <strong>bon</strong>. Ma&icirc;trise du flux
-                  Git en &eacute;quipe&nbsp;: branches nomm&eacute;es, commits atomiques avec convention, Merge
-                  Requests avec revue de code. Le r&eacute;flexe est pris.
-                </p>
-              </v-card>
-            </v-col>
-          </v-row>
+            <h5 class="text-body-1 font-weight-bold mb-3">R&eacute;sum&eacute; des savoir-faire &eacute;l&eacute;mentaires</h5>
+            <v-row class="mb-4">
+              <v-col cols="12" md="6" v-for="sf in comp.savoirFaire" :key="sf.title">
+                <v-card variant="outlined" class="pa-3 h-100" rounded="lg">
+                  <v-chip color="success" size="small" class="mb-2">{{ sf.title }}</v-chip>
+                  <p class="text-body-2 mb-1"><strong>Contexte d'utilisation :</strong> {{ sf.contexteUtilisation }}</p>
+                  <p class="text-body-2 mb-1"><strong>Contexte d'apprentissage :</strong> {{ sf.contexteApprentissage }}</p>
+                  <p class="text-body-2"><strong>Difficult&eacute; :</strong> {{ sf.difficulte }}</p>
+                </v-card>
+              </v-col>
+            </v-row>
+
+            <h5 class="text-body-1 font-weight-bold mb-3">&Eacute;valuation du niveau</h5>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-card variant="outlined" class="pa-4" rounded="lg">
+                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Avant le stage</h6>
+                  <p class="text-body-2 mb-2">
+                    Niveau <strong>{{ comp.evaluation.beforeLevel }}</strong>.
+                  </p>
+                  <p class="text-body-2 mb-0">
+                    {{ comp.evaluation.beforeText }}
+                  </p>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-card variant="outlined" class="pa-4" rounded="lg">
+                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Apr&egrave;s le stage</h6>
+                  <p class="text-body-2 mb-2">
+                    Niveau <strong>{{ comp.evaluation.afterLevel }}</strong>.
+                  </p>
+                  <p class="text-body-2 mb-0">
+                    {{ comp.evaluation.afterText }}
+                  </p>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-card>
         </v-window-item>
 
       </v-window>
@@ -360,42 +368,66 @@ function onMouseUp() {
   dragging.value = false
 }
 
-const suiviSavoirFaire = [
+const bilanCompetences = [
   {
-    title: "Identifier et comparer des outils de mise à jour automatique",
-    contexteUtilisation: "Veille sur Renovate et Dependabot pour automatiser la gestion des dépendances d'EzGED après la migration Python 3.13 (traces n°4-5, semaine 2).",
-    contexteApprentissage: "Entièrement appris en stage. Ces outils n'avaient jamais été abordés en cours de BUT.",
-    difficulte: "Moyenne — la comparaison demande de tester réellement les deux outils et de comprendre les contraintes du GitLab interne.",
+    id: "comp3",
+    title: "Compétence 3 — Faire une veille technologique et documenter son travail",
+    savoirFaire: [
+      {
+        title: "Identifier et comparer des outils de mise à jour automatique",
+        contexteUtilisation: "Veille sur Renovate et Dependabot pour automatiser la gestion des dépendances d'EzGED après la migration Python 3.13 (traces n°5-6, semaine 2).",
+        contexteApprentissage: "Entièrement appris en stage. Ces outils n'avaient jamais été abordés en cours de BUT.",
+        difficulte: "Moyenne — la comparaison demande de tester réellement les deux outils et de comprendre les contraintes du GitLab interne.",
+      },
+      {
+        title: "Configurer Renovate sur un projet GitLab",
+        contexteUtilisation: "Mise en place de Renovate sur un projet de test GitLab, configuration via renovate.json et intégration dans le pipeline CI (traces n°5-6, semaine 2).",
+        contexteApprentissage: "Appris en stage à partir de la documentation Renovate et des échanges avec Florian Masy sur les runners GitLab.",
+        difficulte: "Élevée — la gestion des droits du runner et du token d'accès pour la création automatique de MR a pris plusieurs essais.",
+      },
+      {
+        title: "Rédiger une documentation technique exploitable",
+        contexteUtilisation: "Rédaction de la documentation comparative Renovate/Dependabot et de la procédure de montée de version, publiée sur le Wiki GitLab (semaines 2-4).",
+        contexteApprentissage: "Pratique développée en stage. La rédaction pour une équipe pro n'avait pas été travaillée en cours.",
+        difficulte: "Faible pour la rédaction ; moyenne pour trouver le bon niveau de détail technique.",
+      },
+    ],
+    evaluation: {
+      beforeLevel: "faible",
+      beforeText: "Aucune expérience de veille structurée ni de documentation technique à destination d'une équipe. Renovate et Dependabot m'étaient inconnus.",
+      afterLevel: "bon",
+      afterText: "Je sais mener une veille structurée, tester des outils en conditions réelles et rédiger une documentation directement exploitable.",
+    },
   },
   {
-    title: "Configurer Renovate sur un projet GitLab",
-    contexteUtilisation: "Mise en place de Renovate sur un projet de test GitLab, configuration via renovate.json et intégration dans le pipeline CI (traces n°4-5, semaine 2).",
-    contexteApprentissage: "Appris en stage à partir de la documentation Renovate et des échanges avec Florian Masy sur les runners GitLab.",
-    difficulte: "Élevée — la gestion des droits du runner et du token d'accès pour la création automatique de MR a pris plusieurs essais.",
-  },
-  {
-    title: "Rédiger une documentation technique exploitable",
-    contexteUtilisation: "Rédaction de la documentation comparative Renovate/Dependabot et de la procédure de montée de version, publiée sur le Wiki GitLab (semaines 2-4).",
-    contexteApprentissage: "Pratique développée en stage. La rédaction pour une équipe pro n'avait pas été travaillée en cours.",
-    difficulte: "Faible pour la rédaction ; moyenne pour trouver le bon niveau de détail technique.",
-  },
-  {
-    title: "Gérer son travail avec des branches Git nommées",
-    contexteUtilisation: "Développement de chaque fonctionnalité sur une branche dédiée avec convention de nommage (trace n°6, tout le stage).",
-    contexteApprentissage: "Bases Git en cours de BUT, convention de nommage des branches appliquée en conditions réelles de stage.",
-    difficulte: "Faible — la convention est simple. La difficulté est de maintenir une granularité cohérente entre les branches.",
-  },
-  {
-    title: "Rédiger des messages de commit clairs et atomiques",
-    contexteUtilisation: "Application de la convention feat:/fix:/docs: pour chaque commit, facilitant les revues de Florian Masy (trace n°6, tout le stage).",
-    contexteApprentissage: "Convention apprise en stage. Les commits en cours de BUT n'avaient pas de structure particulière.",
-    difficulte: "Faible une fois la convention assimilée. Le découpage en commits atomiques demande un peu de réflexion.",
-  },
-  {
-    title: "Soumettre son travail via des Merge Requests GitLab",
-    contexteUtilisation: "Intégration de chaque branche via une MR avec description, soumise à la revue de Florian Masy avant merge (trace n°6, tout le stage).",
-    contexteApprentissage: "Processus de MR connu théoriquement en cours, pratiqué et affiné en conditions réelles avec retours du tuteur.",
-    difficulte: "Faible pour la création de la MR ; moyenne pour rédiger une description claire et anticiper les retours.",
+    id: "comp4",
+    title: "Compétence 4 — Utiliser Git et GitLab pour gérer le code en équipe",
+    savoirFaire: [
+      {
+        title: "Gérer son travail avec des branches Git nommées",
+        contexteUtilisation: "Développement de chaque fonctionnalité sur une branche dédiée avec convention de nommage (trace n°7, tout le stage).",
+        contexteApprentissage: "Bases Git en cours de BUT, convention de nommage des branches appliquée en conditions réelles de stage.",
+        difficulte: "Faible — la convention est simple. La difficulté est de maintenir une granularité cohérente entre les branches.",
+      },
+      {
+        title: "Rédiger des messages de commit clairs et atomiques",
+        contexteUtilisation: "Application de la convention feat:/fix:/docs: pour chaque commit, facilitant les revues de Florian Masy (trace n°7, tout le stage).",
+        contexteApprentissage: "Convention apprise en stage. Les commits en cours de BUT n'avaient pas de structure particulière.",
+        difficulte: "Faible une fois la convention assimilée. Le découpage en commits atomiques demande un peu de réflexion.",
+      },
+      {
+        title: "Soumettre son travail via des Merge Requests GitLab",
+        contexteUtilisation: "Intégration de chaque branche via une MR avec description, soumise à la revue de Florian Masy avant merge (trace n°7, tout le stage).",
+        contexteApprentissage: "Processus de MR connu théoriquement en cours, pratiqué et affiné en conditions réelles avec retours du tuteur.",
+        difficulte: "Faible pour la création de la MR ; moyenne pour rédiger une description claire et anticiper les retours.",
+      },
+    ],
+    evaluation: {
+      beforeLevel: "moyen",
+      beforeText: "Bases Git acquises en cours de BUT, mais peu d'expérience des branches et MR en contexte professionnel. Les commits n'avaient pas de convention particulière.",
+      afterLevel: "bon",
+      afterText: "Je maîtrise le flux Git en équipe : branches nommées, commits atomiques avec convention, Merge Requests avec revue de code.",
+    },
   },
 ]
 </script>
