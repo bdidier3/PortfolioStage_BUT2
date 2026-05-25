@@ -131,9 +131,14 @@
             <v-chip color="error" size="small" class="mb-3">Technique</v-chip>
             <div class="text-subtitle-2 font-weight-bold mb-2">Savoir-faire technique</div>
             <ul class="text-body-2 pl-4">
-              <li class="mb-1"><strong>Analyser un code existant</strong> et identifier les d&eacute;pendances critiques.</li>
-              <li class="mb-1"><strong>Automatiser des audits</strong> avec LibCST, ruff et deptry.</li>
-              <li><strong>Mettre en place des tests</strong> et suivre la couverture.</li>
+              <li class="mb-2">
+                <strong>Analyser un code existant</strong>
+                <ul class="mt-1 pl-4">
+                  <li>Identifier les d&eacute;pendances critiques.</li>
+                  <li>Automatiser des audits (LibCST, ruff, deptry).</li>
+                  <li>Mettre en place des tests et suivre la couverture.</li>
+                </ul>
+              </li>
             </ul>
             <div class="mt-3">
               <router-link to="/technique" class="text-blue-lighten-2 text-body-2">
@@ -147,9 +152,14 @@
             <v-chip color="success" size="small" class="mb-3">Suivi de projet</v-chip>
             <div class="text-subtitle-2 font-weight-bold mb-2">Suivi de projet</div>
             <ul class="text-body-2 pl-4">
-              <li class="mb-1"><strong>Organiser le travail</strong> par semaines et jalons.</li>
-              <li class="mb-1"><strong>Documenter</strong> les analyses sur GitLab.</li>
-              <li><strong>Communiquer l'avancement</strong> et ajuster les objectifs.</li>
+              <li class="mb-2">
+                <strong>Organiser et suivre un projet</strong>
+                <ul class="mt-1 pl-4">
+                  <li>Organiser le travail par semaines et jalons.</li>
+                  <li>Documenter les analyses sur GitLab.</li>
+                  <li>Communiquer l&rsquo;avancement et ajuster les objectifs.</li>
+                </ul>
+              </li>
             </ul>
             <div class="mt-3">
               <router-link to="/suivi" class="text-blue-lighten-2 text-body-2">
@@ -163,9 +173,14 @@
             <v-chip color="info" size="small" class="mb-3">Int&eacute;gration en entreprise</v-chip>
             <div class="text-subtitle-2 font-weight-bold mb-2">Int&eacute;gration en entreprise</div>
             <ul class="text-body-2 pl-4">
-              <li class="mb-1"><strong>Collaborer</strong> avec le chef de projet et le responsable solution.</li>
-              <li class="mb-1"><strong>S'approprier</strong> un environnement technique existant.</li>
-              <li><strong>Participer</strong> aux revues et aux points d'&eacute;quipe.</li>
+              <li class="mb-2">
+                <strong>S&rsquo;int&eacute;grer et collaborer en entreprise</strong>
+                <ul class="mt-1 pl-4">
+                  <li>Collaborer avec le chef de projet et le responsable solution.</li>
+                  <li>S&rsquo;approprier un environnement technique existant.</li>
+                  <li>Participer aux revues et aux points d&rsquo;&eacute;quipe.</li>
+                </ul>
+              </li>
             </ul>
             <div class="mt-3">
               <router-link to="/integration" class="text-blue-lighten-2 text-body-2">
