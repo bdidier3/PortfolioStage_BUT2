@@ -12,9 +12,7 @@
         />
         <h1 class="text-h4 font-weight-bold mb-2">Baptiste DIDIER</h1>
         <p class="text-body-2 mb-2 intro-text">
-          Ce site a pour objectif de pr&eacute;senter le contexte, les travaux r&eacute;alis&eacute;s et les comp&eacute;tences
-          d&eacute;velopp&eacute;es lors de mon stage chez EzDEV, qui s'est d&eacute;roul&eacute; du 7 avril au 11 juin 2026,
-          &agrave; travers une analyse technique, un suivi de projet et un retour sur mon int&eacute;gration en entreprise.
+          Les objectifs de ce site sont de présenter le contexte de mon stage chez EzDEV (du 7 avril au 11 juin 2026), d’illustrer les travaux réalisés à l’aide de traces concrètes (captures, extraits de code, rapports) et d’évaluer les compétences développées à travers une analyse technique, un suivi de projet et un retour sur mon intégration en entreprise. Chaque savoir-faire est accompagné d’un bilan justifié comparant mon niveau avant et après le stage.
         </p>
         <p class="text-body-2 mb-0 intro-text">
           Pour acc&eacute;der aux 3 parties principales, un panneau de menu&nbsp;<v-icon size="small" style="vertical-align:middle;">mdi-menu</v-icon>&nbsp;est affichable en cliquant sur l&rsquo;ic&ocirc;ne en haut &agrave; gauche.

@@ -50,11 +50,10 @@
               </v-col>
               <v-col cols="12" md="6">
                 <p class="text-body-2 mb-2">
-                  La <strong>Trace n&deg;8</strong> montre un extrait du rapport produit par ruff lanc&eacute; sur le projet EzGED
-                  dans les premiers jours du stage. Trois r&egrave;gles sont mises en &eacute;vidence dans des cadres rouges&nbsp;:
-                  <code class="inline-code">F401</code> lignes 17 et 30 signalant deux imports inutilis&eacute;s (soulign&eacute;s en blanc,
+                  La <strong>Trace n&deg;8</strong> montre un extrait du rapport produit par ruff lanc&eacute; sur le projet EzGED. Trois r&egrave;gles sont mises en &eacute;vidence dans des cadres rouges&nbsp;:
+                  <code class="inline-code">F401</code> signalant deux imports inutilis&eacute;s (soulign&eacute;s en blanc,
                   <code class="inline-code">common</code> et <code class="inline-code">traceback</code>) dans
-                  <code class="inline-code">lib\simple_mail.py</code>, et <code class="inline-code">E713</code> ligne 119 indiquant
+                  <code class="inline-code">lib\simple_mail.py</code>, et <code class="inline-code">E713</code> indiquant
                   un test d&rsquo;appartenance &eacute;crit <code class="inline-code">if not secusrid in vlistout</code> qui devrait &ecirc;tre
                   r&eacute;&eacute;crit <code class="inline-code">if secusrid not in vlistout</code>. Le marqueur
                   <code class="inline-code">[*]</code> &agrave; c&ocirc;t&eacute; des codes indique que ruff peut corriger l&rsquo;erreur tout seul.
@@ -67,19 +66,21 @@
                   Pour <span class="sf-blue">prendre en main le projet via cet audit</span>, j&rsquo;ai install&eacute; ruff via
                   <code class="inline-code">uv</code> et lanc&eacute; la commande
                   <code class="inline-code">uv run ruff check ezged lib &gt; ruff_rapport_complet.txt</code> &agrave; la racine du d&eacute;p&ocirc;t
-                  EzGED d&egrave;s la premi&egrave;re semaine de stage. Le rapport produit m&rsquo;a permis de rep&eacute;rer rapidement les zones
+                  EzGED. Le rapport produit m&rsquo;a permis de rep&eacute;rer rapidement les zones
                   du code &agrave; probl&egrave;me (imports inutiles, vieilles syntaxes, modules supprim&eacute;s) sans lire des milliers de
-                  lignes. J&rsquo;ai ensuite archivé le fichier sur GitLab et l&rsquo;ai pr&eacute;sent&eacute; en revue avec Florian Masy, ce qui
+                  lignes. J&rsquo;ai ensuite archivé le fichier sur GitLab et l&rsquo;ai pr&eacute;sent&eacute; pour indiquer les modules qu'il faudrait réparer en premier avant la migration, ce qui
                   a servi de base &agrave; mes premiers &eacute;changes techniques avec l&rsquo;&eacute;quipe.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-blue">me documenter en autonomie sur ruff</span>, j&rsquo;ai lu sa documentation officielle
-                  pour comprendre la signification des codes (lettre + num&eacute;ro, par exemple <code class="inline-code">F401</code>)
-                  et l&rsquo;usage du marqueur <code class="inline-code">[*]</code> qui s&eacute;pare les corrections automatiques des erreurs
-                  &agrave; examiner manuellement. Cette autonomie m&rsquo;a &eacute;t&eacute; demand&eacute;e d&egrave;s le premier jour par mon ma&icirc;tre de stage
-                  Fabrice Caritey, qui m&rsquo;a confi&eacute; la documentation de <code class="inline-code">uv</code> et les outils
-                  d&rsquo;analyse statique &agrave; d&eacute;couvrir seul. Cela m&rsquo;a permis d&rsquo;&ecirc;tre rapidement force de proposition lors des revues,
-                  en arrivant avec un rapport d&eacute;j&agrave; exploitable.
+                  Pour <span class="sf-blue">me documenter en autonomie sur ruff</span>, je suis parti directement de la
+                  documentation officielle&nbsp;: je l&rsquo;ai parcourue pour comprendre la cat&eacute;gorisation des r&egrave;gles
+                  (lettre + num&eacute;ro, ex.&nbsp;<code class="inline-code">F401</code> pour les imports inutilis&eacute;s,
+                  <code class="inline-code">E7xx</code> pour le style des comparaisons), puis l&rsquo;usage du marqueur
+                  <code class="inline-code">[*]</code> qui s&eacute;pare les corrections automatiques (option
+                  <code class="inline-code">--fix</code>) des erreurs &agrave; examiner manuellement. Cette d&eacute;marche m&rsquo;a permis
+                  de produire un rapport directement exploitable&nbsp;: identifier d&rsquo;un c&ocirc;t&eacute; les zones nettoyables
+                  en s&eacute;curit&eacute; (auto-fixables) et de l&rsquo;autre celles &agrave; revoir manuellement, sans attendre une formation
+                  pr&eacute;alable sur l&rsquo;outil.
                 </p>
               </v-col>
             </v-row>
@@ -176,9 +177,13 @@
                 <span class="sf-label">Difficult&eacute; :</span>
                 Moyenne. Le plus dur est de trier le rapport et de prioriser.
               </p>
-              <p class="text-body-2 mb-0">
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
                 Bon. Je sais <span class="sf-blue">auditer un projet avec <span class="code-tag">ruff</span></span> et <span class="sf-blue">cartographier les d&eacute;pendances avec <span class="code-tag">deptry</span></span> pour orienter la prise en main.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
+                <strong>Avant&nbsp;:</strong> face &agrave; un projet inconnu, j&rsquo;ouvrais les fichiers un par un pour comprendre l&rsquo;architecture, m&eacute;thode qui ne passe pas l&rsquo;&eacute;chelle sur un projet de plusieurs milliers de fichiers. <strong>Apr&egrave;s&nbsp;:</strong> mon r&eacute;flexe est de lancer un audit automatique (<span class="code-tag">ruff</span> + <span class="code-tag">deptry</span>) pour obtenir en quelques minutes une cartographie des zones &agrave; risque et concentrer ma lecture l&agrave; o&ugrave; c&rsquo;est utile.
               </p>
             </v-card>
           </div>
@@ -204,9 +209,13 @@
                 <span class="sf-label">Difficult&eacute; :</span>
                 Moyenne. Il faut comprendre les r&egrave;gles utiles et bien configurer <span class="code-tag">deptry</span>.
               </p>
-              <p class="text-body-2 mb-0">
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
                 Bon. Je sais <span class="sf-blue">me documenter seul</span> et <span class="sf-blue">adapter un outil</span> &agrave; un projet pour produire un livrable clair.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
+                <strong>Avant&nbsp;:</strong> je consommais des outils en mode &laquo;&nbsp;configuration par d&eacute;faut&nbsp;&raquo;, et si le r&eacute;sultat &eacute;tait bruit&eacute; je l&rsquo;acceptais tel quel. <strong>Apr&egrave;s&nbsp;:</strong> je sais lire une doc technique pour identifier les options de configuration utiles, et adapter un outil (ex. <code class="inline-code">known_first_party</code> pour deptry) au contexte d&rsquo;un projet sp&eacute;cifique.
               </p>
             </v-card>
           </div>

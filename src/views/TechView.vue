@@ -51,25 +51,28 @@
                 </p>
               </v-col>
               <v-col cols="12" md="6">
+                <div class="text-body-2 mb-2">
+                  <p class="mb-2">
+                    La <strong>Trace n&deg;1</strong> montre l&rsquo;interface HTML g&eacute;n&eacute;r&eacute;e par mon script d&rsquo;analyse des d&eacute;pendances.
+                    Elle liste les fichiers Python d&rsquo;EzGED contenant au moins un appel vers une d&eacute;pendance externe
+                    (chemins dans les cadres gris, avec le pourcentage de couverture de code testé dans celui-ci).
+                  </p>
+                  <p class="mb-2">Chaque fichier est d&eacute;pliable et affiche, pour chaque appel d&eacute;tect&eacute;&nbsp;:</p>
+                  <ul class="pl-4 mb-2">
+                    <li>la ligne (colonne Ligne),</li>
+                    <li>le statut de couverture (cadre jaune avec <code class="inline-code">TESTE</code> / <code class="inline-code">NON TESTE</code>),</li>
+                    <li>les tests qui l&rsquo;ex&eacute;cutent (cadre rouge, colonne Contexte),</li>
+                    <li>l&rsquo;appel lui-m&ecirc;me (soulign&eacute; en vert),</li>
+                    <li>et la fonction parente avec son score.</li>
+                  </ul>
+                  <p class="mb-0">
+                    Le cadre bleu isole un cas particulier&nbsp;: <code class="inline-code">imp.find_module</code>,
+                    signal&eacute; <strong>[!]</strong> car le module est supprim&eacute; entre Python&nbsp;3.11 et 3.13,
+                    un point bloquant &agrave; remonter avant migration.
+                  </p>
+                </div>
                 <p class="text-body-2 mb-2">
-                  La <strong>Trace n&deg;1</strong> montre l&rsquo;interface HTML g&eacute;n&eacute;r&eacute;e par mon script d&rsquo;analyse des dépendance.
-                  Elle liste les fichiers Python d&rsquo;EzGED contenant au moins un appel vers une d&eacute;pendance externe
-                  (chemin dans le cadre gris, avec le pourcentage de couverture). Chaque fichier est d&eacute;pliable et
-                  affiche, pour chaque appel d&eacute;tect&eacute;&nbsp;: la ligne (colonne Ligne), le statut de couverture
-                  (cadre jaune avec <code class="inline-code">TESTE</code> / <code class="inline-code">NON TESTE</code>),
-                  les tests qui l&rsquo;ex&eacute;cutent (cadre rouge, colonne Contexte), l&rsquo;appel lui-m&ecirc;me (soulign&eacute; en vert)
-                  et la fonction parente avec son score. Le cadre bleu isole un cas particulier&nbsp;:
-                  <code class="inline-code">imp.find_module</code>, signal&eacute; <strong>[!]</strong> car le module est supprim&eacute;
-                  entre Python&nbsp;3.11 et 3.13, un point bloquant &agrave; remonter avant migration.
-                </p>
-                <p class="text-body-2 mb-2">
-                  Pour <span class="sf-red">utiliser LibCST</span>, j&rsquo;ai &eacute;crit un visiteur
-                  (<strong>DependencyCallVisitor</strong>) qui parcourt l&rsquo;arbre syntaxique. Il reconstruit le nom r&eacute;el
-                  des appels malgr&eacute; les alias (<code class="inline-code">import numpy as np</code>) et les imports cibl&eacute;s
-                  (<code class="inline-code">from PIL import Image</code>) gr&acirc;ce &agrave; un dictionnaire <em>aliases</em>
-                  rempli par <code class="inline-code">visit_ImportAlias</code> et <code class="inline-code">visit_ImportFrom</code>.
-                  La m&eacute;tadonn&eacute;e <code class="inline-code">PositionProvider</code> fournit le num&eacute;ro de ligne exact,
-                  affich&eacute; dans la colonne Ligne.
+                  Pour utiliser LibCST, j’ai développé un visiteur (DependencyCallVisitor) permettant de parcourir le CST (Concrete Syntax Tree) des fichiers Python afin d’analyser le code sans l’exécuter. Ce visiteur détecte les appels vers des dépendances externes, y compris lorsque les imports utilisent des alias (import numpy as np) ou des imports ciblés (from PIL import Image). LibCST m’a également permis de récupérer des informations précises sur le code, comme le numéro de ligne exact des appels grâce aux métadonnées fournies par PositionProvider.
                 </p>
                 <p class="text-body-2 mb-0">
                   Pour <span class="sf-red">lire le fichier .coverage</span>, j&rsquo;ai utilis&eacute; l&rsquo;API
@@ -110,23 +113,32 @@
                 </p>
               </v-col>
               <v-col cols="12" md="6">
-                <p class="text-body-2 mb-2">
-                  La <strong>Trace n&deg;2</strong> montre le fichier <code class="inline-code">pyproject.toml</code>, qui centralise
-                  toute la configuration du projet. Le cadre jaune met en &eacute;vidence
-                  <code class="inline-code">requires-python = ">=3.11"</code>, contrainte qui pr&eacute;pare la migration vers
-                  Python&nbsp;3.13. Les cadres rouges d&eacute;limitent la liste <code class="inline-code">dependencies</code>
-                  (production) o&ugrave; chaque paquet est &eacute;pingl&eacute; &agrave; une version pr&eacute;cise
-                  (soulign&eacute; en bleu&nbsp;: <code class="inline-code">annotated-types==0.7.0</code>), ce qui garantit la
-                  reproductibilit&eacute; de l&rsquo;environnement. La section <code class="inline-code">[dependency-groups]</code>
-                  <code class="inline-code">dev</code> (cadre blanc) regroupe &agrave; part les outils utilis&eacute;s uniquement en
-                  d&eacute;veloppement (<code class="inline-code">coverage</code>, <code class="inline-code">deptry</code>,
-                  <code class="inline-code">pytest</code>, <code class="inline-code">ruff</code>,
-                  <code class="inline-code">libcst</code>, <code class="inline-code">jinja2</code>...), afin de ne pas les
-                  installer en production. Enfin, la section <code class="inline-code">[tool.deptry]</code> d&eacute;clare via
-                  <code class="inline-code">known_first_party</code> les modules internes du projet
-                  (<code class="inline-code">wf</code>, <code class="inline-code">fs</code>, <code class="inline-code">libjobdext</code>...)
-                  pour qu&rsquo;ils ne soient pas confondus avec des d&eacute;pendances externes.
-                </p>
+                <div class="text-body-2 mb-2">
+                  <p class="mb-2">
+                    La <strong>Trace n&deg;2</strong> montre le fichier <code class="inline-code">pyproject.toml</code>, qui centralise
+                    toute la configuration du projet. Plusieurs sections sont mises en &eacute;vidence&nbsp;:
+                  </p>
+                  <ul class="pl-4 mb-0">
+                    <li class="mb-1">
+                      <strong>Cadre jaune</strong> : <code class="inline-code">requires-python = ">=3.11"</code> qui définit la version minimale de Python requise pour le projet.
+                    </li>
+                    <li class="mb-1">
+                      <strong>Cadres rouges</strong> : la liste <code class="inline-code">dependencies</code> o&ugrave; chaque paquet est &eacute;pingl&eacute; &agrave; une version pr&eacute;cise
+                      (soulign&eacute; en bleu&nbsp;: <code class="inline-code">annotated-types==0.7.0</code>), ce qui garantit la reproductibilit&eacute; de l&rsquo;environnement.
+                    </li>
+                    <li class="mb-1">
+                      <strong>Ligne blanche</strong> : la section <code class="inline-code">[dependency-groups] dev</code> regroupe &agrave; part les outils utilis&eacute;s uniquement en d&eacute;veloppement
+                      (<code class="inline-code">coverage</code>, <code class="inline-code">deptry</code>, <code class="inline-code">pytest</code>, <code class="inline-code">ruff</code>, <code class="inline-code">libcst</code>, <code class="inline-code">jinja2</code>...), afin de ne pas les installer en production.
+                    </li>
+                    <li class="mb-1">
+                      <strong>Ligne verte</strong> : la section <code class="inline-code">[tool.deptry]</code> d&eacute;clare via <code class="inline-code">known_first_party</code> les modules internes du projet
+                      (<code class="inline-code">wf</code>, <code class="inline-code">fs</code>, <code class="inline-code">libjobdext</code>...) pour qu&rsquo;ils ne soient pas confondus avec des d&eacute;pendances externes.
+                    </li>
+                    <li>
+                      <strong>Ligne grise</strong> : <code>exclude</code> permet d'exclure certains fichiers du projet de l'analyse que l'on ne veut pas auditer.
+                    </li>
+                  </ul>
+                </div>
                 <p class="text-body-2 mb-2">
                   Pour <span class="sf-red">configurer le projet</span>, j&rsquo;ai utilis&eacute;
                   <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a>, un gestionnaire moderne
@@ -170,7 +182,7 @@
                   src="/images/Trace3_buildtest.png"
                   alt="Fonctions build_test_class et build_tests"
                   class="trace-image"
-                  @click="openImage($event.currentTarget.currentSrc)"
+                  @click="openImage($event.currentTarget.currentSrc, 'tall')"
                 />
                 <p class="text-caption text-medium-emphasis mt-2 mb-0">
                   <strong>Trace n&deg;3</strong> : Fonctions <code class="inline-code">build_test_class</code> et
@@ -187,8 +199,8 @@
                   h&eacute;ritent d&rsquo;<code class="inline-code">unittest.TestCase</code>, ce qui les rend ex&eacute;cutables aussi
                   bien par unittest (via les suites construites ligne 68, soulign&eacute;e en blanc) que par pytest
                   (via la d&eacute;couverte automatique des <code class="inline-code">TestCase</code> expos&eacute;s au niveau du module).
-                  Les cadres mettent en &eacute;vidence les points cl&eacute;s&nbsp;: en jaune, le chargement du module source via
-                  <code class="inline-code">importlib.import_module</code> puis la r&eacute;cup&eacute;ration de la classe originale
+                  La trace met en &eacute;vidence les points cl&eacute;s&nbsp;: souligné en bleu, le chargement du module source via
+                  <code class="inline-code">importlib.import_module</code> puis souligné en jaune, la r&eacute;cup&eacute;ration de la classe originale
                   avec <code class="inline-code">getattr</code>&nbsp;; en vert, la neutralisation des autres m&eacute;thodes
                   <code class="inline-code">test_*</code> de la classe parente afin que les tests des autres d&eacute;pendances
                   ne se m&eacute;langent pas dans la classe g&eacute;n&eacute;r&eacute;e&nbsp;; en rouge, l&rsquo;injection de la classe
@@ -200,7 +212,7 @@
                   (<code class="inline-code">foo.bar</code>) via la m&eacute;thode <code class="inline-code">formater_chemin_module</code>.
                   Ensuite, <code class="inline-code">importlib.import_module</code> charge le module &agrave; l&rsquo;ex&eacute;cution et
                   <code class="inline-code">getattr(module, test_def["class"])</code> r&eacute;cup&egrave;re la classe de test &agrave; partir
-                  de son nom (cadre jaune, ligne 43). Cela &eacute;vite tout import statique et permet de cibler n&rsquo;importe
+                  de son nom (souligné en jaune, ligne 43). Cela &eacute;vite tout import statique et permet de cibler n&rsquo;importe
                   quelle classe de test du projet sans modifier le script.
                 </p>
                 <p class="text-body-2 mb-0">
@@ -247,20 +259,32 @@
                 </p>
               </v-col>
               <v-col cols="12" md="6">
-                <p class="text-body-2 mb-2">
-                  La <strong>Trace n&deg;4</strong> montre la structure du fichier <code class="inline-code">test_dependencies.json</code>
-                  export&eacute; par mon script en fin d&rsquo;analyse. Elle suit trois niveaux&nbsp;: le nom de la d&eacute;pendance Python
-                  au premier niveau (soulign&eacute; en rouge avec <code class="inline-code">reportlab</code> et
-                  <code class="inline-code">pypdf2</code>), le chemin complet de l&rsquo;appel d&eacute;tect&eacute; au second niveau
-                  (soulign&eacute; en vert avec <code class="inline-code">reportlab.pdfgen.canvas.Canvas</code> et
-                  <code class="inline-code">PyPDF2.PdfReader</code>), et enfin la liste des tests qui exercent cet appel dans
-                  les cadres jaunes avec leurs champs <code class="inline-code">fichier</code>, <code class="inline-code">class</code>
-                  et <code class="inline-code">method</code>. Le bloc <code class="inline-code">PyPDF2.PdfReader</code> illustre
-                  l&rsquo;int&eacute;r&ecirc;t du format&nbsp;: un m&ecirc;me module peut &ecirc;tre appel&eacute; par plusieurs tests r&eacute;partis
-                  dans plusieurs fichiers (<code class="inline-code">test_scripts.py</code> et
-                  <code class="inline-code">test_ezpdfutils.py</code>), tous remont&eacute;s ici pour &ecirc;tre rejou&eacute;s ensemble
-                  lors d&rsquo;une mont&eacute;e de version de <code class="inline-code">pypdf2</code>.
-                </p>
+                <div class="text-body-2 mb-2">
+                  <p class="mb-2">
+                    La <strong>Trace n&deg;4</strong> montre la structure du fichier <code class="inline-code">test_dependencies.json</code>
+                    export&eacute; par mon script en fin d&rsquo;analyse. Elle suit trois niveaux&nbsp;:
+                  </p>
+                  <ul class="pl-4 mb-2">
+                    <li>
+                      <strong>1<sup>er</sup> niveau (soulign&eacute; en rouge)</strong> : le nom de la d&eacute;pendance Python
+                      (<code class="inline-code">reportlab</code> et <code class="inline-code">pypdf2</code>),
+                    </li>
+                    <li>
+                      <strong>2<sup>e</sup> niveau (soulign&eacute; en vert)</strong> : le chemin complet de l&rsquo;appel d&eacute;tect&eacute;
+                      (<code class="inline-code">reportlab.pdfgen.canvas.Canvas</code> et <code class="inline-code">PyPDF2.PdfReader</code>),
+                    </li>
+                    <li>
+                      <strong>3<sup>e</sup> niveau (cadres jaunes)</strong> : la liste des tests qui exercent cet appel,
+                      avec leurs champs <code class="inline-code">fichier</code>, <code class="inline-code">class</code> et <code class="inline-code">method</code>.
+                    </li>
+                  </ul>
+                  <p class="mb-0">
+                    Le bloc <code class="inline-code">PyPDF2.PdfReader</code> illustre l&rsquo;int&eacute;r&ecirc;t du format&nbsp;:
+                    un m&ecirc;me module peut &ecirc;tre appel&eacute; par plusieurs tests r&eacute;partis dans plusieurs fichiers
+                    (<code class="inline-code">test_scripts.py</code> et <code class="inline-code">test_ezpdfutils.py</code>),
+                    tous remont&eacute;s ici pour &ecirc;tre rejou&eacute;s ensemble lors d&rsquo;une mont&eacute;e de version de <code class="inline-code">pypdf2</code>.
+                  </p>
+                </div>
                 <p class="text-body-2 mb-2">
                   Pour <span class="sf-red">la structure JSON</span>, j&rsquo;ai invers&eacute; le regroupement par rapport &agrave; la
                   premi&egrave;re version du script&nbsp;: au lieu de partir des fichiers du code, je pars de la d&eacute;pendance,
@@ -272,15 +296,7 @@
                   sans d&eacute;pendance suppl&eacute;mentaire dans le script consommateur.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-red">g&eacute;n&eacute;rer les suites unittest</span>, j&rsquo;&eacute;cris un second script qui prend
-                  une d&eacute;pendance en argument, charge le JSON et construit dynamiquement une
-                  <code class="inline-code">unittest.TestSuite</code> &agrave; partir des entr&eacute;es du cadre jaune.
-                  Chaque triplet (<code class="inline-code">fichier</code>, <code class="inline-code">class</code>,
-                  <code class="inline-code">method</code>) est pass&eacute; &agrave;
-                  <code class="inline-code">unittest.TestLoader.loadTestsFromName</code>, qui se charge d&rsquo;importer le module
-                  et d&rsquo;ajouter la m&eacute;thode &agrave; la suite. Cette suite est ensuite ex&eacute;cut&eacute;e par pytest dans la CI/CD
-                  GitLab, ce qui permet de relancer automatiquement uniquement les tests concern&eacute;s par la mise &agrave; jour
-                  d&rsquo;une d&eacute;pendance.
+                  Pour générer les suites unittest, j’ai écrit un script qui prend une dépendance en argument, charge le JSON et construit dynamiquement une unittest.TestSuite à partir des entrées du fichier. Chaque triplet (fichier, class, method) est utilisé pour importer dynamiquement le module avec importlib, récupérer la classe de test via getattr, puis générer une classe de test dédiée afin d’isoler chaque méthode avant de l’ajouter à la suite
                 </p>
               </v-col>
             </v-row>
@@ -308,9 +324,13 @@
                 <span class="sf-label">Difficult&eacute; :</span>
                 Moyenne. La principale difficult&eacute; a &eacute;t&eacute; de comprendre comment <a href="https://libcst.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer"><span class="code-tag">LibCST</span></a> parcourt les fichiers et de g&eacute;rer correctement les alias d'import pour reconstruire les appels r&eacute;els des d&eacute;pendances. L'utilisation des m&eacute;tadonn&eacute;es, notamment <code class="inline-code">PositionProvider</code>, demandait aussi une bonne compr&eacute;hension du fonctionnement interne de la biblioth&egrave;que.
               </p>
-              <p class="text-body-2 mb-0">
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
                 Moyen. Je sais maintenant <span class="sf-red">utiliser <span class="code-tag">LibCST</span></span> pour rep&eacute;rer des appels et <span class="sf-red">lire un <span class="code-tag">.coverage</span></span> pour relier code et tests.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
+                <strong>Avant&nbsp;:</strong> aucune connaissance de l&rsquo;analyse statique ni des CST, je lisais le code &agrave; la main pour trouver les usages. <strong>Apr&egrave;s&nbsp;:</strong> je peux &eacute;crire un visiteur LibCST autonome, croiser ses r&eacute;sultats avec une base <code class="inline-code">.coverage</code> et r&eacute;utiliser cette approche sur d&rsquo;autres projets.
               </p>
             </v-card>
           </div>
@@ -338,9 +358,13 @@
                 <span class="sf-label">Difficult&eacute; :</span>
                 &Eacute;lev&eacute;e. Il faut cha&icirc;ner plusieurs concepts et garder la compatibilit&eacute; <span class="code-tag">unittest</span> / <span class="code-tag">pytest</span>, ce qui complique le d&eacute;bogage.
               </p>
-              <p class="text-body-2 mb-0">
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
                 Moyen &agrave; bon. Je sais maintenant <span class="sf-red">utiliser <span class="code-tag">importlib</span></span> et <span class="sf-red">g&eacute;n&eacute;rer des classes avec <span class="code-tag">type()</span></span> pour construire des tests cibl&eacute;s. Je garde la compatibilit&eacute; <span class="sf-red"><span class="code-tag">unittest</span> / <span class="code-tag">pytest</span></span> et je rejoue seulement les tests utiles.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
+                <strong>Avant&nbsp;:</strong> je n&rsquo;avais &eacute;crit que des tests statiques (un fichier = une suite), sans connaissance de <span class="code-tag">pytest</span>, de <span class="code-tag">importlib</span> ni de la m&eacute;ta-programmation avec <span class="code-tag">type()</span>. <strong>Apr&egrave;s&nbsp;:</strong> je suis capable de concevoir un format JSON pivot, de g&eacute;n&eacute;rer dynamiquement des classes de tests cibl&eacute;es et de les ex&eacute;cuter aussi bien sous <span class="code-tag">unittest</span> que <span class="code-tag">pytest</span> dans une CI.
               </p>
             </v-card>
           </div>
@@ -367,9 +391,13 @@
                 <span class="sf-label">Difficult&eacute; :</span>
                 Faible &agrave; moyenne. Il faut bien distinguer d&eacute;pendances de production et outils de d&eacute;veloppement, et prendre en main <span class="code-tag">deptry</span> et <span class="code-tag">coverage.py</span>.
               </p>
-              <p class="text-body-2 mb-0">
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
                 Bon. Je sais <span class="sf-red">utiliser un <span class="code-tag">pyproject.toml</span> avec <span class="code-tag">uv</span></span>, <span class="sf-red">configurer <span class="code-tag">deptry</span></span> et <span class="sf-red">lire un <span class="code-tag">.coverage</span></span> pour suivre la couverture. Je peux reprendre cette configuration sur un autre projet.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
+                <strong>Avant&nbsp;:</strong> je g&eacute;rais mes projets en <code class="inline-code">pip install</code> direct dans le syst&egrave;me ou un <code class="inline-code">venv</code> manuel, sans <span class="code-tag">pyproject.toml</span> ni s&eacute;paration entre d&eacute;pendances de production et de d&eacute;veloppement. <strong>Apr&egrave;s&nbsp;:</strong> je suis capable de monter un projet Python &laquo;&nbsp;propre&nbsp;&raquo; (uv + groupes de d&eacute;pendances + audit deptry + couverture), reproductible et auditable.
               </p>
             </v-card>
           </div>
@@ -422,6 +450,7 @@
         <div
           ref="viewportRef"
           class="image-viewport"
+          :class="{ 'image-viewport-tall': imageMode === 'tall' }"
           @mousedown="startPan"
           @mousemove="onPan"
           @mouseup="endPan"
@@ -451,6 +480,7 @@ const tab = ref('t1')
 const imageModal = ref(false)
 const currentImage = ref('')
 const zoom = ref(100)
+const imageMode = ref('default')
 const pan = ref({ x: 0, y: 0 })
 const isPanning = ref(false)
 const panStart = ref({ x: 0, y: 0 })
@@ -460,11 +490,14 @@ const panMoved = ref(false)
 const viewportRef = ref(null)
 const imageRef = ref(null)
 
+const MIN_ZOOM = 50
+const MAX_ZOOM = 400
+
 const imageStyle = computed(() => {
   if (zoom.value === 100) {
     return {
       width: '100%',
-      height: '100%',
+      height: imageMode.value === 'tall' ? 'auto' : '100%',
       objectFit: 'contain',
       display: 'block',
       userSelect: 'none',
@@ -500,12 +533,13 @@ function clampPan(nextPan, zoomValue = zoom.value) {
   }
 }
 
-function openImage(src) {
+function openImage(src, mode = 'default') {
   currentImage.value = src
   zoom.value = 100
   pan.value = { x: 0, y: 0 }
   isPanning.value = false
   panMoved.value = false
+  imageMode.value = mode
   imageModal.value = true
 }
 
@@ -596,6 +630,7 @@ function onKeydown(event) {
   }
 }
 
+
 watch(imageModal, (val) => {
   if (val) {
     window.addEventListener('keydown', onKeydown)
@@ -672,6 +707,10 @@ function getDiffColorHex(difficulte) {
   overflow: hidden;
   cursor: crosshair;
   position: relative;
+}
+.image-viewport-tall {
+  overflow: auto;
+  cursor: default;
 }
 .bilan-card {
   background: linear-gradient(180deg, rgba(22, 22, 22, 0.95), rgba(18, 18, 18, 0.95));

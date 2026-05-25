@@ -96,8 +96,8 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="success" size="small" class="ma-1">Configurer Renovate via .gitlab-ci.yml et renovate.json pour automatiser la veille des d&eacute;pendances</v-chip>
-              <v-chip color="success" size="small" class="ma-1">Interpr&eacute;ter le rapport Renovate (Age, Confidence, regroupement major/minor) pour prioriser les mont&eacute;es de version</v-chip>
+              <v-chip color="success" size="small" class="ma-1">Croiser les indicateurs Age et Confidence pour &eacute;valuer la stabilit&eacute; d&rsquo;une mise &agrave; jour</v-chip>
+              <v-chip color="success" size="small" class="ma-1">&Eacute;valuer la pertinence d&rsquo;une mise &agrave; jour de d&eacute;pendance avant validation</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -131,16 +131,16 @@
                   les propositions (Dependency Dashboard + MR &agrave; valider).
                 </p>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-green">configurer Renovate</span>, j&rsquo;ai ajout&eacute; deux fichiers au d&eacute;p&ocirc;t&nbsp;:
-                  un <code class="inline-code">.gitlab-ci.yml</code> qui inclut le template officiel
-                  <code class="inline-code">renovate-bot/renovate-runner</code>, et un <code class="inline-code">renovate.json</code>
-                  dans lequel j&rsquo;ai d&eacute;fini une r&egrave;gle <code class="inline-code">packageRules</code> regroupant
-                  <code class="inline-code">pip_requirements</code>, <code class="inline-code">poetry</code> et
-                  <code class="inline-code">pip_setup</code> sous un m&ecirc;me <code class="inline-code">groupName</code>
-                  &laquo;&nbsp;Toutes les d&eacute;pendances Python&nbsp;&raquo;. Sans ce regroupement, Renovate produirait
-                  une Merge Request par d&eacute;pendance. J&rsquo;ai ensuite cr&eacute;&eacute; un token GitLab stock&eacute; en
-                  variable CI/CD masqu&eacute;e (<code class="inline-code">RENOVATE_TOKEN</code>), puis programm&eacute;
-                  un pipeline planifi&eacute; dans <span class="inline-code">Build &gt; Pipeline schedules</span>.
+                  Pour <span class="sf-green">&eacute;valuer la pertinence d&rsquo;une mise &agrave; jour de d&eacute;pendance avant validation</span>, je ne me contente
+                  pas du contenu brut de la MR&nbsp;: j&rsquo;ex&eacute;cute mon script d&rsquo;audit LibCST
+                  (<a href="#" class="trace-link" @click.prevent="$router.push('/technique')">Trace n&deg;1</a>) sur la branche
+                  <code class="inline-code">renovate/major-...</code> avant fusion. Le rapport HTML produit me r&eacute;pond &agrave; trois
+                  questions impossibles &agrave; trancher depuis le tableau de Renovate seul&nbsp;: <strong>o&ugrave;</strong> chaque d&eacute;pendance
+                  mise &agrave; jour est utilis&eacute;e dans EzGED (fichier + fonction parente), <strong>quels appels</strong> exacts sont
+                  concern&eacute;s par le changement (ex.&nbsp;<code class="inline-code">PyPDF2.PdfReader</code>,
+                  <code class="inline-code">requests.Session</code>), et <strong>quels tests</strong> les couvrent d&eacute;j&agrave;.
+                  Cette &eacute;tape transforme une Merge Request &laquo;&nbsp;opaque&nbsp;&raquo; en un livrable d&eacute;cidable&nbsp;: je sais
+                  exactement quels modules relire et quels tests rejouer avant d&rsquo;accepter la fusion.
                 </p>
                 <p class="text-body-2 mb-0">
                   Pour <span class="sf-green">interpr&eacute;ter le rapport</span>, je croise les colonnes
@@ -247,9 +247,13 @@
                 <span class="sf-label">Difficult&eacute; :</span>
                 Faible &agrave; moyenne. La difficult&eacute; principale est la gestion des tokens et variables CI/CD.
               </p>
-              <p class="text-body-2 mb-0">
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
                 Bon. Je sais <span class="sf-green">configurer un pipeline CI/CD <span class="code-tag">GitLab</span></span> pour automatiser <span class="code-tag">Renovate</span>. Je n&rsquo;ai pas encore abord&eacute; les pipelines complexes.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
+                <strong>Avant&nbsp;:</strong> j&rsquo;utilisais GitLab uniquement pour pousser du code et ouvrir des MR, sans jamais &eacute;crire de pipeline ni manipuler de variables CI/CD. <strong>Apr&egrave;s&nbsp;:</strong> je sais &eacute;crire un <code class="inline-code">.gitlab-ci.yml</code>, inclure un template officiel, g&eacute;rer des tokens en variables masqu&eacute;es et planifier un pipeline.
               </p>
             </v-card>
           </div>
@@ -264,8 +268,9 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-green">Param&eacute;trer <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">Renovate</span></a> via <code class="inline-code">renovate.json</code></span> (<a href="#" class="trace-link" @click.prevent="tab = 't5'">Trace n&deg;5</a>, <a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : regrouper les mises &agrave; jour et garder un contr&ocirc;le manuel.</li>
-                <li><span class="sf-green">Interpr&eacute;ter le rapport <span class="code-tag">Renovate</span></span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : prioriser les mises &agrave; jour avant validation.</li>
+                <li><span class="sf-green">Param&eacute;trer <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">Renovate</span></a> via <code class="inline-code">renovate.json</code></span> (<a href="#" class="trace-link" @click.prevent="tab = 't5'">Trace n&deg;5</a>) : regrouper les mises &agrave; jour et garder un contr&ocirc;le manuel.</li>
+                <li><span class="sf-green">Croiser Age et Confidence</span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : &eacute;valuer la stabilit&eacute; d&rsquo;une mise &agrave; jour.</li>
+                <li><span class="sf-green">Auditer une Merge Request automatique avant validation</span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : croiser la veille avec un audit du code (LibCST) pour d&eacute;cider en connaissance de cause.</li>
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
@@ -275,9 +280,13 @@
                 <span class="sf-label">Difficult&eacute; :</span>
                 Moyenne. Il faut bien r&eacute;gler les options et interpr&eacute;ter les indicateurs du rapport.
               </p>
-              <p class="text-body-2 mb-0">
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
                 Bon. Je sais <span class="sf-green">configurer <span class="code-tag">Renovate</span></span> et <span class="sf-green">lire son rapport</span> pour prioriser les mises &agrave; jour. Je n&rsquo;ai pas encore explor&eacute; les options avanc&eacute;es.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
+                <strong>Avant&nbsp;:</strong> aucune notion de veille automatis&eacute;e&nbsp;; je mettais &agrave; jour les paquets &laquo;&nbsp;&agrave; l&rsquo;aveugle&nbsp;&raquo; quand j&rsquo;y pensais. <strong>Apr&egrave;s&nbsp;:</strong> je peux mettre en place une cha&icirc;ne de veille (Renovate + Dependency Dashboard + MR group&eacute;es) et prioriser les mont&eacute;es en croisant Age et Confidence.
               </p>
             </v-card>
           </div>
@@ -304,9 +313,13 @@
                 <span class="sf-label">Difficult&eacute; :</span>
                 Faible. La difficult&eacute; est la rigueur sur la dur&eacute;e.
               </p>
-              <p class="text-body-2 mb-0">
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
                 Bon. Je sais <span class="sf-green">travailler en branche</span>, <span class="sf-green">committer proprement</span> et <span class="sf-green">passer par une MR</span>. Je n&rsquo;ai pas encore g&eacute;r&eacute; de cas complexes (rebase, conflits multi-auteurs).
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
+                <strong>Avant&nbsp;:</strong> j&rsquo;utilisais Git en mode &laquo;&nbsp;solo&nbsp;&raquo; (commits gros et peu document&eacute;s, peu de branches, pas de MR). <strong>Apr&egrave;s&nbsp;:</strong> j&rsquo;ai adopt&eacute; un workflow collaboratif rigoureux (branche d&eacute;di&eacute;e, commits courts &amp; explicites, MR comme point de contr&ocirc;le) que je peux appliquer sur n&rsquo;importe quel projet d&rsquo;&eacute;quipe.
               </p>
             </v-card>
           </div>
