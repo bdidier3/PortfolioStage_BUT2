@@ -2,475 +2,624 @@
   <div>
 
     <!-- En-tete -->
-    <v-card class="mb-5 pa-5" rounded="lg">
-      <h1 class="text-h6 font-weight-bold mb-2">
+    <v-card class="mb-4 pa-4" rounded="lg">
+      <h1 class="text-h6 font-weight-bold mb-1">
         Pr&eacute;sentation et &eacute;valuation de savoir-faire techniques
       </h1>
-      <p class="text-body-2 text-medium-emphasis">
-        Cette page pr&eacute;sente les savoir-faire techniques mobilis&eacute;s lors de la migration EzGED vers
+      <p class="text-body-2 text-medium-emphasis mb-0">
+        Cette partie pr&eacute;sente les savoir-faire techniques mobilis&eacute;s lors de la migration EzGED vers
         Python&nbsp;3.13&nbsp;: analyse automatique du code source et g&eacute;n&eacute;ration de tests dynamiques.
+        Chaque trace illustre un savoir-faire pr&eacute;cis, suivi d&rsquo;un bilan global.
       </p>
     </v-card>
 
     <!-- Contenu avec onglets -->
-    <v-card class="pa-5" rounded="lg">
-      <v-tabs v-model="tab" color="primary">
-        <v-tab value="comp1">Comp&eacute;tence 1</v-tab>
-        <v-tab value="comp2">Comp&eacute;tence 2</v-tab>
+    <v-card class="pa-4" rounded="lg">
+      <v-tabs v-model="tab" color="amber-darken-2" align-tabs="start" density="compact">
+        <v-tab value="t1">Trace 1</v-tab>
+        <v-tab value="t2">Trace 2</v-tab>
+        <v-tab value="t3">Trace 3</v-tab>
+        <v-tab value="t4">Trace 4</v-tab>
         <v-tab value="bilan">Bilan &amp; &Eacute;valuation</v-tab>
       </v-tabs>
-      <v-divider class="mb-4" />
+      <v-divider class="mb-3" />
 
       <v-window v-model="tab">
 
-        <!-- COMPETENCE 1 -->
-        <v-window-item value="comp1">
-          <h3 class="text-h5 font-weight-bold mb-3">
-            Cr&eacute;ation d&rsquo;un script d&rsquo;analyse de code Python pour d&eacute;tecter les usages de d&eacute;pendances et leur couverture de tests
-          </h3>
-          <div class="mb-3">
-            <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-            <v-chip color="error" size="small" class="ma-1">Utiliser LibCST pour d&eacute;tecter les usages de d&eacute;pendances</v-chip>
-            <v-chip color="error" size="small" class="ma-1">Lire et exploiter un fichier pyproject.toml avec tomllib</v-chip>
-            <v-chip color="error" size="small" class="ma-1">Lecture d&rsquo;un fichier .coverage avec l&rsquo;API coverage.py</v-chip>
-          </div>
+        <!-- TRACE 1 -->
+        <v-window-item value="t1">
+          <v-card variant="flat" class="pa-3" rounded="lg">
+            <h3 class="text-h6 font-weight-bold mb-2">
+              D&eacute;tection des appels de d&eacute;pendances et croisement avec la couverture de tests
+            </h3>
+            <div class="mb-3">
+              <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
+              <v-chip color="error" size="small" class="ma-1">Utiliser LibCST pour d&eacute;tecter les usages de d&eacute;pendances</v-chip>
+              <v-chip color="error" size="small" class="ma-1">Lire un fichier .coverage avec l&rsquo;API coverage.py</v-chip>
+            </div>
 
-          <!-- Trace 1 - image a gauche, texte a droite -->
-          <v-divider class="my-4" />
-          <v-row class="mb-4" align="start">
-            <v-col cols="12" md="7">
-              <img
-                src="/images/Trace1_technique.png"
-                alt="Interface HTML g&eacute;n&eacute;r&eacute;e par le script d'analyse"
-                class="trace-image"
-                @click="openImage('/images/Trace1_technique.png')"
-              />
-              <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;1</strong> &mdash; Interface HTML g&eacute;n&eacute;r&eacute;e par le script d&rsquo;analyse
-              </p>
-            </v-col>
-            <v-col cols="12" md="5">
-              <v-card variant="outlined" color="error" class="pa-3 mb-3" rounded="lg">
-                <p class="text-body-2 mb-0">
-                  La Trace n&deg;1 montre l&rsquo;interface HTML produite par le script d'analyse de code dans le cadre de la migration, g&eacute;n&eacute;r&eacute;e avec
-                  <a href="https://jinja.palletsprojects.com/en/stable/" target="_blank" rel="noopener noreferrer">Jinja2</a>.
-                  Elle liste les fichiers Python d&rsquo;EzGED qui utilisent au moins une d&eacute;pendance externe
-                  (cadre rouge). Chaque fichier est d&eacute;pliable et affiche un tableau : le statut de
-                  couverture (cadre jaune avec <code class="inline-code">TESTE</code> ou <code class="inline-code">NON TESTE</code>)
-                  et l&rsquo;appel d&eacute;tect&eacute; dans le code (cadre bleu), avec le nom de la fonction parente pour
-                  situer l&rsquo;appel dans son contexte.
+            <v-row align="start" no-gutters class="g-row">
+              <v-col cols="12" md="6" class="pe-md-4">
+                <img
+                  src="/images/Trace1_technique.png"
+                  alt="Interface HTML g&eacute;n&eacute;r&eacute;e par le script d'analyse"
+                  class="trace-image"
+                  @click="openImage($event.currentTarget.currentSrc)"
+                />
+                <p class="text-caption text-medium-emphasis mt-2 mb-0">
+                  <strong>Trace n&deg;1</strong> : Interface HTML produite par le script d&rsquo;analyse (rendu Jinja2).
                 </p>
-              </v-card>
-            </v-col>
-          </v-row>
-
-          <!-- Trace 2 - image a droite, texte a gauche (diagonal) -->
-          <v-divider class="my-4" />
-          <v-row class="mb-4" align="start">
-            <v-col cols="12" md="5">
-              <v-card variant="outlined" color="error" class="pa-3 mb-3" rounded="lg">
-                <p class="text-body-2 mb-0">
-                  La Trace n&deg;2 montre le fichier <code class="inline-code">pyproject.toml</code> du projet EzGED.
-                  C&rsquo;est le fichier de r&eacute;f&eacute;rence qui d&eacute;clare les d&eacute;pendances et les informations
-                  de configuration du projet Python. Le cadre rouge met en &eacute;vidence la liste des d&eacute;pendances
-                  d&eacute;clar&eacute;es (<code class="inline-code">paquet==version</code>) dans
-                  <code class="inline-code">dependencies</code> de la section <code class="inline-code">[project]</code>.
-                  Ce fichier d&eacute;finit le p&eacute;rim&egrave;tre d&rsquo;analyse : les imports &agrave; rechercher dans le code.
-                </p>
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="7">
-              <img
-                src="/images/Trace2_pyproject.png"
-                alt="Fichier pyproject.toml d&rsquo;EzGED"
-                class="trace-image"
-                @click="openImage('/images/Trace2_pyproject.png')"
-              />
-              <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;2</strong> &mdash; Fichier <code class="inline-code">pyproject.toml</code> du projet EzGED
-              </p>
-            </v-col>
-          </v-row>
-          <v-divider class="my-4" />
-
-
-          <div class="text-body-2">
-            <p class="mb-3">
-              Pour
-              <v-chip color="error" size="x-small" class="mx-1">lire et exploiter un fichier pyproject.toml avec tomllib</v-chip>,
-              j&rsquo;ai utilis&eacute; le module
-              <a href="https://docs.python.org/3/library/tomllib.html" target="_blank" rel="noopener noreferrer">tomllib</a>
-              (Python 3.11+) pour extraire la liste des d&eacute;pendances visible dans le cadre rouge en Trace n&deg;2. La cl&eacute;
-              <code class="inline-code">dependencies</code> de la section <code class="inline-code">[project]</code>
-              donne directement les paquets &agrave; analyser. J&rsquo;ai compl&eacute;t&eacute; par
-              <a href="https://docs.python.org/3/library/importlib.metadata.html" target="_blank" rel="noopener noreferrer">importlib.metadata</a>
-              pour faire correspondre un nom de distribution &agrave; un vrai nom de module importable (ex:
-              <code class="inline-code">Pillow</code> &rarr; <code class="inline-code">PIL</code>). Sans ce mapping,
-              le script raterait des appels et fausserait l&rsquo;audit.
-            </p>
-            <p class="mb-3">
-              Pour
-              <v-chip color="error" size="x-small" class="mx-1">utiliser LibCST pour d&eacute;tecter les usages de d&eacute;pendances</v-chip>,
-              le script repose sur un visiteur
-              <a href="https://libcst.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer">LibCST</a>
-              qui parcourt l&rsquo;arbre syntaxique de chaque fichier Python. J&rsquo;ai choisi LibCST plut&ocirc;t que
-              <a href="https://docs.python.org/3/library/ast.html" target="_blank" rel="noopener noreferrer">ast</a>
-              parce qu&rsquo;il fournit la position exacte via
-              <code class="inline-code">PositionProvider</code>, indispensable pour savoir si la ligne est couverte
-              par les tests. Sur la Trace n&deg;1, le cadre bleu montre un appel d&eacute;tect&eacute; (avec ses param&egrave;tres)
-              et le cadre jaune le statut de couverture. La difficult&eacute; principale a &eacute;t&eacute; la gestion des alias
-              (<code class="inline-code">import numpy as np</code>) et des imports cibl&eacute;s
-              (<code class="inline-code">from PIL import Image</code>) afin de reconstruire le nom r&eacute;el de l&rsquo;appel.
-            </p>
-            <p>
-              Pour la
-              <v-chip color="error" size="x-small" class="mx-1">lecture d&rsquo;un fichier .coverage avec l&rsquo;API coverage.py</v-chip>,
-              le script lit le fichier <code class="inline-code">.coverage</code> g&eacute;n&eacute;r&eacute; par
-              <a href="https://docs.pytest.org/en/stable/" target="_blank" rel="noopener noreferrer">pytest</a>
-              avec le module
-              <a href="https://coverage.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer">coverage.py</a>.
-              Ce fichier est une base SQLite qui enregistre les lignes ex&eacute;cut&eacute;es. L&rsquo;API fournit, par fichier,
-              la liste des lignes couvertes : si la ligne d&rsquo;un appel est pr&eacute;sente, le badge
-              <code class="inline-code">TESTE</code> s&rsquo;affiche, sinon <code class="inline-code">NON TESTE</code>.
-              Le point sensible a &eacute;t&eacute; la normalisation des chemins (absolu/relatif, Windows/Linux).
-            </p>
-          </div>
-        </v-window-item>
-
-        <!-- COMPETENCE 2 -->
-        <v-window-item value="comp2">
-          <h3 class="text-h5 font-weight-bold mb-3">
-            D&eacute;finition d&rsquo;une suite de tests dynamique cibl&eacute;e &agrave; partir d&rsquo;un fichier JSON
-          </h3>
-          <div class="mb-3">
-            <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-            <v-chip color="error" size="small" class="ma-1">Charger et exploiter un fichier JSON structur&eacute; en Python</v-chip>
-            <v-chip color="error" size="small" class="ma-1">Importer dynamiquement des modules Python avec importlib</v-chip>
-            <v-chip color="error" size="small" class="ma-1">Construire dynamiquement des classes de tests avec unittest.TestCase</v-chip>
-          </div>
-
-          <v-divider class="my-4" />
-          <v-row class="mb-4" align="start">
-            <v-col cols="12" md="7">
-              <img
-                src="/images/Trace3_buildtest.png"
-                alt="Fonctions build_test_class et build_tests"
-                class="trace-image"
-                @click="openImage('/images/Trace3_buildtest.png')"
-              />
-              <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;3</strong> &mdash; Fonctions <code class="inline-code">build_test_class</code> et
-                <code class="inline-code">build_tests</code> du script de création de suites de tests dynamiques
-              </p>
-            </v-col>
-            <v-col cols="12" md="5">
-              <v-card variant="outlined" color="error" class="pa-3 mb-3" rounded="lg">
-                <p class="text-body-2 mb-0">
-                 La Trace n°3 présente deux fonctions clés d'un script de création de suites de tests dynamiques.
-                 L'objectif de ce script, développé dans le cadre de ma mission de migration vers Python 3.13,
-                 est de construire automatiquement des tests unitaires ciblés à partir d’un fichier JSON. On y voit
-                 <code class="inline-code">build_tests</code> qui parcourt les entrées pour créer une suite par librairie,
-                 et <code class="inline-code">build_test_class</code> qui génère une classe unique par test. Cette organisation
-                 permet de vérifier rapidement la compatibilité du code après la mise à jour des dépendances, de manière reproductible
-                 et sans réécrire les tests à la main.
-                </p>
-              </v-card>
-            </v-col>
-          </v-row>
-          <v-divider class="my-4" />
-
-          <v-row class="mb-4" align="start">
-            <v-col cols="12" md="5">
-              <v-card variant="outlined" color="error" class="pa-3 mb-3" rounded="lg">
-                <p class="text-body-2 mb-0">
-                  La Trace n°4 présente un extrait du fichier de configuration JSON source, utilisé par mon script de
-                  création de suites de tests dynamiques, créé dans le cadre de ma mission de migration vers Python 3.13
-                  pour cibler les tests à exécuter. Comme on le voit sur l'image, il est structuré en trois niveaux : les
-                  traits rouges indiquent le nom de la librairie externe, les traits verts précisent l'appel de fonction exact,
-                  et les cadres jaunes regroupent les informations du test unitaire à lancer (fichier, classe, méthode).
-                  C’est la preuve visuelle du format d’entrée exigé par ce script. Ce choix d'organisation permet de construire
-                  dynamiquement les bonnes suites de tests lors des montées de version, sans réécrire manuellement des cas de test.
-                </p>
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="7">
-              <img
-                src="/images/Trace4_jsonfile.png"
-                alt="Fichier JSON des tests dynamiques"
-                class="trace-image"
-                @click="openImage('/images/Trace4_jsonfile.png')"
-              />
-              <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;4</strong> &mdash; Fichier JSON source utilis&eacute; pour g&eacute;n&eacute;rer les suites de tests
-              </p>
-            </v-col>
-          </v-row>
-          <v-divider class="my-4" />
-
-          <div class="text-body-2">
-            <p class="mb-3">
-              Pour
-              <v-chip color="error" size="x-small" class="mx-1">charger et exploiter un fichier JSON structur&eacute; en Python</v-chip>,
-              j&rsquo;ai d&eacute;fini un format lisible et je l&rsquo;ai lu avec le module standard
-              <a href="https://docs.python.org/3/library/json.html" target="_blank" rel="noopener noreferrer">json</a>.
-              Comme on le voit sur la Trace n&deg;4, ce fichier est organis&eacute; de mani&egrave;re tr&egrave;s pr&eacute;cise :
-              les traits rouges montrent la librairie externe, les traits verts ciblent l&rsquo;appel de la fonction,
-              et les cadres jaunes contiennent les d&eacute;tails du test &agrave; ex&eacute;cuter
-              (<code class="inline-code">"fichier"</code>, <code class="inline-code">"class"</code>, <code class="inline-code">"method"</code>).
-              Cette structure permet de cibler exactement ce qu&rsquo;on veut tester.
-            </p>
-            <p class="mb-3">
-              Pour
-              <v-chip color="error" size="x-small" class="mx-1">importer dynamiquement des modules Python avec importlib</v-chip>,
-              le script utilise la commande
-              <a href="https://docs.python.org/3/library/importlib.html#importlib.import_module" target="_blank" rel="noopener noreferrer">importlib.import_module()</a>
-              visible dans le cadre rouge de la Trace n&deg;3. Le script lit le chemin du fichier dans le JSON
-              (par exemple <code class="inline-code">eztest/tests/test.py</code>) et le transforme en un format que
-              Python comprend. C&rsquo;est une &eacute;tape obligatoire, car le script ne conna&icirc;t le nom des fichiers
-              &agrave; tester qu&rsquo;au moment o&ugrave; il s&rsquo;ex&eacute;cute.
-            </p>
-            <p>
-              Pour
-              <v-chip color="error" size="x-small" class="mx-1">construire dynamiquement des classes de tests avec unittest.TestCase</v-chip>,
-              j&rsquo;ai utilis&eacute; la fonction <code class="inline-code">type()</code> (mise en &eacute;vidence dans le cadre bleu
-              de la Trace n&deg;3) pour cr&eacute;er une nouvelle classe pour chaque test. J&rsquo;ai ensuite regroup&eacute;
-              ces tests dans une <code class="inline-code">unittest.TestSuite()</code> (visible dans le cadre vert).
-              Le but de cette technique est d&rsquo;isoler chaque test pour qu&rsquo;ils ne partagent pas leur
-              configuration de d&eacute;part (<code class="inline-code">setUp</code>). Cela &eacute;vite les bugs et rend la
-              v&eacute;rification beaucoup plus fiable lors de la migration vers Python 3.13.
-            </p>
-          </div>
-        </v-window-item>
-
-        <!-- BILAN -->
-        <v-window-item value="bilan">
-          <h3 class="text-subtitle-1 font-weight-bold mb-4">
-            Bilan &amp; Analyse
-          </h3>
-
-          <v-card
-            v-for="comp in bilanCompetences"
-            :key="comp.id"
-            variant="outlined"
-            class="pa-4 mb-6"
-            rounded="lg"
-          >
-            <h4 class="text-body-1 font-weight-bold mb-4">{{ comp.title }}</h4>
-
-            <h5 class="text-body-1 font-weight-bold mb-3">R&eacute;sum&eacute; des savoir-faire &eacute;l&eacute;mentaires</h5>
-            <v-row class="mb-4">
-              <v-col cols="12" md="6" v-for="sf in comp.savoirFaire" :key="sf.title">
-                <v-card variant="outlined" class="pa-3 h-100" rounded="lg">
-                  <v-chip color="error" size="small" class="mb-2">{{ sf.title }}</v-chip>
-                  <p class="text-body-2 mb-1"><strong>Contexte d'utilisation :</strong> {{ sf.contexteUtilisation }}</p>
-                  <p class="text-body-2 mb-1"><strong>Contexte d'apprentissage :</strong> {{ sf.contexteApprentissage }}</p>
-                  <p class="text-body-2"><strong>Difficult&eacute; :</strong> {{ sf.difficulte }}</p>
-                </v-card>
-              </v-col>
-            </v-row>
-
-            <h5 class="text-body-1 font-weight-bold mb-3">&Eacute;valuation du niveau</h5>
-            <v-row>
-              <v-col cols="12" md="6">
-                <v-card variant="outlined" class="pa-4" rounded="lg">
-                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Avant le stage</h6>
-                  <p class="text-body-2 mb-2">
-                    Niveau <strong>{{ comp.evaluation.beforeLevel }}</strong>.
-                  </p>
-                  <p class="text-body-2 mb-0">
-                    {{ comp.evaluation.beforeText }}
-                  </p>
-                </v-card>
               </v-col>
               <v-col cols="12" md="6">
-                <v-card variant="outlined" class="pa-4" rounded="lg">
-                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Apr&egrave;s le stage</h6>
-                  <p class="text-body-2 mb-2">
-                    Niveau <strong>{{ comp.evaluation.afterLevel }}</strong>.
-                  </p>
-                  <p class="text-body-2 mb-0">
-                    {{ comp.evaluation.afterText }}
-                  </p>
-                </v-card>
+                <p class="text-body-2 mb-2">
+                  La <strong>Trace n&deg;1</strong> montre l&rsquo;interface HTML g&eacute;n&eacute;r&eacute;e par mon script d&rsquo;analyse des dépendance.
+                  Elle liste les fichiers Python d&rsquo;EzGED contenant au moins un appel vers une d&eacute;pendance externe
+                  (chemin dans le cadre gris, avec le pourcentage de couverture). Chaque fichier est d&eacute;pliable et
+                  affiche, pour chaque appel d&eacute;tect&eacute;&nbsp;: la ligne (colonne Ligne), le statut de couverture
+                  (cadre jaune avec <code class="inline-code">TESTE</code> / <code class="inline-code">NON TESTE</code>),
+                  les tests qui l&rsquo;ex&eacute;cutent (cadre rouge, colonne Contexte), l&rsquo;appel lui-m&ecirc;me (soulign&eacute; en vert)
+                  et la fonction parente avec son score. Le cadre bleu isole un cas particulier&nbsp;:
+                  <code class="inline-code">imp.find_module</code>, signal&eacute; <strong>[!]</strong> car le module est supprim&eacute;
+                  entre Python&nbsp;3.11 et 3.13, un point bloquant &agrave; remonter avant migration.
+                </p>
+                <p class="text-body-2 mb-2">
+                  Pour <span class="sf-red">utiliser LibCST</span>, j&rsquo;ai &eacute;crit un visiteur
+                  (<strong>DependencyCallVisitor</strong>) qui parcourt l&rsquo;arbre syntaxique. Il reconstruit le nom r&eacute;el
+                  des appels malgr&eacute; les alias (<code class="inline-code">import numpy as np</code>) et les imports cibl&eacute;s
+                  (<code class="inline-code">from PIL import Image</code>) gr&acirc;ce &agrave; un dictionnaire <em>aliases</em>
+                  rempli par <code class="inline-code">visit_ImportAlias</code> et <code class="inline-code">visit_ImportFrom</code>.
+                  La m&eacute;tadonn&eacute;e <code class="inline-code">PositionProvider</code> fournit le num&eacute;ro de ligne exact,
+                  affich&eacute; dans la colonne Ligne.
+                </p>
+                <p class="text-body-2 mb-0">
+                  Pour <span class="sf-red">lire le fichier .coverage</span>, j&rsquo;ai utilis&eacute; l&rsquo;API
+                  <a href="https://coverage.readthedocs.io/" target="_blank" rel="noopener noreferrer">coverage.py</a>
+                  via <code class="inline-code">coverage.CoverageData</code>. Le fichier est en interne une base SQLite,
+                  mais l&rsquo;API &eacute;vite de la requ&ecirc;ter. La m&eacute;thode <code class="inline-code">contexts_by_lineno()</code>
+                  retourne, pour chaque ligne couverte, la liste des tests qui l&rsquo;ont ex&eacute;cut&eacute;e&nbsp;: si la ligne d&rsquo;un
+                  appel y figure, le badge <code class="inline-code">TESTE</code> s&rsquo;affiche et les tests responsables sont list&eacute;s,
+                  indispensable pour cibler les tests &agrave; rejouer lors d&rsquo;une mont&eacute;e de version.
+                </p>
               </v-col>
             </v-row>
           </v-card>
         </v-window-item>
 
+        <!-- TRACE 2 -->
+        <v-window-item value="t2">
+          <v-card variant="flat" class="pa-3" rounded="lg">
+            <h3 class="text-h6 font-weight-bold mb-2">
+              Configuration du projet et gestion centralis&eacute;e des d&eacute;pendances Python
+            </h3>
+            <div class="mb-3">
+              <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
+              <v-chip color="error" size="small" class="ma-1">Configurer un projet Python avec pyproject.toml et uv</v-chip>
+              <v-chip color="error" size="small" class="ma-1">Configurer deptry pour &eacute;viter les faux positifs sur les modules internes</v-chip>
+            </div>
+
+            <v-row align="start" no-gutters class="g-row">
+              <v-col cols="12" md="6" class="pe-md-4">
+                <img
+                  src="/images/Trace2_pyproject.png"
+                  alt="Fichier pyproject.toml d&rsquo;EzGED"
+                  class="trace-image"
+                  @click="openImage($event.currentTarget.currentSrc)"
+                />
+                <p class="text-caption text-medium-emphasis mt-2 mb-0">
+                  <strong>Trace n&deg;2</strong> : Fichier <code class="inline-code">pyproject.toml</code> du projet EzGED.
+                </p>
+              </v-col>
+              <v-col cols="12" md="6">
+                <p class="text-body-2 mb-2">
+                  La <strong>Trace n&deg;2</strong> montre le fichier <code class="inline-code">pyproject.toml</code>, qui centralise
+                  toute la configuration du projet. Le cadre jaune met en &eacute;vidence
+                  <code class="inline-code">requires-python = ">=3.11"</code>, contrainte qui pr&eacute;pare la migration vers
+                  Python&nbsp;3.13. Les cadres rouges d&eacute;limitent la liste <code class="inline-code">dependencies</code>
+                  (production) o&ugrave; chaque paquet est &eacute;pingl&eacute; &agrave; une version pr&eacute;cise
+                  (soulign&eacute; en bleu&nbsp;: <code class="inline-code">annotated-types==0.7.0</code>), ce qui garantit la
+                  reproductibilit&eacute; de l&rsquo;environnement. La section <code class="inline-code">[dependency-groups]</code>
+                  <code class="inline-code">dev</code> (cadre blanc) regroupe &agrave; part les outils utilis&eacute;s uniquement en
+                  d&eacute;veloppement (<code class="inline-code">coverage</code>, <code class="inline-code">deptry</code>,
+                  <code class="inline-code">pytest</code>, <code class="inline-code">ruff</code>,
+                  <code class="inline-code">libcst</code>, <code class="inline-code">jinja2</code>...), afin de ne pas les
+                  installer en production. Enfin, la section <code class="inline-code">[tool.deptry]</code> d&eacute;clare via
+                  <code class="inline-code">known_first_party</code> les modules internes du projet
+                  (<code class="inline-code">wf</code>, <code class="inline-code">fs</code>, <code class="inline-code">libjobdext</code>...)
+                  pour qu&rsquo;ils ne soient pas confondus avec des d&eacute;pendances externes.
+                </p>
+                <p class="text-body-2 mb-2">
+                  Pour <span class="sf-red">configurer le projet</span>, j&rsquo;ai utilis&eacute;
+                  <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a>, un gestionnaire moderne
+                  qui remplace <code class="inline-code">pip</code> et <code class="inline-code">venv</code>. La commande
+                  <code class="inline-code">uv sync</code> lit le <code class="inline-code">pyproject.toml</code>, cr&eacute;e un
+                  environnement virtuel isol&eacute; dans <code class="inline-code">.venv/</code> et installe les d&eacute;pendances
+                  aux versions exactes sp&eacute;cifi&eacute;es. Cela permet de tester une mont&eacute;e de version
+                  (ex.&nbsp;<code class="inline-code">mail-parser==3.16.0</code>) sans impacter le syst&egrave;me, et de s&eacute;parer
+                  proprement les d&eacute;pendances de production des outils de d&eacute;veloppement gr&acirc;ce aux
+                  <code class="inline-code">dependency-groups</code>.
+                </p>
+                <p class="text-body-2 mb-0">
+                  Pour <span class="sf-red">configurer deptry</span>, outil d&rsquo;audit des d&eacute;pendances, j&rsquo;ai utilis&eacute; la
+                  section <code class="inline-code">[tool.deptry]</code>. Lors du premier audit, deptry signalait &agrave; tort les
+                  modules internes (<code class="inline-code">wf</code>, <code class="inline-code">fs</code>,
+                  <code class="inline-code">coldtrt</code>...) comme d&eacute;pendances manquantes (code <code class="inline-code">DEP001</code>),
+                  car ils ne sont pas publi&eacute;s sur PyPI. En les d&eacute;clarant dans
+                  <code class="inline-code">known_first_party</code>, deptry les reconna&icirc;t comme code interne et concentre
+                  son analyse sur les vraies d&eacute;pendances externes, ce qui rend les rapports d&rsquo;audit fiables et exploitables.
+                </p>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-window-item>
+
+        <!-- TRACE 3 -->
+        <v-window-item value="t3">
+          <v-card variant="flat" class="pa-3" rounded="lg">
+            <h3 class="text-h6 font-weight-bold mb-2">
+              G&eacute;n&eacute;ration dynamique de classes de tests &agrave; partir d&rsquo;un fichier JSON
+            </h3>
+            <div class="mb-3">
+              <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
+              <v-chip color="error" size="small" class="ma-1">Charger dynamiquement un module Python avec importlib</v-chip>
+              <v-chip color="error" size="small" class="ma-1">G&eacute;n&eacute;rer des classes de tests &agrave; la vol&eacute;e avec type(), ex&eacute;cutables par unittest et pytest</v-chip>
+            </div>
+
+            <v-row align="start" no-gutters class="g-row">
+              <v-col cols="12" md="6" class="pe-md-4">
+                <img
+                  src="/images/Trace3_buildtest.png"
+                  alt="Fonctions build_test_class et build_tests"
+                  class="trace-image"
+                  @click="openImage($event.currentTarget.currentSrc)"
+                />
+                <p class="text-caption text-medium-emphasis mt-2 mb-0">
+                  <strong>Trace n&deg;3</strong> : Fonctions <code class="inline-code">build_test_class</code> et
+                  <code class="inline-code">build_tests</code> du script de suites dynamiques.
+                </p>
+              </v-col>
+              <v-col cols="12" md="6">
+                <p class="text-body-2 mb-2">
+                  La <strong>Trace n&deg;3</strong> montre le m&eacute;canisme de g&eacute;n&eacute;ration dynamique de tests
+                  utilis&eacute; pour ne rejouer automatiquement que les tests pertinents lors d&rsquo;une mont&eacute;e de version
+                  de d&eacute;pendance. &Agrave; partir d&rsquo;un fichier JSON,
+                  qui associe chaque appel de d&eacute;pendance aux tests qui le couvrent, le script construit &agrave; l&rsquo;ex&eacute;cution
+                  une classe de test par couple (d&eacute;pendance, appel, m&eacute;thode). Les classes g&eacute;n&eacute;r&eacute;es
+                  h&eacute;ritent d&rsquo;<code class="inline-code">unittest.TestCase</code>, ce qui les rend ex&eacute;cutables aussi
+                  bien par unittest (via les suites construites ligne 68, soulign&eacute;e en blanc) que par pytest
+                  (via la d&eacute;couverte automatique des <code class="inline-code">TestCase</code> expos&eacute;s au niveau du module).
+                  Les cadres mettent en &eacute;vidence les points cl&eacute;s&nbsp;: en jaune, le chargement du module source via
+                  <code class="inline-code">importlib.import_module</code> puis la r&eacute;cup&eacute;ration de la classe originale
+                  avec <code class="inline-code">getattr</code>&nbsp;; en vert, la neutralisation des autres m&eacute;thodes
+                  <code class="inline-code">test_*</code> de la classe parente afin que les tests des autres d&eacute;pendances
+                  ne se m&eacute;langent pas dans la classe g&eacute;n&eacute;r&eacute;e&nbsp;; en rouge, l&rsquo;injection de la classe
+                  cr&eacute;&eacute;e dans <code class="inline-code">globals()</code> pour qu&rsquo;elle soit d&eacute;couverte par pytest.
+                </p>
+                <p class="text-body-2 mb-2">
+                  Pour <span class="sf-red">utiliser importlib</span>, j&rsquo;ai d&rsquo;abord transform&eacute; le chemin stock&eacute;
+                  dans le JSON (<code class="inline-code">eztest/foo/bar.py</code>) en nom de module Python
+                  (<code class="inline-code">foo.bar</code>) via la m&eacute;thode <code class="inline-code">formater_chemin_module</code>.
+                  Ensuite, <code class="inline-code">importlib.import_module</code> charge le module &agrave; l&rsquo;ex&eacute;cution et
+                  <code class="inline-code">getattr(module, test_def["class"])</code> r&eacute;cup&egrave;re la classe de test &agrave; partir
+                  de son nom (cadre jaune, ligne 43). Cela &eacute;vite tout import statique et permet de cibler n&rsquo;importe
+                  quelle classe de test du projet sans modifier le script.
+                </p>
+                <p class="text-body-2 mb-0">
+                  Pour <span class="sf-red">utiliser type()</span>, chaque entr&eacute;e du JSON donne lieu &agrave; une classe unique
+                  nomm&eacute;e <code class="inline-code">{lib}_{call}_{method}TestCase</code> (ligne 55), h&eacute;ritant de la classe
+                  d&rsquo;origine (et donc indirectement d&rsquo;<code class="inline-code">unittest.TestCase</code>). Le dictionnaire
+                  <code class="inline-code">attrs</code> pass&eacute; &agrave; <code class="inline-code">type()</code> ne conserve que la m&eacute;thode
+                  vis&eacute;e et met &agrave; <code class="inline-code">None</code> toutes les autres m&eacute;thodes
+                  <code class="inline-code">test_*</code> h&eacute;rit&eacute;es (cadre vert). Sans cette neutralisation,
+                  l&rsquo;ex&eacute;cuteur rejouerait, depuis chaque classe g&eacute;n&eacute;r&eacute;e, l&rsquo;ensemble des tests de la classe
+                  parente. La classe r&eacute;sultante est ensuite stock&eacute;e dans <code class="inline-code">globals()</code>
+                  (cadre rouge, ligne 77), ce qui la rend visible &agrave; la fois pour la collecte de pytest et pour
+                  <code class="inline-code">unittest.main()</code>. Cette double compatibilit&eacute; permet d&rsquo;utiliser le script
+                  aussi bien en local (<code class="inline-code">python test_dependencies.py</code>) que dans la CI/CD GitLab
+                  via pytest, et de ne rejouer que les tests li&eacute;s &agrave; la d&eacute;pendance mise &agrave; jour.
+                </p>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-window-item>
+
+        <!-- TRACE 4 -->
+        <v-window-item value="t4">
+          <v-card variant="flat" class="pa-3" rounded="lg">
+            <h3 class="text-h6 font-weight-bold mb-2">
+              Structuration du fichier JSON ciblant les tests par d&eacute;pendance et par appel
+            </h3>
+            <div class="mb-3">
+              <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
+              <v-chip color="error" size="small" class="ma-1">Concevoir une structure JSON hi&eacute;rarchis&eacute;e pour cibler les tests par d&eacute;pendance</v-chip>
+              <v-chip color="error" size="small" class="ma-1">G&eacute;n&eacute;rer dynamiquement des suites de tests unittest &agrave; partir d&rsquo;un fichier JSON</v-chip>
+            </div>
+
+            <v-row align="start" no-gutters class="g-row">
+              <v-col cols="12" md="6" class="pe-md-4">
+                <img
+                  src="/images/Trace4_jsonfile.png"
+                  alt="Fichier JSON des tests dynamiques"
+                  class="trace-image"
+                  @click="openImage($event.currentTarget.currentSrc)"
+                />
+                <p class="text-caption text-medium-emphasis mt-2 mb-0">
+                  <strong>Trace n&deg;4</strong> : Fichier JSON source utilis&eacute; pour g&eacute;n&eacute;rer les suites de tests.
+                </p>
+              </v-col>
+              <v-col cols="12" md="6">
+                <p class="text-body-2 mb-2">
+                  La <strong>Trace n&deg;4</strong> montre la structure du fichier <code class="inline-code">test_dependencies.json</code>
+                  export&eacute; par mon script en fin d&rsquo;analyse. Elle suit trois niveaux&nbsp;: le nom de la d&eacute;pendance Python
+                  au premier niveau (soulign&eacute; en rouge avec <code class="inline-code">reportlab</code> et
+                  <code class="inline-code">pypdf2</code>), le chemin complet de l&rsquo;appel d&eacute;tect&eacute; au second niveau
+                  (soulign&eacute; en vert avec <code class="inline-code">reportlab.pdfgen.canvas.Canvas</code> et
+                  <code class="inline-code">PyPDF2.PdfReader</code>), et enfin la liste des tests qui exercent cet appel dans
+                  les cadres jaunes avec leurs champs <code class="inline-code">fichier</code>, <code class="inline-code">class</code>
+                  et <code class="inline-code">method</code>. Le bloc <code class="inline-code">PyPDF2.PdfReader</code> illustre
+                  l&rsquo;int&eacute;r&ecirc;t du format&nbsp;: un m&ecirc;me module peut &ecirc;tre appel&eacute; par plusieurs tests r&eacute;partis
+                  dans plusieurs fichiers (<code class="inline-code">test_scripts.py</code> et
+                  <code class="inline-code">test_ezpdfutils.py</code>), tous remont&eacute;s ici pour &ecirc;tre rejou&eacute;s ensemble
+                  lors d&rsquo;une mont&eacute;e de version de <code class="inline-code">pypdf2</code>.
+                </p>
+                <p class="text-body-2 mb-2">
+                  Pour <span class="sf-red">la structure JSON</span>, j&rsquo;ai invers&eacute; le regroupement par rapport &agrave; la
+                  premi&egrave;re version du script&nbsp;: au lieu de partir des fichiers du code, je pars de la d&eacute;pendance,
+                  car c&rsquo;est elle qui d&eacute;clenche le besoin de rejouer des tests lors d&rsquo;une mise &agrave; jour.
+                  J&rsquo;ai ajout&eacute; un niveau interm&eacute;diaire pour l&rsquo;appel exact (<code class="inline-code">PdfReader</code>
+                  vs <code class="inline-code">PdfWriter</code>), ce qui &eacute;vite de relancer toute la base de tests d&rsquo;une
+                  d&eacute;pendance quand seule une de ses fonctions est impact&eacute;e par un changement d&rsquo;API. Le format JSON
+                  a &eacute;t&eacute; choisi pour &ecirc;tre charg&eacute; nativement par Python via <code class="inline-code">json.load</code>,
+                  sans d&eacute;pendance suppl&eacute;mentaire dans le script consommateur.
+                </p>
+                <p class="text-body-2 mb-0">
+                  Pour <span class="sf-red">g&eacute;n&eacute;rer les suites unittest</span>, j&rsquo;&eacute;cris un second script qui prend
+                  une d&eacute;pendance en argument, charge le JSON et construit dynamiquement une
+                  <code class="inline-code">unittest.TestSuite</code> &agrave; partir des entr&eacute;es du cadre jaune.
+                  Chaque triplet (<code class="inline-code">fichier</code>, <code class="inline-code">class</code>,
+                  <code class="inline-code">method</code>) est pass&eacute; &agrave;
+                  <code class="inline-code">unittest.TestLoader.loadTestsFromName</code>, qui se charge d&rsquo;importer le module
+                  et d&rsquo;ajouter la m&eacute;thode &agrave; la suite. Cette suite est ensuite ex&eacute;cut&eacute;e par pytest dans la CI/CD
+                  GitLab, ce qui permet de relancer automatiquement uniquement les tests concern&eacute;s par la mise &agrave; jour
+                  d&rsquo;une d&eacute;pendance.
+                </p>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-window-item>
+
+        <!-- BILAN -->
+        <v-window-item value="bilan">
+          <div class="mb-6">
+            <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
+              <div class="d-flex flex-wrap align-center justify-space-between mb-4">
+                <span class="text-body-1 font-weight-bold">Analyse statique de code Python avec un CST</span>
+                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
+              </div>
+
+              <ul class="sf-list text-body-2 mb-3">
+                <li><span class="sf-red">Utiliser <a href="https://libcst.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer"><span class="code-tag">LibCST</span></a> pour d&eacute;tecter les usages de d&eacute;pendances</span> (<a href="#" class="trace-link" @click.prevent="tab = 't1'">Trace n&deg;1</a>) : rep&eacute;rer automatiquement les appels externes.</li>
+                <li><span class="sf-red">Lire un fichier <span class="code-tag">.coverage</span> avec l&rsquo;API <a href="https://coverage.readthedocs.io/" target="_blank" rel="noopener noreferrer"><span class="code-tag">coverage.py</span></a></span> : relier appels et tests pour cibler ceux &agrave; rejouer.</li>
+              </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte d&rsquo;apprentissage : </span>
+                D&eacute;couvert pendant le stage. Je n&rsquo;avais jamais fait d&rsquo;analyse statique ni utilis&eacute; de CST avant, j&rsquo;ai appris <span class="code-tag">LibCST</span> et <span class="code-tag">coverage.py</span> via la documentation officielle.
+              </p>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Difficult&eacute; :</span>
+                Moyenne. La principale difficult&eacute; a &eacute;t&eacute; de comprendre comment <a href="https://libcst.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer"><span class="code-tag">LibCST</span></a> parcourt les fichiers et de g&eacute;rer correctement les alias d'import pour reconstruire les appels r&eacute;els des d&eacute;pendances. L'utilisation des m&eacute;tadonn&eacute;es, notamment <code class="inline-code">PositionProvider</code>, demandait aussi une bonne compr&eacute;hension du fonctionnement interne de la biblioth&egrave;que.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">&Eacute;valuation :</span>
+                Moyen. Je sais maintenant <span class="sf-red">utiliser <span class="code-tag">LibCST</span></span> pour rep&eacute;rer des appels et <span class="sf-red">lire un <span class="code-tag">.coverage</span></span> pour relier code et tests.
+              </p>
+            </v-card>
+          </div>
+
+          <v-divider class="my-6" />
+
+          <div class="mb-6">
+            <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
+              <div class="d-flex flex-wrap align-center justify-space-between mb-4">
+                <span class="text-body-1 font-weight-bold">G&eacute;n&eacute;ration dynamique de classes de tests &agrave; partir d'un fichier JSON</span>
+                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
+              </div>
+
+              <ul class="sf-list text-body-2 mb-3">
+                <li><span class="sf-red">Charger dynamiquement un module Python avec <a href="https://docs.python.org/3/library/importlib.html" target="_blank" rel="noopener noreferrer"><span class="code-tag">importlib</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) : importer un module depuis un chemin JSON.</li>
+                <li><span class="sf-red">G&eacute;n&eacute;rer des classes de tests &agrave; la vol&eacute;e avec <span class="code-tag">type()</span></span> (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) : cr&eacute;er une classe cibl&eacute;e et ne garder qu&rsquo;une m&eacute;thode.</li>
+                <li><span class="sf-red">Concevoir une structure <span class="code-tag">JSON</span> hi&eacute;rarchis&eacute;e</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : lier d&eacute;pendance, appel et tests.</li>
+                <li><span class="sf-red">G&eacute;n&eacute;rer des suites <span class="code-tag">unittest</span> depuis le JSON</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : construire une suite compatible <span class="code-tag">unittest</span> / <span class="code-tag">pytest</span>.</li>
+              </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte d&rsquo;apprentissage : </span>
+                En cours, nous avions vu les tests unitaires et d&rsquo;int&eacute;gration, mais pas les suites dynamiques. J&rsquo;avais vu les mocks seulement en Java, jamais en Python, et je n&rsquo;avais jamais utilis&eacute; <span class="code-tag">pytest</span>. <span class="code-tag">importlib</span> et le reste ont &eacute;t&eacute; appris pendant le stage, via la documentation officielle.
+              </p>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Difficult&eacute; :</span>
+                &Eacute;lev&eacute;e. Il faut cha&icirc;ner plusieurs concepts et garder la compatibilit&eacute; <span class="code-tag">unittest</span> / <span class="code-tag">pytest</span>, ce qui complique le d&eacute;bogage.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">&Eacute;valuation :</span>
+                Moyen &agrave; bon. Je sais maintenant <span class="sf-red">utiliser <span class="code-tag">importlib</span></span> et <span class="sf-red">g&eacute;n&eacute;rer des classes avec <span class="code-tag">type()</span></span> pour construire des tests cibl&eacute;s. Je garde la compatibilit&eacute; <span class="sf-red"><span class="code-tag">unittest</span> / <span class="code-tag">pytest</span></span> et je rejoue seulement les tests utiles.
+              </p>
+            </v-card>
+          </div>
+
+          <v-divider class="my-6" />
+
+          <div class="mb-6">
+            <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
+              <div class="d-flex flex-wrap align-center justify-space-between mb-4">
+                <span class="text-body-1 font-weight-bold">Outillage et configuration d'un projet Python moderne</span>
+                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
+              </div>
+
+              <ul class="sf-list text-body-2 mb-3">
+                <li><span class="sf-red">Comprendre et utiliser un <span class="code-tag">pyproject.toml</span> avec <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer"><span class="code-tag">uv</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't2'">Trace n&deg;2</a>) : lire la configuration et refaire un environnement propre.</li>
+                <li><span class="sf-red">Configurer <a href="https://deptry.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">deptry</span></a> pour &eacute;viter les faux positifs</span> (<a href="#" class="trace-link" @click.prevent="tab = 't2'">Trace n&deg;2</a>) : s&eacute;parer modules internes et d&eacute;pendances externes.</li>
+                <li><span class="sf-red">Lire un fichier <span class="code-tag">.coverage</span> avec <a href="https://coverage.readthedocs.io/" target="_blank" rel="noopener noreferrer"><span class="code-tag">coverage.py</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't1'">Trace n&deg;1</a>) : relier les lignes aux tests couverts.</li>
+              </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte d&rsquo;apprentissage : </span>
+                Sujet pas vu en cours. Avant le stage, je travaillais en <code class="inline-code">pip</code> + <code class="inline-code">venv</code> manuel, sans <span class="code-tag">pyproject.toml</span> ni gestionnaire moderne. <span class="code-tag">uv</span> m'a &eacute;t&eacute; confi&eacute; d&egrave;s le premier jour.
+              </p>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Difficult&eacute; :</span>
+                Faible &agrave; moyenne. Il faut bien distinguer d&eacute;pendances de production et outils de d&eacute;veloppement, et prendre en main <span class="code-tag">deptry</span> et <span class="code-tag">coverage.py</span>.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">&Eacute;valuation :</span>
+                Bon. Je sais <span class="sf-red">utiliser un <span class="code-tag">pyproject.toml</span> avec <span class="code-tag">uv</span></span>, <span class="sf-red">configurer <span class="code-tag">deptry</span></span> et <span class="sf-red">lire un <span class="code-tag">.coverage</span></span> pour suivre la couverture. Je peux reprendre cette configuration sur un autre projet.
+              </p>
+            </v-card>
+          </div>
+        </v-window-item>
+
       </v-window>
     </v-card>
 
-    <!-- Modal zoom image (commun a toutes les traces) -->
-    <v-dialog v-model="imageModal" max-width="1400" @click:outside="closeImage" @keydown.esc="closeImage">
-      <v-card>
-        <v-card-actions class="pa-2">
-          <v-btn icon variant="text" @click="zoomOut" :disabled="zoom <= 0.5"><v-icon>mdi-magnify-minus</v-icon></v-btn>
-          <span class="text-caption mx-2">{{ Math.round(zoom * 100) }}%</span>
-          <v-btn icon variant="text" @click="zoomIn" :disabled="zoom >= 5"><v-icon>mdi-magnify-plus</v-icon></v-btn>
-          <v-btn icon variant="text" @click="resetZoom"><v-icon>mdi-magnify-scan</v-icon></v-btn>
+    <!-- Footer -->
+    <v-card class="pa-5 text-center mt-5" rounded="lg">
+      <p class="text-body-2 text-medium-emphasis">
+        <a href="mailto:baptiste.didier@proton.me" class="text-blue-lighten-2">baptiste.didier@proton.me</a>
+      </p>
+      <div class="mt-2">
+        <router-link to="/suivi" class="text-blue-lighten-2 text-body-2">
+          Aller sur la page Suivi
+        </router-link>
+      </div>
+      <p class="text-caption text-medium-emphasis mt-2">&copy; 2026 Baptiste Didier. Tous droits r&eacute;serv&eacute;s.</p>
+    </v-card>
+
+    <!-- Modal zoom image -->
+    <v-dialog v-model="imageModal" max-width="90vw" content-class="image-dialog">
+      <v-card
+        class="pa-2 d-flex flex-column image-modal-card"
+        style="background:#1a1a1a; width:90vw; max-width:1200px; height:85vh;"
+      >
+        <!-- Barre d'outils -->
+        <div class="d-flex align-center mb-2 px-1">
+          <v-btn icon variant="text" size="small" :disabled="zoom <= 100" @click="setZoom(-25)" title="D&eacute;zoomer">
+            <v-icon>mdi-magnify-minus</v-icon>
+          </v-btn>
+          <span class="mx-2 text-caption" style="min-width:42px; text-align:center; color:#ccc;">{{ zoom }}%</span>
+          <v-btn icon variant="text" size="small" :disabled="zoom >= 400" @click="setZoom(25)" title="Zoomer">
+            <v-icon>mdi-magnify-plus</v-icon>
+          </v-btn>
+          <v-btn icon variant="text" size="small" @click="resetZoom" title="Adapter &agrave; la fen&ecirc;tre">
+            <v-icon>mdi-fit-to-screen</v-icon>
+          </v-btn>
           <v-spacer />
-          <v-btn icon variant="text" @click="closeImage"><v-icon>mdi-close</v-icon></v-btn>
-        </v-card-actions>
-        <v-divider />
+          <span class="text-caption mr-3 d-none d-sm-block" style="color:#555;">
+            Molette pour zoomer &middot; Glisser pour naviguer &middot; Double-clic pour r&eacute;initialiser
+          </span>
+          <v-btn icon variant="text" size="small" @click="closeImage">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </div>
+
+        <!-- Zone d'affichage -->
         <div
-          ref="zoomContainer"
-          class="pa-2"
-          style="overflow:auto; max-height:80vh; background:#1e1e1e; user-select:none;"
+          ref="viewportRef"
+          class="image-viewport"
+          @mousedown="startPan"
+          @mousemove="onPan"
+          @mouseup="endPan"
+          @mouseleave="endPan"
           @wheel.prevent="onWheel"
-          @mousedown="onMouseDown"
-          @mousemove="onMouseMove"
-          @mouseup="onMouseUp"
-          @mouseleave="onMouseUp"
+          @dblclick="resetZoom"
         >
           <img
+            v-if="currentImage"
+            ref="imageRef"
             :src="currentImage"
-            alt="zoom"
-            :style="{
-              transform: `scale(${zoom})`,
-              transformOrigin: 'top left',
-              transition: dragging ? 'none' : 'transform 0.15s',
-              cursor: zoom > 1 ? (dragging ? 'grabbing' : 'grab') : 'zoom-in',
-              display: 'block',
-              width: '100%',
-              borderRadius: '4px',
-              pointerEvents: 'none',
-            }"
+            :style="imageStyle"
             draggable="false"
           />
         </div>
       </v-card>
     </v-dialog>
 
-    <!-- Footer -->
-    <v-card class="mt-5 pa-5 text-center" rounded="lg">
-      <router-link to="/suivi" class="text-blue-lighten-2 text-body-2">
-        D&eacute;couvrir le suivi de projet &rarr;
-      </router-link>
-      <p class="text-caption text-medium-emphasis mt-3">&copy; 2026 Baptiste Didier. Tous droits r&eacute;serv&eacute;s.</p>
-    </v-card>
-
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
-const tab = ref('comp1')
+const tab = ref('t1')
 
 const imageModal = ref(false)
 const currentImage = ref('')
-const zoom = ref(1)
-const dragging = ref(false)
-const zoomContainer = ref(null)
-let dragStart = { x: 0, y: 0, scrollLeft: 0, scrollTop: 0, moved: false }
+const zoom = ref(100)
+const pan = ref({ x: 0, y: 0 })
+const isPanning = ref(false)
+const panStart = ref({ x: 0, y: 0 })
+const panOrigin = ref({ x: 0, y: 0 })
+const panMoved = ref(false)
+
+const viewportRef = ref(null)
+const imageRef = ref(null)
+
+const imageStyle = computed(() => {
+  if (zoom.value === 100) {
+    return {
+      width: '100%',
+      height: '100%',
+      objectFit: 'contain',
+      display: 'block',
+      userSelect: 'none',
+      cursor: 'zoom-in',
+    }
+  }
+  const scale = zoom.value / 100
+  return {
+    transform: `translate(${pan.value.x}px, ${pan.value.y}px) scale(${scale})`,
+    transformOrigin: 'top left',
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain',
+    display: 'block',
+    maxWidth: 'none',
+    maxHeight: 'none',
+    userSelect: 'none',
+    cursor: 'grab',
+  }
+})
+
+function clampPan(nextPan, zoomValue = zoom.value) {
+  if (zoomValue <= 100 || !viewportRef.value) return { x: 0, y: 0 }
+  const rect = viewportRef.value.getBoundingClientRect()
+  const scale = zoomValue / 100
+  const scaledWidth = rect.width * scale
+  const scaledHeight = rect.height * scale
+  const minX = Math.min(0, rect.width - scaledWidth)
+  const minY = Math.min(0, rect.height - scaledHeight)
+  return {
+    x: Math.max(minX, Math.min(0, nextPan.x)),
+    y: Math.max(minY, Math.min(0, nextPan.y)),
+  }
+}
 
 function openImage(src) {
   currentImage.value = src
-  zoom.value = 1
+  zoom.value = 100
+  pan.value = { x: 0, y: 0 }
+  isPanning.value = false
+  panMoved.value = false
   imageModal.value = true
 }
+
 function closeImage() {
   imageModal.value = false
-  zoom.value = 1
-}
-function zoomIn() { zoom.value = Math.min(5, zoom.value + 0.25) }
-function zoomOut() { zoom.value = Math.max(0.5, zoom.value - 0.25) }
-function resetZoom() { zoom.value = 1 }
-function onWheel(e) {
-  const delta = e.deltaY > 0 ? -0.15 : 0.15
-  zoom.value = Math.min(5, Math.max(0.5, zoom.value + delta))
-}
-function onMouseDown(e) {
-  const c = zoomContainer.value
-  if (!c) return
-  dragging.value = true
-  dragStart = {
-    x: e.pageX,
-    y: e.pageY,
-    scrollLeft: c.scrollLeft,
-    scrollTop: c.scrollTop,
-    moved: false,
-  }
-}
-function onMouseMove(e) {
-  if (!dragging.value) return
-  const c = zoomContainer.value
-  if (!c) return
-  const dx = e.pageX - dragStart.x
-  const dy = e.pageY - dragStart.y
-  if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dragStart.moved = true
-  c.scrollLeft = dragStart.scrollLeft - dx
-  c.scrollTop = dragStart.scrollTop - dy
-}
-function onMouseUp() {
-  if (dragging.value && !dragStart.moved) {
-    zoom.value = zoom.value === 1 ? 2 : 1
-  }
-  dragging.value = false
+  isPanning.value = false
+  panMoved.value = false
 }
 
-const bilanCompetences = [
-  {
-    id: "comp1",
-    title: "Compétence 1 — Analyse automatique du code et couverture de tests",
-    savoirFaire: [
-      {
-        title: "Utiliser LibCST pour détecter les usages de dépendances",
-        contexteUtilisation: "Détection automatique des imports et appels liés à chaque dépendance dans le code EzGED, alimentant l'interface HTML Jinja2 (trace n°1).",
-        contexteApprentissage: "Appris entièrement en stage à partir de la documentation LibCST, sans base préalable en analyse syntaxique.",
-        difficulte: "Élevée — la manipulation du CST demande de comprendre la structure interne du code Python et de gérer les alias d'imports.",
-      },
-      {
-        title: "Lire et exploiter un fichier pyproject.toml avec tomllib",
-        contexteUtilisation: "Extraction automatique de la liste des dépendances depuis le pyproject.toml d'EzGED, point d'entrée du script d'analyse (trace n°2).",
-        contexteApprentissage: "Module découvert en stage, couplé avec importlib.metadata pour résoudre les correspondances noms de paquets / noms de modules.",
-        difficulte: "Faible pour la lecture du TOML ; moyenne pour le mapping distribution/module avec importlib.metadata.",
-      },
-      {
-        title: "Lecture d'un fichier .coverage avec l'API coverage.py",
-        contexteUtilisation: "Croisement des données de couverture avec les appels détectés par LibCST pour identifier les zones non testées (trace n°1).",
-        contexteApprentissage: "Appris en stage via la documentation. Le fichier .coverage est une base SQLite, j'ai dû comprendre son format interne.",
-        difficulte: "Moyenne — la normalisation des chemins entre le .coverage et le code source a demandé une fonction dédiée.",
-      },
-    ],
-    evaluation: {
-      beforeLevel: "mauvais",
-      beforeText: "Je connaissais seulement les bases de Python et je n'avais jamais analysé un projet réel avec LibCST ou coverage.py.",
-      afterLevel: "bon",
-      afterText: "Je sais analyser les usages de dépendances, croiser avec la couverture de tests et produire un rapport clair pour l'équipe.",
-    },
-  },
-  {
-    id: "comp2",
-    title: "Compétence 2 — Suites de tests dynamiques à partir d'un JSON",
-    savoirFaire: [
-      {
-        title: "Charger et exploiter un fichier JSON structuré en Python",
-        contexteUtilisation: "Lecture du JSON regroupé par librairie pour construire dynamiquement les suites de tests (trace n°4).",
-        contexteApprentissage: "Bases JSON vues en cours de BUT, approfondissement de la déduplication et restructuration du format sur proposition de Florian Masy.",
-        difficulte: "Faible pour la lecture ; moyenne pour la déduplication et la redéfinition du format à trois niveaux.",
-      },
-      {
-        title: "Importer dynamiquement des modules Python avec importlib",
-        contexteUtilisation: "Chargement à l'exécution des classes de tests référencées dans le JSON, car les noms ne sont connus qu'au runtime (trace n°3).",
-        contexteApprentissage: "Découvert en stage. L'import dynamique n'a jamais été abordé en cours de BUT.",
-        difficulte: "Moyenne — la gestion du sys.path et la conversion chemin fichier / notation pointée ont posé des problèmes multi-environnements.",
-      },
-      {
-        title: "Construire dynamiquement des classes de tests avec unittest",
-        contexteUtilisation: "Génération automatique de classes TestCase par librairie à partir du JSON pour vérifier la compatibilité après montée de version (trace n°3).",
-        contexteApprentissage: "Bases unittest vues en cours, mécanisme type() pour la création dynamique appris entièrement en stage.",
-        difficulte: "Élevée — le mélange des contextes setUp/tearDown entre classes dynamiques a nécessité plusieurs jours de débogage.",
-      },
-    ],
-    evaluation: {
-      beforeLevel: "moyen",
-      beforeText: "Je savais lire un JSON simple et écrire des tests unitaires classiques, mais je n'avais jamais créé de suites dynamiques.",
-      afterLevel: "bon",
-      afterText: "Je peux générer des suites de tests dynamiques à partir d'un JSON et isoler chaque test pour fiabiliser la migration.",
-    },
-  },
-]
+function resetZoom() {
+  zoom.value = 100
+  pan.value = { x: 0, y: 0 }
+}
+
+function setZoom(delta) {
+  const nextZoom = Math.min(400, Math.max(100, zoom.value + delta))
+  zoom.value = nextZoom
+  if (nextZoom === 100) {
+    pan.value = { x: 0, y: 0 }
+  } else {
+    pan.value = clampPan(pan.value, nextZoom)
+  }
+}
+
+function onWheel(event) {
+  const step = event.deltaY < 0 ? 25 : -25
+  const nextZoom = Math.min(400, Math.max(100, zoom.value + step))
+  if (nextZoom === zoom.value) return
+
+  if (zoom.value > 100) {
+    const viewport = event.currentTarget
+    const rect = viewport.getBoundingClientRect()
+    const mouseX = event.clientX - rect.left
+    const mouseY = event.clientY - rect.top
+    const ratio = nextZoom / zoom.value
+    pan.value = clampPan({
+      x: mouseX - ratio * (mouseX - pan.value.x),
+      y: mouseY - ratio * (mouseY - pan.value.y),
+    }, nextZoom)
+  }
+
+  zoom.value = nextZoom
+  if (nextZoom === 100) pan.value = { x: 0, y: 0 }
+}
+
+function startPan(event) {
+  if (zoom.value <= 100) return
+  isPanning.value = true
+  panMoved.value = false
+  panStart.value = { x: event.clientX, y: event.clientY }
+  panOrigin.value = { x: pan.value.x, y: pan.value.y }
+}
+
+function onPan(event) {
+  if (!isPanning.value) return
+  const deltaX = event.clientX - panStart.value.x
+  const deltaY = event.clientY - panStart.value.y
+  if (Math.abs(deltaX) > 2 || Math.abs(deltaY) > 2) panMoved.value = true
+  pan.value = clampPan({
+    x: panOrigin.value.x + deltaX,
+    y: panOrigin.value.y + deltaY,
+  })
+}
+
+function endPan() {
+  isPanning.value = false
+}
+
+function onKeydown(event) {
+  const PAN_STEP = 40
+  switch (event.key) {
+    case '+': case '=': setZoom(25); break
+    case '-': setZoom(-25); break
+    case '0': resetZoom(); break
+    case 'Escape': closeImage(); break
+    case 'ArrowLeft':
+      if (zoom.value > 100) pan.value = { ...pan.value, x: pan.value.x + PAN_STEP }
+      break
+    case 'ArrowRight':
+      if (zoom.value > 100) pan.value = { ...pan.value, x: pan.value.x - PAN_STEP }
+      break
+    case 'ArrowUp':
+      if (zoom.value > 100) pan.value = { ...pan.value, y: pan.value.y + PAN_STEP }
+      break
+    case 'ArrowDown':
+      if (zoom.value > 100) pan.value = { ...pan.value, y: pan.value.y - PAN_STEP }
+      break
+  }
+}
+
+watch(imageModal, (val) => {
+  if (val) {
+    window.addEventListener('keydown', onKeydown)
+  } else {
+    window.removeEventListener('keydown', onKeydown)
+  }
+})
+
+function getDiffColor(difficulte) {
+  const d = difficulte.toLowerCase()
+  if (d.startsWith('faible')) return 'success'
+  if (d.startsWith('moyenne')) return 'warning'
+  if (d.startsWith('élevée')) return 'error'
+  return undefined
+}
+
+function getDiffColorHex(difficulte) {
+  const d = difficulte.toLowerCase()
+  if (d.startsWith('faible')) return '#66bb6a'
+  if (d.startsWith('moyenne')) return '#ffa726'
+  if (d.startsWith('élevée')) return '#ef5350'
+  return '#9e9e9e'
+}
+
 </script>
 
 <style scoped>
@@ -479,21 +628,82 @@ const bilanCompetences = [
   border-radius: 8px;
   cursor: pointer;
   display: block;
+  max-height: 380px;
+  object-fit: contain;
+  background: #1a1a1a;
   transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .trace-image:hover {
-  filter: brightness(0.75);
+  filter: brightness(0.8);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
 }
-
 .inline-code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  background: #111111;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #111;
   color: #e6e6e6;
-  padding: 2px 6px;
+  padding: 1px 5px;
   border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 0.88em;
+}
+.code-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #141414;
+  color: #ffd54f;
+  padding: 1px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 213, 79, 0.25);
+  font-size: 0.92em;
+}
+.trace-link {
+  color: #ffd54f;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sf-red {
+  color: #ff5252;
+  font-weight: 600;
+}
+.g-row {
+  row-gap: 12px;
+}
+.image-viewport {
+  flex: 1;
+  overflow: hidden;
+  cursor: crosshair;
+  position: relative;
+}
+.bilan-card {
+  background: linear-gradient(180deg, rgba(22, 22, 22, 0.95), rgba(18, 18, 18, 0.95));
+  border: 1px solid rgba(255, 193, 7, 0.2);
+}
+.sf-card {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sf-label {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+}
+.image-modal-card {
+  margin: 0 auto;
+}
+:deep(.image-dialog) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+.eval-card-before {
+  border-left: 4px solid rgb(var(--v-theme-error));
+  background: #171717;
+  border: 1px solid rgba(244, 67, 54, 0.25);
+}
+.eval-card-after {
+  border-left: 4px solid rgb(var(--v-theme-success));
+  background: #171717;
+  border: 1px solid rgba(76, 175, 80, 0.25);
 }
 </style>

@@ -13,3 +13,4 @@ rap/
 .dist/
 .claude/
 node_modules/
+README.md

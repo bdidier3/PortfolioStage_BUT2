@@ -2,434 +2,561 @@
   <div>
 
     <!-- En-tete -->
-    <v-card class="mb-5 pa-5" rounded="lg">
-      <h1 class="text-h6 font-weight-bold mb-2">
+    <v-card class="mb-4 pa-4" rounded="lg">
+      <h1 class="text-h6 font-weight-bold mb-1">
         Pr&eacute;sentation et &eacute;valuation de savoir-faire en suivi de projet
       </h1>
-      <p class="text-body-2 text-medium-emphasis">
-        Cette page pr&eacute;sente les savoir-faire li&eacute;s &agrave; la veille technologique, &agrave; la documentation
-        et &agrave; l&rsquo;utilisation de Git et GitLab dans le cadre du stage EzGED.
+      <p class="text-body-2 text-medium-emphasis mb-0">
+        Cette partie pr&eacute;sente les savoir-faire li&eacute;s &agrave; la veille technologique, &agrave; la documentation
+        et &agrave; l&rsquo;utilisation de Git/GitLab dans le cadre du stage EzGED. Chaque trace illustre un savoir-faire
+        pr&eacute;cis, suivi d&rsquo;un bilan global.
       </p>
     </v-card>
 
-    <!-- Contenu principal avec onglets -->
-    <v-card class="pa-5" rounded="lg">
-      <v-tabs v-model="tab" color="primary">
-        <v-tab value="comp3">Comp&eacute;tence 3</v-tab>
-        <v-tab value="comp4">Comp&eacute;tence 4</v-tab>
+    <!-- Contenu avec onglets -->
+    <v-card class="pa-4" rounded="lg">
+      <v-tabs v-model="tab" color="amber-darken-2" align-tabs="start" density="compact">
+        <v-tab value="t5">Trace 5</v-tab>
+        <v-tab value="t6">Trace 6</v-tab>
+        <v-tab value="t7">Trace 7</v-tab>
         <v-tab value="bilan">Bilan &amp; &Eacute;valuation</v-tab>
       </v-tabs>
-      <v-divider class="mb-4" />
+      <v-divider class="mb-3" />
 
       <v-window v-model="tab">
 
-        <!-- COMPETENCE 3 -->
-        <v-window-item value="comp3">
-          <h3 class="text-h5 font-weight-bold mb-3">
-            Faire une veille technologique et documenter son travail
-          </h3>
-          <div class="mb-3">
-            <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-            <v-chip color="success" size="small" class="ma-1">Identifier et comparer des outils de mise &agrave; jour automatique de d&eacute;pendances</v-chip>
-            <v-chip color="success" size="small" class="ma-1">Configurer Renovate sur un projet GitLab</v-chip>
-            <v-chip color="success" size="small" class="ma-1">R&eacute;diger une documentation technique exploitable par l&rsquo;&eacute;quipe</v-chip>
-          </div>
+        <!-- TRACE 5 -->
+        <v-window-item value="t5">
+          <v-card variant="flat" class="pa-3" rounded="lg">
+            <h3 class="text-h6 font-weight-bold mb-2">
+              Automatisation des mises &agrave; jour de d&eacute;pendances avec Renovate
+            </h3>
+            <div class="mb-3">
+              <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
+              <v-chip color="success" size="small" class="ma-1">Configurer un pipeline CI/CD GitLab pour ex&eacute;cuter Renovate</v-chip>
+              <v-chip color="success" size="small" class="ma-1">Param&eacute;trer Renovate via le fichier renovate.json</v-chip>
+            </div>
 
-          <!-- Trace 4 - image a gauche, texte a droite -->
-          <v-divider class="my-4" />
-          <v-row class="mb-4" align="start">
-            <v-col cols="12" md="7">
-              <img
-                src="/images/Trace5_renovate.png"
-                alt="Documentation Renovate utilis&eacute;e pour la configuration"
-                class="trace-image"
-                @click="openImage('/images/Trace5_renovate.png')"
-              />
-              <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;5</strong> &mdash; Documentation Renovate consult&eacute;e pour configurer l&rsquo;outil
-              </p>
-            </v-col>
-            <v-col cols="12" md="5">
-              <v-card variant="outlined" color="success" class="pa-3 mb-3" rounded="lg">
-                <p class="text-body-2 mb-0">
-                  La Trace n°5 montre un extrait de la documentation que j'ai rédigée pour intégrer Renovate,
-                  l’outil choisi pour automatiser la veille des dépendances. Le cadre rouge met en évidence
-                  la configuration du pipeline du fichier <code class="inline-code">.gitlab-ci.yml</code>. Les cadres verts montrent les règles globales
-                  appliquées au projet <code class="inline-code">renovate.json</code>, avec un focus précis dans le cadre jaune sur les gestionnaires
-                  de paquets. Dans le cadre de ma mission de migration, cette documentation permet à l'équipe de reproduire
-                  l'installation facilement.
+            <v-row align="start" no-gutters class="g-row">
+              <v-col cols="12" md="6" class="pe-md-4">
+                <img
+                  src="/images/Trace5_renovate.png"
+                  alt="Documentation Renovate"
+                  class="trace-image"
+                  @click="openImage($event.currentTarget.currentSrc)"
+                />
+                <p class="text-caption text-medium-emphasis mt-2 mb-0">
+                  <strong>Trace n&deg;5</strong> : Documentation Renovate r&eacute;dig&eacute;e pour configurer l&rsquo;outil.
                 </p>
-              </v-card>
-            </v-col>
-          </v-row>
-
-          <!-- Trace 5 - image a droite, texte a gauche (diagonal) -->
-          <v-divider class="my-4" />
-          <v-row class="mb-4" align="start">
-            <v-col cols="12" md="5">
-              <v-card variant="outlined" color="success" class="pa-3 mb-3" rounded="lg">
-                <p class="text-body-2 mb-0">
-                 La Trace n°6 montre le résultat concret du robot Renovate sur notre GitLab. Les cadres
-                 bleus indiquent que l'outil crée automatiquement une « Issue » (qui sert de tableau de
-                 bord de suivi global) et plusieurs « Merge Requests » (MR) pour proposer les mises à jour.
-                 Pour limiter les risques, Renovate sépare intelligemment les mises à jour : le trait rouge
-                 souligne justement une MR « major » qui regroupe les grandes montées de version (les plus risquées),
-                 tandis qu'il génère d'autres MR isolées pour les correctifs mineurs, qui sont beaucoup plus sûrs. Enfin,
-                 le cadre jaune cible le tableau de bord de la MR : il liste le nom de la dépendance, le changement de version,
-                  l'âge de la mise à jour et un indice de confiance basé sur la communauté pour évaluer facilement le risque de
-                  casse avant de valider.
-                </p>
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="7">
-              <img
-                src="/images/Trace6_MRRenovate.png"
-                alt="Commits GitLab sur la branche gestions_deps"
-                class="trace-image"
-                @click="openImage('/images/Trace6_MRRenovate.png')"
-              />
-              <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;6</strong> &mdash; Merge Requests Renovate sur la branche
-                <code class="inline-code">gestions_deps</code> dans GitLab
-              </p>
-            </v-col>
-          </v-row>
-          <v-divider class="my-4" />
-
-          <div class="text-body-2">
-            <p class="mb-3">
-              Pour
-              <v-chip color="success" size="x-small" class="mx-1">identifier et comparer des outils de mise &agrave; jour automatique de d&eacute;pendances</v-chip>,
-              j&rsquo;ai men&eacute; une veille technologique approfondie pour comparer
-              <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer">Renovate</a>
-              et
-              <a href="https://docs.github.com/en/code-security/dependabot" target="_blank" rel="noopener noreferrer">Dependabot</a>.
-              Dans le cadre du projet, le crit&egrave;re bloquant &eacute;tait la compatibilit&eacute; avec le serveur GitLab interne
-              de l&rsquo;entreprise (EzDEV). Dependabot &eacute;tant optimis&eacute; pour GitHub, j&rsquo;ai logiquement s&eacute;lectionn&eacute;
-              Renovate. La Trace n&deg;5 montre justement le manuel technique qui est le r&eacute;sultat direct de cette recherche.
-            </p>
-            <p class="mb-3">
-              Pour
-              <v-chip color="success" size="x-small" class="mx-1">configurer Renovate sur un projet GitLab</v-chip>,
-              j&rsquo;ai mis en place les deux fichiers cl&eacute;s visibles sur la Trace n&deg;5. Le cadre rouge montre
-              le pipeline CI/CD qui permet d&rsquo;ex&eacute;cuter Renovate de mani&egrave;re autonome sur notre serveur.
-              Les cadres verts d&eacute;finissent les r&egrave;gles du robot, comme le blocage de la fusion automatique
-              (<code class="inline-code">automerge: false</code>) pour garder le contr&ocirc;le. Enfin, le cadre jaune
-              montre une r&egrave;gle avanc&eacute;e que j&rsquo;ai configur&eacute;e : cibler pr&eacute;cis&eacute;ment les paquets Python
-              (<code class="inline-code">pip_requirements</code>, <code class="inline-code">poetry</code>...) pour les regrouper.
-              La Merge Request g&eacute;n&eacute;r&eacute;e sur la Trace n&deg;6 prouve que cette configuration est un succ&egrave;s.
-            </p>
-            <p>
-              Pour
-              <v-chip color="success" size="x-small" class="mx-1">r&eacute;diger une documentation technique exploitable par l&rsquo;&eacute;quipe</v-chip>,
-              j&rsquo;ai structur&eacute; mon document (Trace n&deg;5) sous forme de tutoriel pas &agrave; pas tr&egrave;s visuel.
-              J&rsquo;y ai inclus la pr&eacute;sentation de l&rsquo;outil, les scripts exacts &agrave; copier-coller
-              (comme vus dans les cadres rouge et vert), et un guide pour interpr&eacute;ter les r&eacute;sultats.
-              Mon objectif &eacute;tait de rendre l&rsquo;&eacute;quipe totalement autonome, afin qu&rsquo;&agrave; la fin de mon stage,
-              n&rsquo;importe quel d&eacute;veloppeur puisse reproduire ce processus sur d&rsquo;autres projets sans d&eacute;pendre de moi.
-            </p>
-          </div>
-        </v-window-item>
-
-        <!-- COMPETENCE 4 -->
-        <v-window-item value="comp4">
-          <h3 class="text-h5 font-weight-bold mb-3">
-            Utiliser Git et GitLab pour g&eacute;rer le code en &eacute;quipe
-          </h3>
-          <div class="mb-3">
-            <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-            <v-chip color="success" size="small" class="ma-1">G&eacute;rer son travail avec des branches Git nomm&eacute;es</v-chip>
-            <v-chip color="success" size="small" class="ma-1">R&eacute;diger des messages de commit clairs et atomiques</v-chip>
-            <v-chip color="success" size="small" class="ma-1">Soumettre son travail via des Merge Requests GitLab</v-chip>
-          </div>
-
-          <v-divider class="my-4" />
-          <v-row class="mb-4" align="start">
-            <v-col cols="12" md="7">
-              <img
-                src="/images/Trace7_commits.png"
-                alt="Historique de commits GitLab"
-                class="trace-image"
-                @click="openImage('/images/Trace7_commits.png')"
-              />
-              <p class="text-caption text-medium-emphasis mt-2">
-                <strong>Trace n&deg;7</strong> &mdash; Historique de commits sur GitLab
-              </p>
-            </v-col>
-            <v-col cols="12" md="5">
-              <v-card variant="outlined" color="success" class="pa-3 mb-3" rounded="lg">
-                <p class="text-body-2 mb-0">
-                  La Trace n°7 montre l’historique de mes commits sur le GitLab de l'entreprise (EzDEV), réalisé pendant ma
-                  mission d'analyse et de migration vers Python 3.13. L'image met en évidence mon environnement de travail
-                  avec la branche de développement (cadre rouge), l'historique des actions détaillées (cadre bleu) et le
-                  déclenchement de la validation du code (cadre vert). C’est la preuve visuelle que j'ai adopté les normes de
-                  l'équipe pour versionner chaque étape de ma mission de manière sécurisée.
-                </p>
-              </v-card>
-            </v-col>
-          </v-row>
-          <v-divider class="my-4" />
-
-          <div class="text-body-2">
-            <p class="mb-3">
-              Pour
-              <v-chip color="success" size="x-small" class="mx-1">g&eacute;rer son travail avec des branches Git nomm&eacute;es</v-chip>,
-              j'ai isol&eacute; la cr&eacute;ation de mes scripts d'analyse sur une branche d&eacute;di&eacute;e, visible
-              dans le cadre rouge (<code class="inline-code">gestions_deps</code>). Mon objectif
-              &eacute;tait de d&eacute;velopper et de tester mes outils sans jamais risquer d'impacter ou de casser
-              la branche principale du projet. Travailler sur une branche s&eacute;par&eacute;e
-              est une bonne pratique indispensable pour collaborer efficacement en &eacute;quipe.
-            </p>
-            <p class="mb-3">
-              Pour
-              <v-chip color="success" size="x-small" class="mx-1">r&eacute;diger des messages de commit clairs et atomiques</v-chip>,
-              j'ai veill&eacute; &agrave; d&eacute;couper mon travail en petites actions ind&eacute;pendantes. Comme le
-              montre le cadre bleu, au lieu d'enregistrer toutes mes modifications d'un coup sous un message
-              vague, je d&eacute;taille l'action exacte (ex: "Modification du script d'audit avec libcst en ajoutant
-              un filtre HTML"). La m&eacute;thode consiste &agrave; r&eacute;aliser un commit d&egrave;s
-              qu'une sous-fonctionnalit&eacute; est termin&eacute;e. Le but est de rendre
-              l’historique lisible et de faciliter un &eacute;ventuel retour en arri&egrave;re pr&eacute;cis en cas d'erreur.
-            </p>
-            <p>
-              Pour
-              <v-chip color="success" size="x-small" class="mx-1">soumettre son travail via des Merge Requests GitLab</v-chip>,
-              j'utilise le bouton mis en &eacute;vidence par le cadre vert (Create merge request). Une fois mon
-              code termin&eacute; sur ma branche, je d&eacute;clenche manuellement cette demande. L'objectif est de notifier l'&eacute;quipe, pour qu'ils puissent
-              relire mon code, valider ma m&eacute;thode et approuver mon travail avant de le fusionner d&eacute;finitivement
-              avec le reste du logiciel EzGED.
-            </p>
-          </div>
-        </v-window-item>
-
-        <!-- BILAN -->
-        <v-window-item value="bilan">
-          <h3 class="text-subtitle-1 font-weight-bold mb-4">
-            Bilan &amp; Analyse
-          </h3>
-
-          <v-card
-            v-for="comp in bilanCompetences"
-            :key="comp.id"
-            variant="outlined"
-            class="pa-4 mb-6"
-            rounded="lg"
-          >
-            <h4 class="text-body-1 font-weight-bold mb-4">{{ comp.title }}</h4>
-
-            <h5 class="text-body-1 font-weight-bold mb-3">R&eacute;sum&eacute; des savoir-faire &eacute;l&eacute;mentaires</h5>
-            <v-row class="mb-4">
-              <v-col cols="12" md="6" v-for="sf in comp.savoirFaire" :key="sf.title">
-                <v-card variant="outlined" class="pa-3 h-100" rounded="lg">
-                  <v-chip color="success" size="small" class="mb-2">{{ sf.title }}</v-chip>
-                  <p class="text-body-2 mb-1"><strong>Contexte d'utilisation :</strong> {{ sf.contexteUtilisation }}</p>
-                  <p class="text-body-2 mb-1"><strong>Contexte d'apprentissage :</strong> {{ sf.contexteApprentissage }}</p>
-                  <p class="text-body-2"><strong>Difficult&eacute; :</strong> {{ sf.difficulte }}</p>
-                </v-card>
-              </v-col>
-            </v-row>
-
-            <h5 class="text-body-1 font-weight-bold mb-3">&Eacute;valuation du niveau</h5>
-            <v-row>
-              <v-col cols="12" md="6">
-                <v-card variant="outlined" class="pa-4" rounded="lg">
-                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Avant le stage</h6>
-                  <p class="text-body-2 mb-2">
-                    Niveau <strong>{{ comp.evaluation.beforeLevel }}</strong>.
-                  </p>
-                  <p class="text-body-2 mb-0">
-                    {{ comp.evaluation.beforeText }}
-                  </p>
-                </v-card>
               </v-col>
               <v-col cols="12" md="6">
-                <v-card variant="outlined" class="pa-4" rounded="lg">
-                  <h6 class="text-subtitle-2 font-weight-bold mb-2">Apr&egrave;s le stage</h6>
-                  <p class="text-body-2 mb-2">
-                    Niveau <strong>{{ comp.evaluation.afterLevel }}</strong>.
-                  </p>
-                  <p class="text-body-2 mb-0">
-                    {{ comp.evaluation.afterText }}
-                  </p>
-                </v-card>
+                <p class="text-body-2 mb-2">
+                  La <strong>Trace n&deg;5</strong> montre un extrait de la documentation que j&rsquo;ai r&eacute;dig&eacute;e pour
+                  expliquer la mise en place de Renovate sur EzGED. Elle d&eacute;crit les deux fichiers de configuration
+                  n&eacute;cessaires et la proc&eacute;dure compl&egrave;te pour automatiser la d&eacute;tection des mises &agrave; jour
+                  de d&eacute;pendances Python. Le cadre rouge isole le fichier <code class="inline-code">.gitlab-ci.yml</code>
+                  qui d&eacute;finit le job Renovate&nbsp;: l&rsquo;image Docker
+                  <code class="inline-code">renovate/renovate:43.111.3</code>, les variables d&rsquo;environnement
+                  (<code class="inline-code">RENOVATE_PLATFORM</code>, <code class="inline-code">RENOVATE_ENDPOINT</code>
+                  pointant vers <code class="inline-code">gitlab.ezdev.fr</code>, les deux tokens d&rsquo;acc&egrave;s) et la r&egrave;gle
+                  <code class="inline-code">$CI_PIPELINE_SOURCE == &quot;schedule&quot;</code> qui limite l&rsquo;ex&eacute;cution aux
+                  pipelines planifi&eacute;s. Les cadres verts montrent le fichier
+                  <code class="inline-code">renovate.json</code> &agrave; la racine du d&eacute;p&ocirc;t&nbsp;: h&eacute;ritage
+                  <code class="inline-code">config:recommended</code>, d&eacute;sactivation de l&rsquo;<code class="inline-code">automerge</code>
+                  pour garder un contr&ocirc;le manuel, activation du <code class="inline-code">dependencyDashboard</code> et
+                  d&eacute;signation du reviewer notifi&eacute; &agrave; chaque mise &agrave; jour. Le cadre jaune met en &eacute;vidence le
+                  bloc <code class="inline-code">matchManagers</code> qui regroupe <code class="inline-code">pip_requirements</code>,
+                  <code class="inline-code">poetry</code> et <code class="inline-code">pip_setup</code> sous un seul groupe
+                  &laquo;&nbsp;Toutes les d&eacute;pendances Python&nbsp;&raquo;. Le bas de la trace d&eacute;crit la cr&eacute;ation des
+                  access tokens GitLab/GitHub, leur ajout en variables masqu&eacute;es, puis la configuration d&rsquo;un
+                  pipeline planifi&eacute;.
+                </p>
+                <p class="text-body-2 mb-2">
+                  Pour <span class="sf-green">configurer le pipeline CI/CD</span>, j&rsquo;ai d&ucirc; comprendre comment GitLab
+                  ex&eacute;cute un job conteneuris&eacute; et comment lui transmettre des secrets via des variables masqu&eacute;es.
+                  Le token GitLab autorise Renovate &agrave; cr&eacute;er les Merge Requests, le token GitHub permet de r&eacute;cup&eacute;rer
+                  les changelogs et notes de version utilis&eacute;s dans le rapport.
+                </p>
+                <p class="text-body-2 mb-0">
+                  Pour <span class="sf-green">param&eacute;trer Renovate</span>, je me suis appuy&eacute; sur la documentation
+                  officielle du fichier <code class="inline-code">renovate.json</code> afin de regrouper toutes les d&eacute;pendances
+                  Python en une seule Merge Request plut&ocirc;t qu&rsquo;une par paquet, ce qui rend les mises &agrave; jour bien plus
+                  exploitables dans le contexte d&rsquo;EzGED o&ugrave; les d&eacute;pendances sont fortement interconnect&eacute;es.
+                </p>
               </v-col>
             </v-row>
           </v-card>
         </v-window-item>
 
+        <!-- TRACE 6 -->
+        <v-window-item value="t6">
+          <v-card variant="flat" class="pa-3" rounded="lg">
+            <h3 class="text-h6 font-weight-bold mb-2">
+              R&eacute;sultats Renovate&nbsp;: Merge Request major et priorisation des mises &agrave; jour
+            </h3>
+            <div class="mb-3">
+              <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
+              <v-chip color="success" size="small" class="ma-1">Configurer Renovate via .gitlab-ci.yml et renovate.json pour automatiser la veille des d&eacute;pendances</v-chip>
+              <v-chip color="success" size="small" class="ma-1">Interpr&eacute;ter le rapport Renovate (Age, Confidence, regroupement major/minor) pour prioriser les mont&eacute;es de version</v-chip>
+            </div>
+
+            <v-row align="start" no-gutters class="g-row">
+              <v-col cols="12" md="6" class="pe-md-4">
+                <img
+                  src="/images/Trace6_MRRenovate.png"
+                  alt="Merge Requests Renovate"
+                  class="trace-image"
+                  @click="openImage($event.currentTarget.currentSrc)"
+                />
+                <p class="text-caption text-medium-emphasis mt-2 mb-0">
+                  <strong>Trace n&deg;6</strong> : Merge Requests Renovate sur la branche
+                  <code class="inline-code">gestions_deps</code> dans GitLab.
+                </p>
+              </v-col>
+              <v-col cols="12" md="6">
+                <p class="text-body-2 mb-2">
+                  La <strong>Trace n&deg;6</strong> montre la Merge Request &laquo;&nbsp;Update Toutes les d&eacute;pendances Python (major)&nbsp;&raquo;
+                  g&eacute;n&eacute;r&eacute;e par Renovate sur le d&eacute;p&ocirc;t <code class="inline-code">test_renovate</code>.
+                  L&rsquo;utilisateur <code class="inline-code">RENOVATE_TOKEN</code> propose de fusionner sa branche
+                  <code class="inline-code">renovate/major-toutes-les-...</code> dans <code class="inline-code">main</code>.
+                  Le tableau du cadre jaune liste les d&eacute;pendances ayant une mont&eacute;e majeure disponible
+                  (<code class="inline-code">attrs</code>, <code class="inline-code">bcrypt</code>,
+                  <code class="inline-code">certifi</code>, <code class="inline-code">cryptography</code>,
+                  <code class="inline-code">paramiko</code>, <code class="inline-code">pywin32</code>,
+                  <code class="inline-code">twisted</code>...) avec la version actuelle et cible (colonne
+                  <code class="inline-code">Change</code>), l&rsquo;anciennet&eacute; (<code class="inline-code">Age</code>) et
+                  un indice de fiabilit&eacute; (<code class="inline-code">Confidence</code>). Le cadre rouge souligne le
+                  suffixe <code class="inline-code">(major)</code>&nbsp;: Renovate isole les mont&eacute;es majeures, plus risqu&eacute;es.
+                  Le cadre bleu met en &eacute;vidence les onglets <em>Issues</em> et <em>Merge requests</em>, o&ugrave; sont centralis&eacute;es
+                  les propositions (Dependency Dashboard + MR &agrave; valider).
+                </p>
+                <p class="text-body-2 mb-2">
+                  Pour <span class="sf-green">configurer Renovate</span>, j&rsquo;ai ajout&eacute; deux fichiers au d&eacute;p&ocirc;t&nbsp;:
+                  un <code class="inline-code">.gitlab-ci.yml</code> qui inclut le template officiel
+                  <code class="inline-code">renovate-bot/renovate-runner</code>, et un <code class="inline-code">renovate.json</code>
+                  dans lequel j&rsquo;ai d&eacute;fini une r&egrave;gle <code class="inline-code">packageRules</code> regroupant
+                  <code class="inline-code">pip_requirements</code>, <code class="inline-code">poetry</code> et
+                  <code class="inline-code">pip_setup</code> sous un m&ecirc;me <code class="inline-code">groupName</code>
+                  &laquo;&nbsp;Toutes les d&eacute;pendances Python&nbsp;&raquo;. Sans ce regroupement, Renovate produirait
+                  une Merge Request par d&eacute;pendance. J&rsquo;ai ensuite cr&eacute;&eacute; un token GitLab stock&eacute; en
+                  variable CI/CD masqu&eacute;e (<code class="inline-code">RENOVATE_TOKEN</code>), puis programm&eacute;
+                  un pipeline planifi&eacute; dans <span class="inline-code">Build &gt; Pipeline schedules</span>.
+                </p>
+                <p class="text-body-2 mb-0">
+                  Pour <span class="sf-green">interpr&eacute;ter le rapport</span>, je croise les colonnes
+                  <code class="inline-code">Age</code> et <code class="inline-code">Confidence</code> afin de prioriser les mont&eacute;es.
+                  Une mise &agrave; jour <code class="inline-code">Confidence: high</code> avec un <code class="inline-code">Age</code>
+                  significatif (ex.&nbsp;<code class="inline-code">certifi</code>, 23j, high) est consid&eacute;r&eacute;e comme stable
+                  et fusionnable rapidement. Une mise &agrave; jour <code class="inline-code">Confidence: low</code> ou tr&egrave;s r&eacute;cente
+                  (ex.&nbsp;<code class="inline-code">paramiko</code>, 5j, neutral&nbsp;; <code class="inline-code">chardet</code>, low)
+                  signale qu&rsquo;il faut attendre des retours d&rsquo;exp&eacute;rience. Le regroupement
+                  <code class="inline-code">(major)</code> me permet d&rsquo;isoler les changements risqu&eacute;s et de lancer une
+                  v&eacute;rification manuelle via mon script LibCST avant de valider la Merge Request.
+                </p>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-window-item>
+
+        <!-- TRACE 7 -->
+        <v-window-item value="t7">
+          <v-card variant="flat" class="pa-3" rounded="lg">
+            <h3 class="text-h6 font-weight-bold mb-2">
+              Suivi du travail via Git et GitLab sur le projet EzGED
+            </h3>
+            <div class="mb-3">
+              <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
+              <v-chip color="success" size="small" class="ma-1">Isoler le d&eacute;veloppement sur une branche Git d&eacute;di&eacute;e</v-chip>
+              <v-chip color="success" size="small" class="ma-1">D&eacute;couper le travail en commits courts et explicites</v-chip>
+              <v-chip color="success" size="small" class="ma-1">Pr&eacute;parer l&rsquo;int&eacute;gration du travail via une Merge Request GitLab</v-chip>
+            </div>
+
+            <v-row align="start" no-gutters class="g-row">
+              <v-col cols="12" md="6" class="pe-md-4">
+                <img
+                  src="/images/Trace7_commits.png"
+                  alt="Historique de commits GitLab"
+                  class="trace-image"
+                  @click="openImage($event.currentTarget.currentSrc)"
+                />
+                <p class="text-caption text-medium-emphasis mt-2 mb-0">
+                  <strong>Trace n&deg;7</strong> : Historique de commits sur le GitLab d&rsquo;EzDEV.
+                </p>
+              </v-col>
+              <v-col cols="12" md="6">
+                <p class="text-body-2 mb-2">
+                  La <strong>Trace n&deg;7</strong> repr&eacute;sente l&rsquo;historique des commits du d&eacute;p&ocirc;t EzGED, consult&eacute;
+                  depuis l&rsquo;interface web de GitLab. Le cadre rouge identifie la branche d&eacute;di&eacute;e
+                  <code class="inline-code">gestions_deps</code>, cr&eacute;&eacute;e pour isoler le d&eacute;veloppement li&eacute; &agrave; la gestion
+                  des d&eacute;pendances Python du reste du projet. Le cadre bleu met en &eacute;vidence le message d&rsquo;un commit du
+                  12/05/2026, qui d&eacute;crit pr&eacute;cis&eacute;ment l&rsquo;&eacute;volution apport&eacute;e au script d&rsquo;audit bas&eacute; sur
+                  LibCST. Le cadre vert pointe le bouton <em>Create merge request</em>, qui permet de proposer l&rsquo;int&eacute;gration
+                  de la branche dans la branche principale d&rsquo;EzGED. En dessous apparaissent deux commits du 11/05/2026
+                  illustrant le d&eacute;coupage progressif du travail (nouveau rendu du fichier JSON, puis d&eacute;but du filtre HTML).
+                  Cette trace s&rsquo;inscrit dans le suivi quotidien de mon travail sur EzGED, o&ugrave; chaque &eacute;volution du script
+                  d&rsquo;analyse doit &ecirc;tre trac&eacute;e et int&eacute;gr&eacute;e proprement au projet d&rsquo;entreprise.
+                </p>
+                <p class="text-body-2 mb-2">
+                  Pour <span class="sf-green">isoler le d&eacute;veloppement sur une branche Git d&eacute;di&eacute;e</span>, j&rsquo;ai cr&eacute;&eacute;
+                  la branche <code class="inline-code">gestions_deps</code> depuis la branche principale d&rsquo;EzGED avec la
+                  commande <code class="inline-code">git checkout -b gestions_deps</code>. Tous mes scripts (analyse des
+                  d&eacute;pendances, rendu HTML, g&eacute;n&eacute;ration de tests) sont commit&eacute;s sur cette branche, ce qui permet
+                  &agrave; l&rsquo;&eacute;quipe de continuer &agrave; faire &eacute;voluer la branche principale sans interférence avec mes d&eacute;veloppements
+                  en cours. Cette s&eacute;paration est indispensable sur un projet collaboratif o&ugrave; plusieurs d&eacute;veloppeurs
+                  interviennent en parall&egrave;le.
+                </p>
+                <p class="text-body-2 mb-2">
+                  Pour <span class="sf-green">d&eacute;couper le travail en commits courts et explicites</span>, je segmente mes
+                  d&eacute;veloppements en petites unit&eacute;s coh&eacute;rentes, chacune accompagn&eacute;e d&rsquo;un message clair. La trace
+                  en montre trois cons&eacute;cutifs&nbsp;: un commit pour le nouveau rendu du fichier
+                  <code class="inline-code">test_dependencies.json</code>, un autre pour le d&eacute;but du filtre HTML, puis celui
+                  mis en &eacute;vidence pour l&rsquo;int&eacute;gration de ce filtre dans le script d&rsquo;audit bas&eacute; sur LibCST. Chaque message
+                  r&eacute;sume en une phrase l&rsquo;&eacute;volution apport&eacute;e, ce qui rend l&rsquo;historique relisable et facilite
+                  l&rsquo;identification pr&eacute;cise du moment o&ugrave; une modification a &eacute;t&eacute; introduite.
+                </p>
+                <p class="text-body-2 mb-0">
+                  Pour <span class="sf-green">pr&eacute;parer l&rsquo;int&eacute;gration via une Merge Request GitLab</span>, j&rsquo;utilise le
+                  bouton <em>Create merge request</em> une fois la branche stable. La merge request regroupe l&rsquo;ensemble des
+                  commits de <code class="inline-code">gestions_deps</code> en une demande d&rsquo;int&eacute;gration unique, accompagn&eacute;e
+                  d&rsquo;une description du travail r&eacute;alis&eacute;. Elle constitue le point de contr&ocirc;le obligatoire avant la
+                  fusion dans la branche principale et garantit qu&rsquo;aucune modification non valid&eacute;e ne rejoint le projet.
+                </p>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-window-item>
+
+
+        <!-- BILAN -->
+        <v-window-item value="bilan">
+          <div class="mb-6">
+            <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
+              <div class="d-flex flex-wrap align-center justify-space-between mb-4">
+                <span class="text-body-1 font-weight-bold">Configuration d'un pipeline CI/CD GitLab</span>
+                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
+              </div>
+
+              <ul class="sf-list text-body-2 mb-3">
+                <li><span class="sf-green">Configurer un pipeline CI/CD <a href="https://docs.gitlab.com/ee/ci/" target="_blank" rel="noopener noreferrer"><span class="code-tag">GitLab</span></a> pour ex&eacute;cuter <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">Renovate</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't5'">Trace n&deg;5</a>, <a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : automatiser la veille des d&eacute;pendances.</li>
+              </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
+                Appris via les docs <span class="code-tag">GitLab CI/CD</span> et <span class="code-tag">Renovate</span>. J&rsquo;utilisais d&eacute;j&agrave; <span class="code-tag">GitLab</span> pour les MR, pas pour la CI/CD.
+              </p>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Difficult&eacute; :</span>
+                Faible &agrave; moyenne. La difficult&eacute; principale est la gestion des tokens et variables CI/CD.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">&Eacute;valuation :</span>
+                Bon. Je sais <span class="sf-green">configurer un pipeline CI/CD <span class="code-tag">GitLab</span></span> pour automatiser <span class="code-tag">Renovate</span>. Je n&rsquo;ai pas encore abord&eacute; les pipelines complexes.
+              </p>
+            </v-card>
+          </div>
+
+          <v-divider class="my-6" />
+
+          <div class="mb-6">
+            <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
+              <div class="d-flex flex-wrap align-center justify-space-between mb-4">
+                <span class="text-body-1 font-weight-bold">Param&eacute;trage et exploitation d'un outil de veille de d&eacute;pendances</span>
+                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
+              </div>
+
+              <ul class="sf-list text-body-2 mb-3">
+                <li><span class="sf-green">Param&eacute;trer <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">Renovate</span></a> via <code class="inline-code">renovate.json</code></span> (<a href="#" class="trace-link" @click.prevent="tab = 't5'">Trace n&deg;5</a>, <a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : regrouper les mises &agrave; jour et garder un contr&ocirc;le manuel.</li>
+                <li><span class="sf-green">Interpr&eacute;ter le rapport <span class="code-tag">Renovate</span></span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : prioriser les mises &agrave; jour avant validation.</li>
+              </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
+                D&eacute;couvert pendant le stage. J&rsquo;ai &eacute;tudi&eacute; <span class="code-tag">Dependabot</span> puis choisi <span class="code-tag">Renovate</span> pour GitLab, via la documentation officielle.
+              </p>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Difficult&eacute; :</span>
+                Moyenne. Il faut bien r&eacute;gler les options et interpr&eacute;ter les indicateurs du rapport.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">&Eacute;valuation :</span>
+                Bon. Je sais <span class="sf-green">configurer <span class="code-tag">Renovate</span></span> et <span class="sf-green">lire son rapport</span> pour prioriser les mises &agrave; jour. Je n&rsquo;ai pas encore explor&eacute; les options avanc&eacute;es.
+              </p>
+            </v-card>
+          </div>
+
+          <v-divider class="my-6" />
+
+          <div class="mb-6">
+            <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
+              <div class="d-flex flex-wrap align-center justify-space-between mb-4">
+                <span class="text-body-1 font-weight-bold">Workflow Git/GitLab pour le d&eacute;veloppement collaboratif</span>
+                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
+              </div>
+
+              <ul class="sf-list text-body-2 mb-3">
+                <li><span class="sf-green">Isoler le d&eacute;veloppement sur une branche d&eacute;di&eacute;e</span> (<a href="#" class="trace-link" @click.prevent="tab = 't7'">Trace n&deg;7</a>) : travailler sans bloquer l&rsquo;&eacute;quipe.</li>
+                <li><span class="sf-green">D&eacute;couper le travail en commits courts et explicites</span> : garder un historique clair.</li>
+                <li><span class="sf-green">Pr&eacute;parer l&rsquo;int&eacute;gration via une Merge Request <span class="code-tag">GitLab</span></span> : faire valider le travail avant fusion.</li>
+              </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
+                Les bases <span class="code-tag">Git</span> &eacute;taient vues en cours. Le stage m&rsquo;a apport&eacute; la rigueur quotidienne (branches, messages, MR).
+              </p>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Difficult&eacute; :</span>
+                Faible. La difficult&eacute; est la rigueur sur la dur&eacute;e.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">&Eacute;valuation :</span>
+                Bon. Je sais <span class="sf-green">travailler en branche</span>, <span class="sf-green">committer proprement</span> et <span class="sf-green">passer par une MR</span>. Je n&rsquo;ai pas encore g&eacute;r&eacute; de cas complexes (rebase, conflits multi-auteurs).
+              </p>
+            </v-card>
+          </div>
+        </v-window-item>
+
       </v-window>
     </v-card>
 
-    <!-- Modal zoom image (commun a toutes les traces) -->
-    <v-dialog v-model="imageModal" max-width="1400" @click:outside="closeImage" @keydown.esc="closeImage">
-      <v-card>
-        <v-card-actions class="pa-2">
-          <v-btn icon variant="text" @click="zoomOut" :disabled="zoom <= 0.5"><v-icon>mdi-magnify-minus</v-icon></v-btn>
-          <span class="text-caption mx-2">{{ Math.round(zoom * 100) }}%</span>
-          <v-btn icon variant="text" @click="zoomIn" :disabled="zoom >= 5"><v-icon>mdi-magnify-plus</v-icon></v-btn>
-          <v-btn icon variant="text" @click="resetZoom"><v-icon>mdi-magnify-scan</v-icon></v-btn>
+    <!-- Footer -->
+    <v-card class="pa-5 text-center mt-5" rounded="lg">
+      <p class="text-body-2 text-medium-emphasis">
+        <a href="mailto:baptiste.didier@proton.me" class="text-blue-lighten-2">baptiste.didier@proton.me</a>
+      </p>
+      <div class="mt-2">
+        <router-link to="/integration" class="text-blue-lighten-2 text-body-2">
+          Aller sur la page Int&eacute;gration
+        </router-link>
+      </div>
+      <p class="text-caption text-medium-emphasis mt-2">&copy; 2026 Baptiste Didier. Tous droits r&eacute;serv&eacute;s.</p>
+    </v-card>
+
+    <!-- Modal zoom image -->
+    <v-dialog v-model="imageModal" max-width="90vw" content-class="image-dialog">
+      <v-card
+        class="pa-2 d-flex flex-column image-modal-card"
+        style="background:#1a1a1a; width:90vw; max-width:1200px; height:85vh;"
+      >
+        <!-- Barre d'outils -->
+        <div class="d-flex align-center mb-2 px-1">
+          <v-btn icon variant="text" size="small" :disabled="zoom <= 100" @click="setZoom(-25)" title="D&eacute;zoomer">
+            <v-icon>mdi-magnify-minus</v-icon>
+          </v-btn>
+          <span class="mx-2 text-caption" style="min-width:42px; text-align:center; color:#ccc;">{{ zoom }}%</span>
+          <v-btn icon variant="text" size="small" :disabled="zoom >= 400" @click="setZoom(25)" title="Zoomer">
+            <v-icon>mdi-magnify-plus</v-icon>
+          </v-btn>
+          <v-btn icon variant="text" size="small" @click="resetZoom" title="Adapter &agrave; la fen&ecirc;tre">
+            <v-icon>mdi-fit-to-screen</v-icon>
+          </v-btn>
           <v-spacer />
-          <v-btn icon variant="text" @click="closeImage"><v-icon>mdi-close</v-icon></v-btn>
-        </v-card-actions>
-        <v-divider />
+          <span class="text-caption mr-3 d-none d-sm-block" style="color:#555;">
+            Molette pour zoomer &middot; Glisser pour naviguer &middot; Double-clic pour r&eacute;initialiser
+          </span>
+          <v-btn icon variant="text" size="small" @click="closeImage">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </div>
+
+        <!-- Zone d'affichage -->
         <div
-          ref="zoomContainer"
-          class="pa-2"
-          style="overflow:auto; max-height:80vh; background:#1e1e1e; user-select:none;"
+          ref="viewportRef"
+          class="image-viewport"
+          @mousedown="startPan"
+          @mousemove="onPan"
+          @mouseup="endPan"
+          @mouseleave="endPan"
           @wheel.prevent="onWheel"
-          @mousedown="onMouseDown"
-          @mousemove="onMouseMove"
-          @mouseup="onMouseUp"
-          @mouseleave="onMouseUp"
+          @dblclick="resetZoom"
         >
           <img
+            v-if="currentImage"
+            ref="imageRef"
             :src="currentImage"
-            alt="zoom"
-            :style="{
-              transform: `scale(${zoom})`,
-              transformOrigin: 'top left',
-              transition: dragging ? 'none' : 'transform 0.15s',
-              cursor: zoom > 1 ? (dragging ? 'grabbing' : 'grab') : 'zoom-in',
-              display: 'block',
-              width: '100%',
-              borderRadius: '4px',
-              pointerEvents: 'none',
-            }"
+            :style="imageStyle"
             draggable="false"
           />
         </div>
       </v-card>
     </v-dialog>
 
-    <!-- Footer -->
-    <v-card class="mt-5 pa-5 text-center" rounded="lg">
-      <router-link to="/integration" class="text-blue-lighten-2 text-body-2">
-        D&eacute;couvrir l&rsquo;int&eacute;gration en entreprise &rarr;
-      </router-link>
-      <p class="text-caption text-medium-emphasis mt-3">&copy; 2026 Baptiste Didier. Tous droits r&eacute;serv&eacute;s.</p>
-    </v-card>
-
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
-const tab = ref('comp3')
+const tab = ref('t5')
 
 const imageModal = ref(false)
 const currentImage = ref('')
-const zoom = ref(1)
-const dragging = ref(false)
-const zoomContainer = ref(null)
-let dragStart = { x: 0, y: 0, scrollLeft: 0, scrollTop: 0, moved: false }
+const zoom = ref(100)
+const pan = ref({ x: 0, y: 0 })
+const isPanning = ref(false)
+const panStart = ref({ x: 0, y: 0 })
+const panOrigin = ref({ x: 0, y: 0 })
+const panMoved = ref(false)
+
+const viewportRef = ref(null)
+const imageRef = ref(null)
+
+const imageStyle = computed(() => {
+  if (zoom.value === 100) {
+    return {
+      width: '100%',
+      height: '100%',
+      objectFit: 'contain',
+      display: 'block',
+      userSelect: 'none',
+      cursor: 'zoom-in',
+    }
+  }
+  const scale = zoom.value / 100
+  return {
+    transform: `translate(${pan.value.x}px, ${pan.value.y}px) scale(${scale})`,
+    transformOrigin: 'top left',
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain',
+    display: 'block',
+    maxWidth: 'none',
+    maxHeight: 'none',
+    userSelect: 'none',
+    cursor: 'grab',
+  }
+})
+
+function clampPan(nextPan, zoomValue = zoom.value) {
+  if (zoomValue <= 100 || !viewportRef.value) return { x: 0, y: 0 }
+  const rect = viewportRef.value.getBoundingClientRect()
+  const scale = zoomValue / 100
+  const scaledWidth = rect.width * scale
+  const scaledHeight = rect.height * scale
+  const minX = Math.min(0, rect.width - scaledWidth)
+  const minY = Math.min(0, rect.height - scaledHeight)
+  return {
+    x: Math.max(minX, Math.min(0, nextPan.x)),
+    y: Math.max(minY, Math.min(0, nextPan.y)),
+  }
+}
 
 function openImage(src) {
   currentImage.value = src
-  zoom.value = 1
+  zoom.value = 100
+  pan.value = { x: 0, y: 0 }
+  isPanning.value = false
+  panMoved.value = false
   imageModal.value = true
 }
+
 function closeImage() {
   imageModal.value = false
-  zoom.value = 1
-}
-function zoomIn() { zoom.value = Math.min(5, zoom.value + 0.25) }
-function zoomOut() { zoom.value = Math.max(0.5, zoom.value - 0.25) }
-function resetZoom() { zoom.value = 1 }
-function onWheel(e) {
-  const delta = e.deltaY > 0 ? -0.15 : 0.15
-  zoom.value = Math.min(5, Math.max(0.5, zoom.value + delta))
-}
-function onMouseDown(e) {
-  const c = zoomContainer.value
-  if (!c) return
-  dragging.value = true
-  dragStart = {
-    x: e.pageX,
-    y: e.pageY,
-    scrollLeft: c.scrollLeft,
-    scrollTop: c.scrollTop,
-    moved: false,
-  }
-}
-function onMouseMove(e) {
-  if (!dragging.value) return
-  const c = zoomContainer.value
-  if (!c) return
-  const dx = e.pageX - dragStart.x
-  const dy = e.pageY - dragStart.y
-  if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dragStart.moved = true
-  c.scrollLeft = dragStart.scrollLeft - dx
-  c.scrollTop = dragStart.scrollTop - dy
-}
-function onMouseUp() {
-  if (dragging.value && !dragStart.moved) {
-    zoom.value = zoom.value === 1 ? 2 : 1
-  }
-  dragging.value = false
+  isPanning.value = false
+  panMoved.value = false
 }
 
-const bilanCompetences = [
-  {
-    id: "comp3",
-    title: "Compétence 3 — Faire une veille technologique et documenter son travail",
-    savoirFaire: [
-      {
-        title: "Identifier et comparer des outils de mise à jour automatique",
-        contexteUtilisation: "Veille sur Renovate et Dependabot pour automatiser la gestion des dépendances d'EzGED après la migration Python 3.13 (traces n°5-6, semaine 2).",
-        contexteApprentissage: "Entièrement appris en stage. Ces outils n'avaient jamais été abordés en cours de BUT.",
-        difficulte: "Moyenne — la comparaison demande de tester réellement les deux outils et de comprendre les contraintes du GitLab interne.",
-      },
-      {
-        title: "Configurer Renovate sur un projet GitLab",
-        contexteUtilisation: "Mise en place de Renovate sur un projet de test GitLab, configuration via renovate.json et intégration dans le pipeline CI (traces n°5-6, semaine 2).",
-        contexteApprentissage: "Appris en stage à partir de la documentation Renovate et des échanges avec Florian Masy sur les runners GitLab.",
-        difficulte: "Élevée — la gestion des droits du runner et du token d'accès pour la création automatique de MR a pris plusieurs essais.",
-      },
-      {
-        title: "Rédiger une documentation technique exploitable",
-        contexteUtilisation: "Rédaction de la documentation comparative Renovate/Dependabot et de la procédure de montée de version, publiée sur le Wiki GitLab (semaines 2-4).",
-        contexteApprentissage: "Pratique développée en stage. La rédaction pour une équipe pro n'avait pas été travaillée en cours.",
-        difficulte: "Faible pour la rédaction ; moyenne pour trouver le bon niveau de détail technique.",
-      },
-    ],
-    evaluation: {
-      beforeLevel: "faible",
-      beforeText: "Aucune expérience de veille structurée ni de documentation technique à destination d'une équipe. Renovate et Dependabot m'étaient inconnus.",
-      afterLevel: "bon",
-      afterText: "Je sais mener une veille structurée, tester des outils en conditions réelles et rédiger une documentation directement exploitable.",
-    },
-  },
-  {
-    id: "comp4",
-    title: "Compétence 4 — Utiliser Git et GitLab pour gérer le code en équipe",
-    savoirFaire: [
-      {
-        title: "Gérer son travail avec des branches Git nommées",
-        contexteUtilisation: "Développement de chaque fonctionnalité sur une branche dédiée avec convention de nommage (trace n°7, tout le stage).",
-        contexteApprentissage: "Bases Git en cours de BUT, convention de nommage des branches appliquée en conditions réelles de stage.",
-        difficulte: "Faible — la convention est simple. La difficulté est de maintenir une granularité cohérente entre les branches.",
-      },
-      {
-        title: "Rédiger des messages de commit clairs et atomiques",
-        contexteUtilisation: "Application de la convention feat:/fix:/docs: pour chaque commit, facilitant les revues de Florian Masy (trace n°7, tout le stage).",
-        contexteApprentissage: "Convention apprise en stage. Les commits en cours de BUT n'avaient pas de structure particulière.",
-        difficulte: "Faible une fois la convention assimilée. Le découpage en commits atomiques demande un peu de réflexion.",
-      },
-      {
-        title: "Soumettre son travail via des Merge Requests GitLab",
-        contexteUtilisation: "Intégration de chaque branche via une MR avec description, soumise à la revue de Florian Masy avant merge (trace n°7, tout le stage).",
-        contexteApprentissage: "Processus de MR connu théoriquement en cours, pratiqué et affiné en conditions réelles avec retours du tuteur.",
-        difficulte: "Faible pour la création de la MR ; moyenne pour rédiger une description claire et anticiper les retours.",
-      },
-    ],
-    evaluation: {
-      beforeLevel: "moyen",
-      beforeText: "Bases Git acquises en cours de BUT, mais peu d'expérience des branches et MR en contexte professionnel. Les commits n'avaient pas de convention particulière.",
-      afterLevel: "bon",
-      afterText: "Je maîtrise le flux Git en équipe : branches nommées, commits atomiques avec convention, Merge Requests avec revue de code.",
-    },
-  },
-]
+function resetZoom() {
+  zoom.value = 100
+  pan.value = { x: 0, y: 0 }
+}
+
+function setZoom(delta) {
+  const nextZoom = Math.min(400, Math.max(100, zoom.value + delta))
+  zoom.value = nextZoom
+  if (nextZoom === 100) {
+    pan.value = { x: 0, y: 0 }
+  } else {
+    pan.value = clampPan(pan.value, nextZoom)
+  }
+}
+
+function onWheel(event) {
+  const step = event.deltaY < 0 ? 25 : -25
+  const nextZoom = Math.min(400, Math.max(100, zoom.value + step))
+  if (nextZoom === zoom.value) return
+
+  if (zoom.value > 100) {
+    const viewport = event.currentTarget
+    const rect = viewport.getBoundingClientRect()
+    const mouseX = event.clientX - rect.left
+    const mouseY = event.clientY - rect.top
+    const ratio = nextZoom / zoom.value
+    pan.value = clampPan({
+      x: mouseX - ratio * (mouseX - pan.value.x),
+      y: mouseY - ratio * (mouseY - pan.value.y),
+    }, nextZoom)
+  }
+
+  zoom.value = nextZoom
+  if (nextZoom === 100) pan.value = { x: 0, y: 0 }
+}
+
+function startPan(event) {
+  if (zoom.value <= 100) return
+  isPanning.value = true
+  panMoved.value = false
+  panStart.value = { x: event.clientX, y: event.clientY }
+  panOrigin.value = { x: pan.value.x, y: pan.value.y }
+}
+
+function onPan(event) {
+  if (!isPanning.value) return
+  const deltaX = event.clientX - panStart.value.x
+  const deltaY = event.clientY - panStart.value.y
+  if (Math.abs(deltaX) > 2 || Math.abs(deltaY) > 2) panMoved.value = true
+  pan.value = clampPan({
+    x: panOrigin.value.x + deltaX,
+    y: panOrigin.value.y + deltaY,
+  })
+}
+
+function endPan() {
+  isPanning.value = false
+}
+
+function onKeydown(event) {
+  const PAN_STEP = 40
+  switch (event.key) {
+    case '+': case '=': setZoom(25); break
+    case '-': setZoom(-25); break
+    case '0': resetZoom(); break
+    case 'Escape': closeImage(); break
+    case 'ArrowLeft':
+      if (zoom.value > 100) pan.value = { ...pan.value, x: pan.value.x + PAN_STEP }
+      break
+    case 'ArrowRight':
+      if (zoom.value > 100) pan.value = { ...pan.value, x: pan.value.x - PAN_STEP }
+      break
+    case 'ArrowUp':
+      if (zoom.value > 100) pan.value = { ...pan.value, y: pan.value.y + PAN_STEP }
+      break
+    case 'ArrowDown':
+      if (zoom.value > 100) pan.value = { ...pan.value, y: pan.value.y - PAN_STEP }
+      break
+  }
+}
+
+watch(imageModal, (val) => {
+  if (val) {
+    window.addEventListener('keydown', onKeydown)
+  } else {
+    window.removeEventListener('keydown', onKeydown)
+  }
+})
+
+function getDiffColor(difficulte) {
+  const d = difficulte.toLowerCase()
+  if (d.startsWith('faible')) return 'success'
+  if (d.startsWith('moyenne')) return 'warning'
+  if (d.startsWith('élevée')) return 'error'
+  return undefined
+}
+
+function getDiffColorHex(difficulte) {
+  const d = difficulte.toLowerCase()
+  if (d.startsWith('faible')) return '#66bb6a'
+  if (d.startsWith('moyenne')) return '#ffa726'
+  if (d.startsWith('élevée')) return '#ef5350'
+  return '#9e9e9e'
+}
+
 </script>
 
 <style scoped>
@@ -438,21 +565,82 @@ const bilanCompetences = [
   border-radius: 8px;
   cursor: pointer;
   display: block;
+  max-height: 380px;
+  object-fit: contain;
+  background: #1a1a1a;
   transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .trace-image:hover {
-  filter: brightness(0.75);
+  filter: brightness(0.8);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
 }
-
 .inline-code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  background: #111111;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #111;
   color: #e6e6e6;
-  padding: 2px 6px;
+  padding: 1px 5px;
   border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 0.88em;
+}
+.code-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #141414;
+  color: #c5f6c7;
+  padding: 1px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(102, 187, 106, 0.25);
+  font-size: 0.92em;
+}
+.trace-link {
+  color: #ffd54f;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sf-green {
+  color: #66bb6a;
+  font-weight: 600;
+}
+.g-row {
+  row-gap: 12px;
+}
+.image-viewport {
+  flex: 1;
+  overflow: hidden;
+  cursor: crosshair;
+  position: relative;
+}
+.bilan-card {
+  background: linear-gradient(180deg, rgba(22, 22, 22, 0.95), rgba(18, 18, 18, 0.95));
+  border: 1px solid rgba(255, 193, 7, 0.2);
+}
+.sf-card {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sf-label {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+}
+.eval-card-before {
+  border-left: 4px solid rgb(var(--v-theme-error));
+  background: #171717;
+  border: 1px solid rgba(244, 67, 54, 0.25);
+}
+.eval-card-after {
+  border-left: 4px solid rgb(var(--v-theme-success));
+  background: #171717;
+  border: 1px solid rgba(76, 175, 80, 0.25);
+}
+:deep(.image-dialog) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+.image-modal-card {
+  margin: 0 auto;
 }
 </style>
