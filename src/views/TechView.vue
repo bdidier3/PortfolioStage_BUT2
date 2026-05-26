@@ -72,7 +72,7 @@
                   </p>
                 </div>
                 <p class="text-body-2 mb-2">
-                  Pour utiliser LibCST, j’ai développé un visiteur (DependencyCallVisitor) permettant de parcourir le CST (Concrete Syntax Tree) des fichiers Python afin d’analyser le code sans l’exécuter. Ce visiteur détecte les appels vers des dépendances externes, y compris lorsque les imports utilisent des alias (import numpy as np) ou des imports ciblés (from PIL import Image). LibCST m’a également permis de récupérer des informations précises sur le code, comme le numéro de ligne exact des appels grâce aux métadonnées fournies par PositionProvider.
+                  Pour <span class="sf-red">utiliser LibCST</span>, j’ai développé un visiteur (DependencyCallVisitor) permettant de parcourir le CST (Concrete Syntax Tree) des fichiers Python afin d’analyser le code sans l’exécuter. Ce visiteur détecte les appels vers des dépendances externes, y compris lorsque les imports utilisent des alias (import numpy as np) ou des imports ciblés (from PIL import Image). LibCST m’a également permis de récupérer des informations précises sur le code, comme le numéro de ligne exact des appels grâce aux métadonnées fournies par PositionProvider.
                 </p>
                 <p class="text-body-2 mb-0">
                   Pour <span class="sf-red">lire le fichier .coverage</span>, j&rsquo;ai utilis&eacute; l&rsquo;API
@@ -296,7 +296,7 @@
                   sans d&eacute;pendance suppl&eacute;mentaire dans le script consommateur.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour générer les suites unittest, j’ai écrit un script qui prend une dépendance en argument, charge le JSON et construit dynamiquement une unittest.TestSuite à partir des entrées du fichier. Chaque triplet (fichier, class, method) est utilisé pour importer dynamiquement le module avec importlib, récupérer la classe de test via getattr, puis générer une classe de test dédiée afin d’isoler chaque méthode avant de l’ajouter à la suite
+                  Pour <span class="sf-red">générer les suites unittest</span>, j’ai écrit un script qui prend une dépendance en argument, charge le JSON et construit dynamiquement une unittest.TestSuite à partir des entrées du fichier. Chaque triplet (fichier, class, method) est utilisé pour importer dynamiquement le module avec importlib, récupérer la classe de test via getattr, puis générer une classe de test dédiée afin d’isoler chaque méthode avant de l’ajouter à la suite
                 </p>
               </v-col>
             </v-row>

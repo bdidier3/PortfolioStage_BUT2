@@ -143,8 +143,7 @@
                   exactement quels modules relire et quels tests rejouer avant d&rsquo;accepter la fusion.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-green">interpr&eacute;ter le rapport</span>, je croise les colonnes
-                  <code class="inline-code">Age</code> et <code class="inline-code">Confidence</code> afin de prioriser les mont&eacute;es.
+                  Pour <span class="sf-green">interpr&eacute;ter le rapport</span>, je <span class="sf-green">croise les colonnes Age et Confidence</span> afin de prioriser les mont&eacute;es.
                   Une mise &agrave; jour <code class="inline-code">Confidence: high</code> avec un <code class="inline-code">Age</code>
                   significatif (ex.&nbsp;<code class="inline-code">certifi</code>, 23j, high) est consid&eacute;r&eacute;e comme stable
                   et fusionnable rapidement. Une mise &agrave; jour <code class="inline-code">Confidence: low</code> ou tr&egrave;s r&eacute;cente
