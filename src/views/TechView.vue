@@ -190,44 +190,62 @@
                 </p>
               </v-col>
               <v-col cols="12" md="6">
-                <p class="text-body-2 mb-2">
-                  La <strong>Trace n&deg;3</strong> montre le m&eacute;canisme de g&eacute;n&eacute;ration dynamique de tests
-                  utilis&eacute; pour ne rejouer automatiquement que les tests pertinents lors d&rsquo;une mont&eacute;e de version
-                  de d&eacute;pendance. &Agrave; partir d&rsquo;un fichier JSON,
-                  qui associe chaque appel de d&eacute;pendance aux tests qui le couvrent, le script construit &agrave; l&rsquo;ex&eacute;cution
-                  une classe de test par couple (d&eacute;pendance, appel, m&eacute;thode). Les classes g&eacute;n&eacute;r&eacute;es
-                  h&eacute;ritent d&rsquo;<code class="inline-code">unittest.TestCase</code>, ce qui les rend ex&eacute;cutables aussi
-                  bien par unittest (via les suites construites ligne 68, soulign&eacute;e en blanc) que par pytest
-                  (via la d&eacute;couverte automatique des <code class="inline-code">TestCase</code> expos&eacute;s au niveau du module).
-                  La trace met en &eacute;vidence les points cl&eacute;s&nbsp;: souligné en bleu, le chargement du module source via
-                  <code class="inline-code">importlib.import_module</code> puis souligné en jaune, la r&eacute;cup&eacute;ration de la classe originale
-                  avec <code class="inline-code">getattr</code>&nbsp;; en vert, la neutralisation des autres m&eacute;thodes
-                  <code class="inline-code">test_*</code> de la classe parente afin que les tests des autres d&eacute;pendances
-                  ne se m&eacute;langent pas dans la classe g&eacute;n&eacute;r&eacute;e&nbsp;; en rouge, l&rsquo;injection de la classe
-                  cr&eacute;&eacute;e dans <code class="inline-code">globals()</code> pour qu&rsquo;elle soit d&eacute;couverte par pytest.
-                </p>
+                <div class="text-body-2 mb-2">
+                  <p class="mb-2">
+                    La <strong>Trace n&deg;3</strong> montre le m&eacute;canisme de g&eacute;n&eacute;ration dynamique de tests utilis&eacute;
+                    pour ne rejouer automatiquement que les tests pertinents lors d&rsquo;une mont&eacute;e de version de d&eacute;pendance.
+                    &Agrave; partir du fichier JSON d&eacute;crit en <a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>,
+                    qui associe chaque appel de d&eacute;pendance aux tests qui le couvrent, le script construit &agrave; l&rsquo;ex&eacute;cution
+                    une classe de test par couple (d&eacute;pendance, appel, m&eacute;thode). Les classes g&eacute;n&eacute;r&eacute;es
+                    h&eacute;ritent indirectement d&rsquo;<code class="inline-code">unittest.TestCase</code>, ce qui les rend ex&eacute;cutables
+                    aussi bien par unittest que par pytest (via la d&eacute;couverte automatique des
+                    <code class="inline-code">TestCase</code> expos&eacute;s au niveau du module).
+                  </p>
+                  <p class="mb-2">La trace met en &eacute;vidence les points cl&eacute;s du m&eacute;canisme&nbsp;:</p>
+                  <ul class="pl-4 mb-0">
+                    <li class="mb-1">
+                      <strong>Soulignement bleu (ligne 41)</strong> : chargement du module source via <code class="inline-code">importlib.import_module</code>.
+                    </li>
+                    <li class="mb-1">
+                      <strong>Soulignement jaune (ligne 42)</strong> : r&eacute;cup&eacute;ration de la classe d&rsquo;origine avec <code class="inline-code">getattr</code>.
+                    </li>
+                    <li class="mb-1">
+                      <strong>Cadre vert (lignes 50-52)</strong> : neutralisation des autres m&eacute;thodes
+                      <code class="inline-code">test_*</code> de la classe parente, afin que les tests des autres d&eacute;pendances
+                      ne se m&eacute;langent pas dans la classe g&eacute;n&eacute;r&eacute;e.
+                    </li>
+                    <li class="mb-1">
+                      <strong>Soulignement gris (ligne 54)</strong> : cr&eacute;ation de la classe dynamique avec <code class="inline-code">type()</code>.
+                    </li>
+                    <li>
+                      <strong>Cadre rouge (ligne 73)</strong> : injection de la classe cr&eacute;&eacute;e dans <code class="inline-code">globals()</code>
+                      pour qu&rsquo;elle soit d&eacute;couverte par pytest.
+                    </li>
+                  </ul>
+                </div>
                 <p class="text-body-2 mb-2">
                   Pour <span class="sf-red">utiliser importlib</span>, j&rsquo;ai d&rsquo;abord transform&eacute; le chemin stock&eacute;
                   dans le JSON (<code class="inline-code">eztest/foo/bar.py</code>) en nom de module Python
                   (<code class="inline-code">foo.bar</code>) via la m&eacute;thode <code class="inline-code">formater_chemin_module</code>.
-                  Ensuite, <code class="inline-code">importlib.import_module</code> charge le module &agrave; l&rsquo;ex&eacute;cution et
-                  <code class="inline-code">getattr(module, test_def["class"])</code> r&eacute;cup&egrave;re la classe de test &agrave; partir
-                  de son nom (souligné en jaune, ligne 43). Cela &eacute;vite tout import statique et permet de cibler n&rsquo;importe
-                  quelle classe de test du projet sans modifier le script.
+                  Ensuite, <code class="inline-code">importlib.import_module</code> charge le module &agrave; l&rsquo;ex&eacute;cution
+                  (soulignement bleu ligne 41) et <code class="inline-code">getattr(module, test_def["class"])</code>
+                  r&eacute;cup&egrave;re la classe de test &agrave; partir de son nom (soulignement jaune ligne 42). Cela &eacute;vite
+                  tout import statique et permet de cibler n&rsquo;importe quelle classe de test du projet sans modifier le script.
                 </p>
                 <p class="text-body-2 mb-0">
                   Pour <span class="sf-red">utiliser type()</span>, chaque entr&eacute;e du JSON donne lieu &agrave; une classe unique
-                  nomm&eacute;e <code class="inline-code">{lib}_{call}_{method}TestCase</code> (ligne 55), h&eacute;ritant de la classe
-                  d&rsquo;origine (et donc indirectement d&rsquo;<code class="inline-code">unittest.TestCase</code>). Le dictionnaire
-                  <code class="inline-code">attrs</code> pass&eacute; &agrave; <code class="inline-code">type()</code> ne conserve que la m&eacute;thode
-                  vis&eacute;e et met &agrave; <code class="inline-code">None</code> toutes les autres m&eacute;thodes
-                  <code class="inline-code">test_*</code> h&eacute;rit&eacute;es (cadre vert). Sans cette neutralisation,
-                  l&rsquo;ex&eacute;cuteur rejouerait, depuis chaque classe g&eacute;n&eacute;r&eacute;e, l&rsquo;ensemble des tests de la classe
-                  parente. La classe r&eacute;sultante est ensuite stock&eacute;e dans <code class="inline-code">globals()</code>
-                  (cadre rouge, ligne 77), ce qui la rend visible &agrave; la fois pour la collecte de pytest et pour
-                  <code class="inline-code">unittest.main()</code>. Cette double compatibilit&eacute; permet d&rsquo;utiliser le script
-                  aussi bien en local (<code class="inline-code">python test_dependencies.py</code>) que dans la CI/CD GitLab
-                  via pytest, et de ne rejouer que les tests li&eacute;s &agrave; la d&eacute;pendance mise &agrave; jour.
+                  nomm&eacute;e <code class="inline-code">{lib}_{call}_{method}TestCase</code> (soulignement gris ligne 54),
+                  h&eacute;ritant de la classe d&rsquo;origine (et donc indirectement d&rsquo;<code class="inline-code">unittest.TestCase</code>).
+                  Le dictionnaire <code class="inline-code">attrs</code> pass&eacute; &agrave; <code class="inline-code">type()</code>
+                  ne conserve que la m&eacute;thode vis&eacute;e et met &agrave; <code class="inline-code">None</code> toutes les autres
+                  m&eacute;thodes <code class="inline-code">test_*</code> h&eacute;rit&eacute;es (cadre vert lignes 50-52). Sans cette
+                  neutralisation, l&rsquo;ex&eacute;cuteur rejouerait, depuis chaque classe g&eacute;n&eacute;r&eacute;e, l&rsquo;ensemble des tests
+                  de la classe parente. La classe r&eacute;sultante est ensuite stock&eacute;e dans
+                  <code class="inline-code">globals()</code> (cadre rouge ligne 73), ce qui la rend visible &agrave; la fois pour
+                  la collecte de pytest et pour <code class="inline-code">unittest.main()</code>. Cette double compatibilit&eacute;
+                  permet d&rsquo;utiliser le script aussi bien en local
+                  (<code class="inline-code">python test_dependencies.py</code>) que dans la CI/CD GitLab via pytest,
+                  et de ne rejouer que les tests li&eacute;s &agrave; la d&eacute;pendance mise &agrave; jour.
                 </p>
               </v-col>
             </v-row>
