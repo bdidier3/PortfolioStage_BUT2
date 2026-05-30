@@ -105,51 +105,75 @@
                   src="/images/Trace9_deptry.png"
                   alt="Rapport deptry"
                   class="trace-image"
-                  @click="openImage($event.currentTarget.currentSrc)"
+                  @click="openImage($event.currentTarget.currentSrc, 'tall')"
                 />
                 <p class="text-caption text-medium-emphasis mt-2 mb-0">
                   <strong>Trace n&deg;9</strong> : Rapport deptry ex&eacute;cut&eacute; sur EzGED.
                 </p>
               </v-col>
               <v-col cols="12" md="6">
-                <p class="text-body-2 mb-2">
-                  La <strong>Trace n&deg;9</strong> montre la sortie de deptry lanc&eacute; &agrave; la racine du projet EzGED. Chaque ligne
-                  correspond &agrave; un fichier du projet (chemin &agrave; gauche) o&ugrave; l&rsquo;outil a d&eacute;tect&eacute; une anomalie, suivie d&rsquo;un
-                  code de diagnostic et du nom du module concern&eacute;. Trois types d&rsquo;anomalies apparaissent dans la trace.
-                  Le cadre jaune isole un cas <code class="inline-code">DEP001</code>&nbsp;: <code class="inline-code">sphinx</code>
-                  est import&eacute; dans le code mais n&rsquo;est pas d&eacute;clar&eacute; dans <code class="inline-code">pyproject.toml</code>,
-                  comme aussi <code class="inline-code">pygments</code>, <code class="inline-code">pyamf</code> et
-                  <code class="inline-code">ldap</code>. Le cadre orange en bas isole un cas <code class="inline-code">DEP002</code>&nbsp;:
-                  <code class="inline-code">zope-interface</code> est d&eacute;clar&eacute;e comme d&eacute;pendance mais n&rsquo;est jamais utilis&eacute;e
-                  dans le code. Le cadre bleu isole un cas <code class="inline-code">DEP003</code>&nbsp;:
-                  <code class="inline-code">router</code> est import&eacute; dans
-                  <code class="inline-code">router/svc/mail/mailsending.py</code> mais c&rsquo;est une d&eacute;pendance transitive,
-                  c&rsquo;est-&agrave;-dire qu&rsquo;elle n&rsquo;est pas d&eacute;clar&eacute;e dans <code class="inline-code">pyproject.toml</code> et pr&eacute;sente
-                  uniquement parce qu&rsquo;une autre d&eacute;pendance l&rsquo;embarque, comme aussi
-                  <code class="inline-code">marshmallow</code> et <code class="inline-code">snifertrt</code>. Cette trace s&rsquo;inscrit
-                  dans ma phase d&rsquo;int&eacute;gration au sein d&rsquo;EzDEV&nbsp;: confront&eacute; &agrave; un projet existant, gros et complexe,
-                  j&rsquo;ai utilis&eacute; deptry pour cartographier rapidement l&rsquo;&eacute;cosyst&egrave;me des d&eacute;pendances Python d&rsquo;EzGED et
-                  rep&eacute;rer les zones du code &agrave; explorer en priorit&eacute;.
-                </p>
+                <div class="text-body-2 mb-2">
+                  <p class="mb-2">
+                    La <strong>Trace n&deg;9</strong> montre la sortie de deptry ex&eacute;cut&eacute; &agrave; la racine du projet EzGED
+                    (316 fichiers analys&eacute;s, <strong>98 probl&egrave;mes de d&eacute;pendances</strong> remont&eacute;s au total).
+                    Chaque ligne associe un fichier (chemin &agrave; gauche) ou le <code class="inline-code">pyproject.toml</code>
+                    &agrave; un code de diagnostic et au module concern&eacute;. Trois cat&eacute;gories d&rsquo;anomalies apparaissent&nbsp;:
+                  </p>
+                  <ul class="pl-4 mb-2">
+                    <li class="mb-1">
+                      <strong>Cadre jaune (ligne 68, <code class="inline-code">DEP001</code>)</strong> :
+                      <code class="inline-code">pyzbar</code> est import&eacute; dans <code class="inline-code">lib/ezbarcodereader.py</code>
+                      mais <strong>n&rsquo;est pas d&eacute;clar&eacute;</strong> dans <code class="inline-code">pyproject.toml</code>
+                      (m&ecirc;me cas pour <code class="inline-code">sphinx</code>, <code class="inline-code">pyamf</code>,
+                      <code class="inline-code">ldap</code>, <code class="inline-code">lxml</code>...).
+                    </li>
+                    <li class="mb-1">
+                      <strong>Cadre bleu (ligne 62, <code class="inline-code">DEP003</code>)</strong> :
+                      <code class="inline-code">pygments</code> est import&eacute; dans
+                      <code class="inline-code">ezforms/.../doc/_build/conf.py</code> mais c&rsquo;est une
+                      <strong>d&eacute;pendance transitive</strong>&nbsp;: pr&eacute;sente uniquement parce qu&rsquo;une autre d&eacute;pendance
+                      l&rsquo;embarque (m&ecirc;me cas pour <code class="inline-code">router</code>,
+                      <code class="inline-code">marshmallow</code>, <code class="inline-code">snifertrt</code>).
+                    </li>
+                    <li>
+                      <strong>Cadre orange (lignes 73-106, <code class="inline-code">DEP002</code>)</strong> :
+                      34 paquets sont <strong>d&eacute;clar&eacute;s dans <code class="inline-code">pyproject.toml</code> mais jamais utilis&eacute;s</strong>
+                      dans le code (<code class="inline-code">annotated-types</code> soulign&eacute; en exemple,
+                      suivi de <code class="inline-code">attrs</code>, <code class="inline-code">automat</code>,
+                      <code class="inline-code">bcrypt</code>, <code class="inline-code">cryptography</code>,
+                      <code class="inline-code">pandas</code>, <code class="inline-code">twisted-iocpsupport</code>...
+                      jusqu&rsquo;&agrave; <code class="inline-code">zope-interface</code>).
+                    </li>
+                  </ul>
+                  <p class="mb-0">
+                    Cette trace s&rsquo;inscrit dans ma phase d&rsquo;int&eacute;gration chez EzDEV&nbsp;: confront&eacute; &agrave; un projet existant,
+                    gros et complexe, j&rsquo;ai utilis&eacute; deptry pour cartographier rapidement l&rsquo;&eacute;cosyst&egrave;me des d&eacute;pendances
+                    Python d&rsquo;EzGED et rep&eacute;rer les zones &agrave; traiter en priorit&eacute; avant la migration vers Python&nbsp;3.13.
+                  </p>
+                </div>
                 <p class="text-body-2 mb-2">
                   Pour <span class="sf-blue">prendre en main un projet existant via un outil d&rsquo;audit</span>, j&rsquo;ai utilis&eacute;
                   deptry d&egrave;s mes premiers jours dans l&rsquo;entreprise afin d&rsquo;obtenir une vision globale des d&eacute;pendances
                   Python d&rsquo;EzGED. Cet outil m&rsquo;a permis de rep&eacute;rer rapidement les d&eacute;pendances obsol&egrave;tes, inutilis&eacute;es
                   ou incompatibles avec les nouvelles versions de Python, sans avoir besoin de parcourir tout le code &agrave; la main.
-                  Les anomalies visibles dans la Trace n&deg;9 m&rsquo;ont directement orient&eacute; vers les fichiers et modules &agrave;
-                  comprendre en priorit&eacute;, ce qui a acc&eacute;l&eacute;r&eacute; ma d&eacute;couverte de l&rsquo;architecture du projet.
+                  Concr&egrave;tement, le rapport m&rsquo;a donn&eacute; en une seule ex&eacute;cution trois informations cl&eacute;s&nbsp;: les paquets
+                  <strong>manquants</strong> (<code class="inline-code">DEP001</code>), les paquets <strong>d&eacute;clar&eacute;s mais inutiles</strong>
+                  (<code class="inline-code">DEP002</code>, le gros cadre orange) et les d&eacute;pendances <strong>transitives</strong>
+                  utilis&eacute;es par erreur comme directes (<code class="inline-code">DEP003</code>). Les anomalies visibles dans la
+                  <strong>Trace n&deg;9</strong> m&rsquo;ont directement orient&eacute; vers les fichiers et modules &agrave; comprendre en priorit&eacute;,
+                  ce qui a acc&eacute;l&eacute;r&eacute; ma d&eacute;couverte de l&rsquo;architecture du projet.
                 </p>
                 <p class="text-body-2 mb-0">
                   Pour <span class="sf-blue">adapter la configuration d&rsquo;un outil au projet</span>, j&rsquo;ai d&rsquo;abord constat&eacute;
-                  que deptry produisait beaucoup de faux positifs sur les modules internes d&rsquo;EzGED
-                  (<code class="inline-code">ezged</code>, <code class="inline-code">ezforms</code>,
-                  <code class="inline-code">lib</code>, <code class="inline-code">www3</code>...), car il les voyait comme des
-                  imports externes non d&eacute;clar&eacute;s dans <code class="inline-code">pyproject.toml</code>. J&rsquo;ai donc compl&eacute;t&eacute;
-                  la section d&eacute;di&eacute;e &agrave; deptry dans le <code class="inline-code">pyproject.toml</code> en y listant ces modules
-                  internes, ce qui indique &agrave; l&rsquo;outil qu&rsquo;ils font partie du code du projet et ne doivent pas &ecirc;tre trait&eacute;s
-                  comme des d&eacute;pendances tierces. Apr&egrave;s cette configuration, le rapport ne contient plus que des anomalies
-                  r&eacute;elles, exploitables pour me concentrer sur les vrais points &agrave; comprendre afin de m&rsquo;approprier
-                  efficacement le projet.
+                  qu&rsquo;une premi&egrave;re ex&eacute;cution de deptry produisait des centaines de faux positifs sur les modules internes
+                  d&rsquo;EzGED (<code class="inline-code">ezged</code>, <code class="inline-code">ezforms</code>,
+                  <code class="inline-code">lib</code>, <code class="inline-code">www3</code>...), car deptry les voyait comme
+                  des imports externes non d&eacute;clar&eacute;s dans <code class="inline-code">pyproject.toml</code>. J&rsquo;ai donc compl&eacute;t&eacute;
+                  la section <code class="inline-code">[tool.deptry] known_first_party</code> (voir
+                  <a href="#" class="trace-link" @click.prevent="$router.push('/technique')">Trace n&deg;2</a>) en y listant
+                  ces modules internes. Le rapport visible ici en est le r&eacute;sultat&nbsp;: les 98 anomalies restantes sont toutes
+                  exploitables, ce qui m&rsquo;a permis de me concentrer sur les vrais points &agrave; comprendre et d&rsquo;avancer
+                  efficacement dans la prise en main du projet.
                 </p>
               </v-col>
             </v-row>
@@ -268,6 +292,7 @@
         <div
           ref="viewportRef"
           class="image-viewport"
+          :class="{ 'image-viewport-tall': imageMode === 'tall' }"
           @mousedown="startPan"
           @mousemove="onPan"
           @mouseup="endPan"
@@ -296,6 +321,7 @@ const tab = ref('t8')
 
 const imageModal = ref(false)
 const currentImage = ref('')
+const imageMode = ref('default')
 const zoom = ref(100)
 const pan = ref({ x: 0, y: 0 })
 const isPanning = ref(false)
@@ -310,7 +336,7 @@ const imageStyle = computed(() => {
   if (zoom.value === 100) {
     return {
       width: '100%',
-      height: '100%',
+      height: imageMode.value === 'tall' ? 'auto' : '100%',
       objectFit: 'contain',
       display: 'block',
       userSelect: 'none',
@@ -346,8 +372,9 @@ function clampPan(nextPan, zoomValue = zoom.value) {
   }
 }
 
-function openImage(src) {
+function openImage(src, mode = 'default') {
   currentImage.value = src
+  imageMode.value = mode
   zoom.value = 100
   pan.value = { x: 0, y: 0 }
   isPanning.value = false
@@ -518,6 +545,10 @@ function getDiffColorHex(difficulte) {
   overflow: hidden;
   cursor: crosshair;
   position: relative;
+}
+.image-viewport-tall {
+  overflow: auto;
+  cursor: default;
 }
 .bilan-card {
   background: linear-gradient(180deg, rgba(22, 22, 22, 0.95), rgba(18, 18, 18, 0.95));
