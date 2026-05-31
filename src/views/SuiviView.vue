@@ -19,6 +19,7 @@
         <v-tab value="t5">Trace 5</v-tab>
         <v-tab value="t6">Trace 6</v-tab>
         <v-tab value="t7">Trace 7</v-tab>
+        <v-tab value="t8">Trace 8</v-tab>
         <v-tab value="bilan">Bilan &amp; &Eacute;valuation</v-tab>
       </v-tabs>
       <v-divider class="mb-3" />
@@ -133,7 +134,7 @@
                 <p class="text-body-2 mb-2">
                   Pour <span class="sf-green">&eacute;valuer la pertinence d&rsquo;une mise &agrave; jour de d&eacute;pendance avant validation</span>, je ne me contente
                   pas du contenu brut de la MR&nbsp;: j&rsquo;ex&eacute;cute mon script d&rsquo;audit LibCST
-                  (<a href="#" class="trace-link" @click.prevent="$router.push('/technique')">Trace n&deg;1</a>) sur la branche
+                  (<a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't1' } })">Trace n&deg;1</a>) sur la branche
                   <code class="inline-code">renovate/major-...</code> avant fusion. Le rapport HTML produit me r&eacute;pond &agrave; trois
                   questions impossibles &agrave; trancher depuis le tableau de Renovate seul&nbsp;: <strong>o&ugrave;</strong> chaque d&eacute;pendance
                   mise &agrave; jour est utilis&eacute;e dans EzGED (fichier + fonction parente), <strong>quels appels</strong> exacts sont
@@ -219,6 +220,94 @@
                   commits de <code class="inline-code">gestions_deps</code> en une demande d&rsquo;int&eacute;gration unique, accompagn&eacute;e
                   d&rsquo;une description du travail r&eacute;alis&eacute;. Elle constitue le point de contr&ocirc;le obligatoire avant la
                   fusion dans la branche principale et garantit qu&rsquo;aucune modification non valid&eacute;e ne rejoint le projet.
+                </p>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-window-item>
+
+        <!-- TRACE 8 -->
+        <v-window-item value="t8">
+          <v-card variant="flat" class="pa-3" rounded="lg">
+            <h3 class="text-h6 font-weight-bold mb-2">
+              Formalisation visuelle de l&rsquo;algorithme de g&eacute;n&eacute;ration dynamique de tests
+            </h3>
+            <div class="mb-3">
+              <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
+              <v-chip color="success" size="small" class="ma-1">Mod&eacute;liser un algorithme complexe sous forme de diagramme de flux</v-chip>
+              <v-chip color="success" size="small" class="ma-1">Documenter visuellement une solution technique pour la rendre lisible par l&rsquo;&eacute;quipe</v-chip>
+            </div>
+
+            <v-row align="start" no-gutters class="g-row">
+              <v-col cols="12" md="6" class="pe-md-4">
+                <img
+                  src="/images/Trace8_flowchart.png"
+                  alt="Diagramme de flux du script test_dependencies.py"
+                  class="trace-image"
+                  @click="openImage($event.currentTarget.currentSrc)"
+                />
+                <p class="text-caption text-medium-emphasis mt-2 mb-0">
+                  <strong>Trace n&deg;8</strong> : Diagramme de flux du script <code class="inline-code">test_dependencies.py</code>
+                  produit pour expliquer l&rsquo;algorithme &agrave; l&rsquo;&eacute;quipe.
+                </p>
+              </v-col>
+              <v-col cols="12" md="6">
+                <div class="text-body-2 mb-2">
+                  <p class="mb-2">
+                    La <strong>Trace n&deg;8</strong> montre le diagramme de flux du script
+                    <code class="inline-code">test_dependencies.py</code>
+                    (<a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't3' } })">Trace n&deg;3</a>),
+                    qui ne rejoue automatiquement que les tests pertinents lors d&rsquo;une mont&eacute;e de version
+                    de d&eacute;pendance. Les couleurs s&eacute;parent les grandes &eacute;tapes&nbsp;:
+                  </p>
+                  <ul class="pl-4 mb-2">
+                    <li class="mb-1">
+                      <strong>Cadre rouge</strong> : point d&rsquo;entr&eacute;e (<em>Lancement du script</em>).
+                    </li>
+                    <li class="mb-1">
+                      <strong>Cadre vert</strong> : initialisation (lecture des options
+                      <code class="inline-code">argparse</code> et chargement du fichier JSON).
+                    </li>
+                    <li class="mb-1">
+                      <strong>Cadres jaunes</strong> : la triple boucle imbriqu&eacute;e qui constitue le c&oelig;ur du parcours du JSON.
+                      Pour chaque <em>librairie</em>, on parcourt chacune de ses <em>fonctions</em>, puis pour chaque fonction
+                      chacun de ses <em>tests</em>.
+                    </li>
+                    <li class="mb-1">
+                      <strong>Cadre bleu</strong> : sous-routine de cr&eacute;ation dynamique d&rsquo;une classe de test
+                      (<em>charger le module via <code class="inline-code">importlib</code>, garder uniquement les m&eacute;thodes
+                      list&eacute;es dans le JSON, cr&eacute;er la classe unique avec <code class="inline-code">type()</code>,
+                      l&rsquo;enregistrer dans <code class="inline-code">globals()</code></em>).
+                    </li>
+                    <li>
+                      <strong>Cadre orange</strong> : terminaison. Le script lance tous les tests g&eacute;n&eacute;r&eacute;s
+                      via <code class="inline-code">unittest.main()</code>, puis se termine sur le n&oelig;ud <em>FIN</em>.
+                    </li>
+                  </ul>
+                  <p class="mb-0">
+                    Les <strong>cercles rouges</strong> isolent les transitions cl&eacute;s du flux&nbsp;:
+                    les r&eacute;ponses <em>Oui</em>/<em>Non</em> des losanges de filtrage (&laquo;&nbsp;ignor&eacute;e par les
+                    options&nbsp;?&nbsp;&raquo;) et les retours <em>Termin&eacute;</em> qui remontent &agrave; la boucle parente.
+                    Cette trace s&rsquo;inscrit dans la documentation du projet&nbsp;: produire un sch&eacute;ma exploitable par
+                    l&rsquo;&eacute;quipe pour expliquer le fonctionnement du script avant son int&eacute;gration dans la CI.
+                  </p>
+                </div>
+                <p class="text-body-2 mb-2">
+                  Pour <span class="sf-green">mod&eacute;liser l&rsquo;algorithme sous forme de diagramme de flux</span>, j&rsquo;ai
+                  choisi une symbologie standard&nbsp;: rectangles arrondis pour le d&eacute;but/fin, losanges pour les d&eacute;cisions
+                  et rectangles pour les actions. Les trois losanges jaunes mat&eacute;rialisent visuellement la
+                  <em>triple boucle imbriqu&eacute;e</em> (libs, puis fonctions, puis tests) qui serait p&eacute;nible &agrave;
+                  reconstituer mentalement depuis le code seul. Le cadre bleu isole &agrave; part la sous-routine de cr&eacute;ation
+                  dynamique pour qu&rsquo;elle se lise comme un bloc, ce qui correspond &agrave; la fonction
+                  <code class="inline-code">build_test_class</code> du code.
+                </p>
+                <p class="text-body-2 mb-0">
+                  Pour <span class="sf-green">documenter visuellement la solution</span>, j&rsquo;ai veill&eacute; &agrave; ce que le
+                  sch&eacute;ma soit autonome&nbsp;: chaque branche est l&eacute;gend&eacute;e (<em>Il y en a une / Termin&eacute; / Oui /
+                  Non</em>) et les cercles rouges attirent l&rsquo;&oelig;il sur les conditions de filtrage qui d&eacute;cident si
+                  un test est rejou&eacute; ou ignor&eacute;. Le but est qu&rsquo;un d&eacute;veloppeur de l&rsquo;&eacute;quipe puisse comprendre
+                  le fonctionnement du script <strong>sans lire le code</strong>, ce qui en facilite la revue, la maintenance
+                  et l&rsquo;int&eacute;gration dans le pipeline GitLab.
                 </p>
               </v-col>
             </v-row>
@@ -322,6 +411,39 @@
               </p>
             </v-card>
           </div>
+
+          <v-divider class="my-6" />
+
+          <div class="mb-6">
+            <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
+              <div class="d-flex flex-wrap align-center justify-space-between mb-4">
+                <span class="text-body-1 font-weight-bold">Formaliser et communiquer une solution technique</span>
+                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
+              </div>
+
+              <ul class="sf-list text-body-2 mb-3">
+                <li><span class="sf-green">Mod&eacute;liser un algorithme complexe sous forme de diagramme de flux</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : rendre visible une triple boucle imbriqu&eacute;e + une sous-routine de cr&eacute;ation dynamique.</li>
+                <li><span class="sf-green">Documenter visuellement une solution technique</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : produire un sch&eacute;ma autonome lisible par l&rsquo;&eacute;quipe sans relire le code.</li>
+              </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
+                La notion de diagramme de flux a &eacute;t&eacute; vue en cours (gestion de projet), mais sans pratique sur un vrai outil. Le sch&eacute;ma a &eacute;t&eacute; r&eacute;alis&eacute; pour pr&eacute;senter le script <code class="inline-code">test_dependencies.py</code> &agrave; l&rsquo;&eacute;quipe.
+              </p>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Difficult&eacute; :</span>
+                Faible &agrave; moyenne. Le plus dur est de choisir le bon niveau d&rsquo;abstraction&nbsp;: ni trop d&eacute;taill&eacute; (illisible), ni trop synth&eacute;tique (perd l&rsquo;information utile).
+              </p>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">&Eacute;valuation :</span>
+                Bon. Je sais <span class="sf-green">choisir le bon format de documentation</span> (texte, code comment&eacute;, sch&eacute;ma) selon ce que je veux faire passer, et produire un livrable autonome.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
+                <strong>Avant&nbsp;:</strong> je documentais mes scripts uniquement par des commentaires de code et du texte brut, ce qui rendait difficile la communication d&rsquo;une vue d&rsquo;ensemble &agrave; quelqu&rsquo;un qui ne lisait pas le code.
+                <strong>Apr&egrave;s&nbsp;:</strong> mon r&eacute;flexe est de doubler le code d&rsquo;un sch&eacute;ma quand la logique est non-triviale (boucles imbriqu&eacute;es, sous-routines), ce qui rend la revue d&rsquo;&eacute;quipe bien plus rapide.
+              </p>
+            </v-card>
+          </div>
         </v-window-item>
 
       </v-window>
@@ -394,8 +516,16 @@
 
 <script setup>
 import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-const tab = ref('t5')
+const route = useRoute()
+
+const VALID_TABS = ['t5', 't6', 't7', 't8', 'bilan']
+const initialTab = VALID_TABS.includes(route.query.tab) ? route.query.tab : 't5'
+const tab = ref(initialTab)
+watch(() => route.query.tab, (val) => {
+  if (VALID_TABS.includes(val)) tab.value = val
+})
 
 const imageModal = ref(false)
 const currentImage = ref('')

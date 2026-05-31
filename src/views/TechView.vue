@@ -492,8 +492,15 @@
 
 <script setup>
 import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-const tab = ref('t1')
+const route = useRoute()
+const VALID_TABS = ['t1', 't2', 't3', 't4', 'bilan']
+const initialTab = VALID_TABS.includes(route.query.tab) ? route.query.tab : 't1'
+const tab = ref(initialTab)
+watch(() => route.query.tab, (val) => {
+  if (VALID_TABS.includes(val)) tab.value = val
+})
 
 const imageModal = ref(false)
 const currentImage = ref('')

@@ -16,8 +16,9 @@
     <!-- Contenu avec onglets -->
     <v-card class="pa-4" rounded="lg">
       <v-tabs v-model="tab" color="amber-darken-2" align-tabs="start" density="compact">
-        <v-tab value="t8">Trace 8</v-tab>
         <v-tab value="t9">Trace 9</v-tab>
+        <v-tab value="t10">Trace 10</v-tab>
+        <v-tab value="t11">Trace 11</v-tab>
         <v-tab value="bilan">Bilan &amp; &Eacute;valuation</v-tab>
       </v-tabs>
       <v-divider class="mb-3" />
@@ -25,7 +26,7 @@
       <v-window v-model="tab">
 
         <!-- TRACE 8 -->
-        <v-window-item value="t8">
+        <v-window-item value="t9">
           <v-card variant="flat" class="pa-3" rounded="lg">
             <h3 class="text-h6 font-weight-bold mb-2">
               Audit statique du projet EzGED avec ruff
@@ -39,18 +40,18 @@
             <v-row align="start" no-gutters class="g-row">
               <v-col cols="12" md="6" class="pe-md-4">
                 <img
-                  src="/images/Trace8_ruff.png"
+                  src="/images/Trace9_ruff.png"
                   alt="Rapport ruff"
                   class="trace-image"
                   @click="openImage($event.currentTarget.currentSrc)"
                 />
                 <p class="text-caption text-medium-emphasis mt-2 mb-0">
-                  <strong>Trace n&deg;8</strong> : Rapport ruff ex&eacute;cut&eacute; sur le projet EzGED.
+                  <strong>Trace n&deg;9</strong> : Rapport ruff ex&eacute;cut&eacute; sur le projet EzGED.
                 </p>
               </v-col>
               <v-col cols="12" md="6">
                 <p class="text-body-2 mb-2">
-                  La <strong>Trace n&deg;8</strong> montre un extrait du rapport produit par ruff lanc&eacute; sur le projet EzGED. Trois r&egrave;gles sont mises en &eacute;vidence dans des cadres rouges&nbsp;:
+                  La <strong>Trace n&deg;9</strong> montre un extrait du rapport produit par ruff lanc&eacute; sur le projet EzGED. Trois r&egrave;gles sont mises en &eacute;vidence dans des cadres rouges&nbsp;:
                   <code class="inline-code">F401</code> signalant deux imports inutilis&eacute;s (soulign&eacute;s en blanc,
                   <code class="inline-code">common</code> et <code class="inline-code">traceback</code>) dans
                   <code class="inline-code">lib\simple_mail.py</code>, et <code class="inline-code">E713</code> indiquant
@@ -88,7 +89,7 @@
         </v-window-item>
 
         <!-- TRACE 9 -->
-        <v-window-item value="t9">
+        <v-window-item value="t10">
           <v-card variant="flat" class="pa-3" rounded="lg">
             <h3 class="text-h6 font-weight-bold mb-2">
               Prise en main du projet EzGED via l&rsquo;audit des d&eacute;pendances
@@ -102,19 +103,19 @@
             <v-row align="start" no-gutters class="g-row">
               <v-col cols="12" md="6" class="pe-md-4">
                 <img
-                  src="/images/Trace9_deptry.png"
+                  src="/images/Trace10_deptry.png"
                   alt="Rapport deptry"
                   class="trace-image"
                   @click="openImage($event.currentTarget.currentSrc, 'tall')"
                 />
                 <p class="text-caption text-medium-emphasis mt-2 mb-0">
-                  <strong>Trace n&deg;9</strong> : Rapport deptry ex&eacute;cut&eacute; sur EzGED.
+                  <strong>Trace n&deg;10</strong> : Rapport deptry ex&eacute;cut&eacute; sur EzGED.
                 </p>
               </v-col>
               <v-col cols="12" md="6">
                 <div class="text-body-2 mb-2">
                   <p class="mb-2">
-                    La <strong>Trace n&deg;9</strong> montre la sortie de deptry ex&eacute;cut&eacute; &agrave; la racine du projet EzGED
+                    La <strong>Trace n&deg;10</strong> montre la sortie de deptry ex&eacute;cut&eacute; &agrave; la racine du projet EzGED
                     (316 fichiers analys&eacute;s, <strong>98 probl&egrave;mes de d&eacute;pendances</strong> remont&eacute;s au total).
                     Chaque ligne associe un fichier (chemin &agrave; gauche) ou le <code class="inline-code">pyproject.toml</code>
                     &agrave; un code de diagnostic et au module concern&eacute;. Trois cat&eacute;gories d&rsquo;anomalies apparaissent&nbsp;:
@@ -160,7 +161,7 @@
                   <strong>manquants</strong> (<code class="inline-code">DEP001</code>), les paquets <strong>d&eacute;clar&eacute;s mais inutiles</strong>
                   (<code class="inline-code">DEP002</code>, le gros cadre orange) et les d&eacute;pendances <strong>transitives</strong>
                   utilis&eacute;es par erreur comme directes (<code class="inline-code">DEP003</code>). Les anomalies visibles dans la
-                  <strong>Trace n&deg;9</strong> m&rsquo;ont directement orient&eacute; vers les fichiers et modules &agrave; comprendre en priorit&eacute;,
+                  <strong>Trace n&deg;10</strong> m&rsquo;ont directement orient&eacute; vers les fichiers et modules &agrave; comprendre en priorit&eacute;,
                   ce qui a acc&eacute;l&eacute;r&eacute; ma d&eacute;couverte de l&rsquo;architecture du projet.
                 </p>
                 <p class="text-body-2 mb-0">
@@ -170,10 +171,118 @@
                   <code class="inline-code">lib</code>, <code class="inline-code">www3</code>...), car deptry les voyait comme
                   des imports externes non d&eacute;clar&eacute;s dans <code class="inline-code">pyproject.toml</code>. J&rsquo;ai donc compl&eacute;t&eacute;
                   la section <code class="inline-code">[tool.deptry] known_first_party</code> (voir
-                  <a href="#" class="trace-link" @click.prevent="$router.push('/technique')">Trace n&deg;2</a>) en y listant
+                  <a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't2' } })">Trace n&deg;2</a>) en y listant
                   ces modules internes. Le rapport visible ici en est le r&eacute;sultat&nbsp;: les 98 anomalies restantes sont toutes
                   exploitables, ce qui m&rsquo;a permis de me concentrer sur les vrais points &agrave; comprendre et d&rsquo;avancer
                   efficacement dans la prise en main du projet.
+                </p>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-window-item>
+
+        <!-- TRACE 11 -->
+        <v-window-item value="t11">
+          <v-card variant="flat" class="pa-3" rounded="lg">
+            <h3 class="text-h6 font-weight-bold mb-2">
+              Diagnostic d&rsquo;un test en &eacute;chec via le d&eacute;bogueur pas-&agrave;-pas de PyCharm
+            </h3>
+            <div class="mb-3">
+              <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
+              <v-chip color="info" size="small" class="ma-1">Configurer un environnement de d&eacute;bogage Python avec PyCharm et uv</v-chip>
+              <v-chip color="info" size="small" class="ma-1">Diagnostiquer un test unitaire &agrave; l&rsquo;aide d&rsquo;un d&eacute;bogueur pas-&agrave;-pas</v-chip>
+            </div>
+
+            <v-row align="start" no-gutters class="g-row">
+              <v-col cols="12" md="6" class="pe-md-4">
+                <img
+                  src="/images/Trace11_pycharm_debug.png"
+                  alt="Session de d&eacute;bogage PyCharm d&rsquo;un test unittest"
+                  class="trace-image"
+                  @click="openImage($event.currentTarget.currentSrc)"
+                />
+                <p class="text-caption text-medium-emphasis mt-2 mb-0">
+                  <strong>Trace n&deg;11</strong> : Session de d&eacute;bogage PyCharm sur
+                  <code class="inline-code">test_set_mailbox</code> du fichier
+                  <code class="inline-code">test_o365lib.py</code>.
+                </p>
+              </v-col>
+              <v-col cols="12" md="6">
+                <div class="text-body-2 mb-2">
+                  <p class="mb-2">
+                    La <strong>Trace n&deg;11</strong> montre une session de d&eacute;bogage PyCharm sur le test unitaire
+                    <code class="inline-code">test_set_mailbox</code> de la classe
+                    <code class="inline-code">O365OutlookIntegrationTestCases</code>, arr&ecirc;t&eacute;e sur un point d&rsquo;arr&ecirc;t.
+                    Plusieurs zones de l&rsquo;IDE sont mises en &eacute;vidence&nbsp;:
+                  </p>
+                  <ul class="pl-4 mb-2">
+                    <li class="mb-1">
+                      <strong>Cadre rose (haut-droit)</strong> : barre de la configuration de lancement
+                      &laquo;&nbsp;Unittests for test_o365lib.O365O...mailbox&nbsp;&raquo; avec les boutons Run/Debug actifs.
+                    </li>
+                    <li class="mb-1">
+                      <strong>Bouton Debug surlign&eacute; bleu (sidebar gauche)</strong> : panneau Debug ouvert,
+                      l&rsquo;ex&eacute;cution est suspendue.
+                    </li>
+                    <li class="mb-1">
+                      <strong>Cadre rouge (ligne 350)</strong> : breakpoint pos&eacute; sur
+                      <code class="inline-code">result = self.o365.set_mailbox(folder_name=folder_name)</code>,
+                      qui est l&rsquo;appel sous test.
+                    </li>
+                    <li class="mb-1">
+                      <strong>Cadre vert (bas-gauche)</strong> : barre d&rsquo;outils pas-&agrave;-pas
+                      (<em>resume, stop, step over, step into, step out, run to cursor</em>).
+                    </li>
+                    <li class="mb-1">
+                      <strong>Cadre bleu (panneau MainThread)</strong> : pile d&rsquo;appels unittest. La m&eacute;thode
+                      <code class="inline-code">test_set_mailbox</code> est appel&eacute;e par
+                      <code class="inline-code">_callTestMethod</code>, lui-m&ecirc;me appel&eacute; depuis
+                      <code class="inline-code">case.py:run</code>, qui est orchestr&eacute; en remontant par
+                      <code class="inline-code">suite.py</code>, puis <code class="inline-code">runner.py</code>,
+                      et enfin <code class="inline-code">main.py</code> au sommet de la pile.
+                    </li>
+                    <li>
+                      <strong>Cadre jaune (panneau Threads &amp; Variables)</strong> : valeurs courantes
+                      (<code class="inline-code">folder_name = 'test'</code>,
+                      <code class="inline-code">tasks = {'del_mailbox': 'test'}</code>,
+                      <code class="inline-code">self.o365 = &lt;O365Outlook&gt;</code>,
+                      <code class="inline-code">db = &lt;db_mysql.sql_db&gt;</code>...).
+                    </li>
+                  </ul>
+                  <p class="mb-0">
+                    Cette trace s&rsquo;inscrit dans ma phase d&rsquo;int&eacute;gration&nbsp;: une partie des tests existants
+                    d&rsquo;EzGED &eacute;chouait (
+                    <code class="inline-code">fileindexer</code>,
+                    <code class="inline-code">coldpdfburst</code>,
+                    <code class="inline-code">office2pdf</code>...) et j&rsquo;ai d&ucirc; apprendre &agrave; m&rsquo;approprier
+                    l&rsquo;environnement de d&eacute;bogage utilis&eacute; par l&rsquo;&eacute;quipe (PyCharm + uv + Python&nbsp;3.11)
+                    pour diagnostiquer leurs causes.
+                  </p>
+                </div>
+                <p class="text-body-2 mb-2">
+                  Pour <span class="sf-blue">configurer l&rsquo;environnement de d&eacute;bogage</span>, j&rsquo;ai d&rsquo;abord rattach&eacute;
+                  PyCharm &agrave; l&rsquo;interpr&eacute;teur g&eacute;r&eacute; par <code class="inline-code">uv</code>
+                  (<em>Settings &gt; Python Interpreter &gt; Add Local Interpreter &gt; Existing &gt;
+                  .venv/Scripts/python.exe</em>), confirm&eacute; en bas de l&rsquo;&eacute;cran par
+                  <code class="inline-code">uv (trunk4) [Python 3.11.15]</code>. J&rsquo;ai ensuite cr&eacute;&eacute; une
+                  configuration de lancement <strong>Unittests</strong> cibl&eacute;e sur la m&eacute;thode de test (cadre rose),
+                  ce qui permet de relancer rapidement le test seul plut&ocirc;t que toute la suite. Cette mise en place a
+                  &eacute;t&eacute; faite en parall&egrave;le du travail sur <code class="inline-code">pyproject.toml</code>
+                  (<a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't2' } })">Trace n&deg;2</a>) qui d&eacute;clare
+                  les m&ecirc;mes d&eacute;pendances.
+                </p>
+                <p class="text-body-2 mb-0">
+                  Pour <span class="sf-blue">diagnostiquer le test pas-&agrave;-pas</span>, j&rsquo;ai pos&eacute; un breakpoint
+                  (cadre rouge ligne 350) juste avant l&rsquo;appel suspect&nbsp;: l&rsquo;ex&eacute;cution s&rsquo;y arr&ecirc;te et le
+                  panneau <em>Threads &amp; Variables</em> (cadre jaune) me donne en direct l&rsquo;&eacute;tat des variables
+                  locales et de <code class="inline-code">self</code>, ce qui est bien plus efficace que des
+                  <code class="inline-code">print()</code> dispers&eacute;s dans le code. Les contr&ocirc;les pas-&agrave;-pas
+                  (cadre vert) permettent ensuite d&rsquo;avancer ligne par ligne ou d&rsquo;entrer dans
+                  <code class="inline-code">set_mailbox</code>. Enfin, la pile d&rsquo;appels (cadre bleu) rend visible
+                  la cha&icirc;ne d&rsquo;orchestration de <em>unittest</em>
+                  (<code class="inline-code">case.py</code>, <code class="inline-code">suite.py</code>,
+                  <code class="inline-code">runner.py</code>), ce qui m&rsquo;aide &agrave; distinguer un bug du test d&rsquo;un
+                  probl&egrave;me dans le framework lui-m&ecirc;me.
                 </p>
               </v-col>
             </v-row>
@@ -190,8 +299,8 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-blue">Prendre en main un projet inconnu via un audit automatique</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : obtenir une vue d&rsquo;ensemble rapide du code avec <span class="code-tag">ruff</span>.</li>
-                <li><span class="sf-blue">Prendre en main un projet existant via un outil d&rsquo;audit</span> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>) : cartographier les d&eacute;pendances avec <span class="code-tag">deptry</span> et rep&eacute;rer les anomalies principales.</li>
+                <li><span class="sf-blue">Prendre en main un projet inconnu via un audit automatique</span> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>) : obtenir une vue d&rsquo;ensemble rapide du code avec <span class="code-tag">ruff</span>.</li>
+                <li><span class="sf-blue">Prendre en main un projet existant via un outil d&rsquo;audit</span> (<a href="#" class="trace-link" @click.prevent="tab = 't10'">Trace n&deg;10</a>) : cartographier les d&eacute;pendances avec <span class="code-tag">deptry</span> et rep&eacute;rer les anomalies principales.</li>
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
@@ -222,8 +331,8 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-blue">Se documenter en autonomie sur un outil</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : comprendre <span class="code-tag">ruff</span> sans formation pr&eacute;alable.</li>
-                <li><span class="sf-blue">Adapter la configuration d&rsquo;un outil au projet</span> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>) : ajuster <span class="code-tag">deptry</span> via <code class="inline-code">pyproject.toml</code> pour &eacute;viter les faux positifs.</li>
+                <li><span class="sf-blue">Se documenter en autonomie sur un outil</span> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>) : comprendre <span class="code-tag">ruff</span> sans formation pr&eacute;alable.</li>
+                <li><span class="sf-blue">Adapter la configuration d&rsquo;un outil au projet</span> (<a href="#" class="trace-link" @click.prevent="tab = 't10'">Trace n&deg;10</a>) : ajuster <span class="code-tag">deptry</span> via <code class="inline-code">pyproject.toml</code> pour &eacute;viter les faux positifs.</li>
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
@@ -240,6 +349,39 @@
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
                 <strong>Avant&nbsp;:</strong> je consommais des outils en mode &laquo;&nbsp;configuration par d&eacute;faut&nbsp;&raquo;, et si le r&eacute;sultat &eacute;tait bruit&eacute; je l&rsquo;acceptais tel quel. <strong>Apr&egrave;s&nbsp;:</strong> je sais lire une doc technique pour identifier les options de configuration utiles, et adapter un outil (ex. <code class="inline-code">known_first_party</code> pour deptry) au contexte d&rsquo;un projet sp&eacute;cifique.
+              </p>
+            </v-card>
+          </div>
+
+          <v-divider class="my-6" />
+
+          <div class="mb-6">
+            <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
+              <div class="d-flex flex-wrap align-center justify-space-between mb-4">
+                <span class="text-body-1 font-weight-bold">Adopter l&rsquo;environnement de d&eacute;veloppement de l&rsquo;&eacute;quipe</span>
+                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
+              </div>
+
+              <ul class="sf-list text-body-2 mb-3">
+                <li><span class="sf-blue">Configurer un environnement de d&eacute;bogage Python avec <span class="code-tag">PyCharm</span> et <span class="code-tag">uv</span></span> (<a href="#" class="trace-link" @click.prevent="tab = 't11'">Trace n&deg;11</a>) : rattacher l&rsquo;IDE &agrave; l&rsquo;interpr&eacute;teur du projet et cr&eacute;er une configuration unittest cibl&eacute;e.</li>
+                <li><span class="sf-blue">Diagnostiquer un test unitaire avec un d&eacute;bogueur pas-&agrave;-pas</span> (<a href="#" class="trace-link" @click.prevent="tab = 't11'">Trace n&deg;11</a>) : breakpoint, inspection des variables, pile d&rsquo;appels, step-into.</li>
+              </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
+                <span class="code-tag">PyCharm</span> avait &eacute;t&eacute; effleur&eacute; en cours mais sans <span class="code-tag">uv</span>, et le d&eacute;bogueur pas-&agrave;-pas n&rsquo;avait pas &eacute;t&eacute; couvert. J&rsquo;ai d&ucirc; m&rsquo;approprier ces outils pendant le stage pour analyser des tests existants en &eacute;chec (<code class="inline-code">fileindexer</code>, <code class="inline-code">coldpdfburst</code>...).
+              </p>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Difficult&eacute; :</span>
+                Moyenne. Le plus dur est de comprendre la pile d&rsquo;appels unittest (<code class="inline-code">case.py</code>, <code class="inline-code">suite.py</code>, <code class="inline-code">runner.py</code>) pour ne pas confondre un bug du test avec un bug du framework.
+              </p>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">&Eacute;valuation :</span>
+                Bon. Je sais <span class="sf-blue">configurer un IDE Python sur un projet existant</span> et <span class="sf-blue">m&rsquo;en servir pour diagnostiquer un test en &eacute;chec</span>. Je n&rsquo;ai pas encore explor&eacute; les watches conditionnels ni le d&eacute;bogage distant.
+              </p>
+              <p class="text-body-2 mb-0">
+                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
+                <strong>Avant&nbsp;:</strong> je d&eacute;boguais &agrave; coup de <code class="inline-code">print()</code> dispers&eacute;s, en relan&ccedil;ant tout le script &agrave; chaque modification.
+                <strong>Apr&egrave;s&nbsp;:</strong> mon r&eacute;flexe est de poser un breakpoint et d&rsquo;inspecter l&rsquo;&eacute;tat des variables et la pile d&rsquo;appels dans l&rsquo;IDE, ce qui me permet de comprendre <em>en une seule ex&eacute;cution</em> ce qu&rsquo;un test fait r&eacute;ellement.
               </p>
             </v-card>
           </div>
@@ -316,8 +458,15 @@
 
 <script setup>
 import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-const tab = ref('t8')
+const route = useRoute()
+const VALID_TABS = ['t9', 't10', 't11', 'bilan']
+const initialTab = VALID_TABS.includes(route.query.tab) ? route.query.tab : 't9'
+const tab = ref(initialTab)
+watch(() => route.query.tab, (val) => {
+  if (VALID_TABS.includes(val)) tab.value = val
+})
 
 const imageModal = ref(false)
 const currentImage = ref('')
