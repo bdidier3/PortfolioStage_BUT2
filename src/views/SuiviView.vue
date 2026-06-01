@@ -234,7 +234,7 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="success" size="small" class="ma-1">Mod&eacute;liser un algorithme complexe sous forme de diagramme de flux</v-chip>
+              <v-chip color="success" size="small" class="ma-1">Mod&eacute;liser un algorithme complexe sous forme de sch&eacute;ma fonctionnel</v-chip>
               <v-chip color="success" size="small" class="ma-1">Documenter visuellement une solution technique pour la rendre lisible par l&rsquo;&eacute;quipe</v-chip>
             </div>
 
@@ -242,19 +242,19 @@
               <v-col cols="12" md="6" class="pe-md-4">
                 <img
                   src="/images/Trace8_flowchart.png"
-                  alt="Diagramme de flux du script test_dependencies.py"
+                  alt="Sch&eacute;ma fonctionnel du script test_dependencies.py"
                   class="trace-image"
                   @click="openImage($event.currentTarget.currentSrc)"
                 />
                 <p class="text-caption text-medium-emphasis mt-2 mb-0">
-                  <strong>Trace n&deg;8</strong> : Diagramme de flux du script <code class="inline-code">test_dependencies.py</code>
+                  <strong>Trace n&deg;8</strong> : Sch&eacute;ma fonctionnel du script <code class="inline-code">test_dependencies.py</code>
                   produit pour expliquer l&rsquo;algorithme &agrave; l&rsquo;&eacute;quipe.
                 </p>
               </v-col>
               <v-col cols="12" md="6">
                 <div class="text-body-2 mb-2">
                   <p class="mb-2">
-                    La <strong>Trace n&deg;8</strong> montre le diagramme de flux du script
+                    La <strong>Trace n&deg;8</strong> montre le sch&eacute;ma fonctionnel du script
                     <code class="inline-code">test_dependencies.py</code>
                     (<a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't3' } })">Trace n&deg;3</a>),
                     qui ne rejoue automatiquement que les tests pertinents lors d&rsquo;une mont&eacute;e de version
@@ -293,7 +293,7 @@
                   </p>
                 </div>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-green">mod&eacute;liser l&rsquo;algorithme sous forme de diagramme de flux</span>, j&rsquo;ai
+                  Pour <span class="sf-green">mod&eacute;liser l&rsquo;algorithme sous forme de sch&eacute;ma fonctionnel</span>, j&rsquo;ai
                   choisi une symbologie standard&nbsp;: rectangles arrondis pour le d&eacute;but/fin, losanges pour les d&eacute;cisions
                   et rectangles pour les actions. Les trois losanges jaunes mat&eacute;rialisent visuellement la
                   <em>triple boucle imbriqu&eacute;e</em> (libs, puis fonctions, puis tests) qui serait p&eacute;nible &agrave;
@@ -422,12 +422,12 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-green">Mod&eacute;liser un algorithme complexe sous forme de diagramme de flux</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : rendre visible une triple boucle imbriqu&eacute;e + une sous-routine de cr&eacute;ation dynamique.</li>
+                <li><span class="sf-green">Mod&eacute;liser un algorithme complexe sous forme de sch&eacute;ma fonctionnel</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : rendre visible une triple boucle imbriqu&eacute;e + une sous-routine de cr&eacute;ation dynamique.</li>
                 <li><span class="sf-green">Documenter visuellement une solution technique</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : produire un sch&eacute;ma autonome lisible par l&rsquo;&eacute;quipe sans relire le code.</li>
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
-                La notion de diagramme de flux a &eacute;t&eacute; vue en cours (gestion de projet), mais sans pratique sur un vrai outil. Le sch&eacute;ma a &eacute;t&eacute; r&eacute;alis&eacute; pour pr&eacute;senter le script <code class="inline-code">test_dependencies.py</code> &agrave; l&rsquo;&eacute;quipe.
+                Le concept a &eacute;t&eacute; vu en cours, mais sans pratique sur un vrai outil. Le sch&eacute;ma a &eacute;t&eacute; r&eacute;alis&eacute; pour pr&eacute;senter le script <code class="inline-code">test_dependencies.py</code> &agrave; l&rsquo;&eacute;quipe sur <a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer">Canva</a>.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Difficult&eacute; :</span>

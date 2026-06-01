@@ -253,8 +253,7 @@
                     Cette trace s&rsquo;inscrit dans ma phase d&rsquo;int&eacute;gration&nbsp;: une partie des tests existants
                     d&rsquo;EzGED &eacute;chouait (
                     <code class="inline-code">fileindexer</code>,
-                    <code class="inline-code">coldpdfburst</code>,
-                    <code class="inline-code">office2pdf</code>...) et j&rsquo;ai d&ucirc; apprendre &agrave; m&rsquo;approprier
+                    <code class="inline-code">coldpdfburst</code>...) et j&rsquo;ai d&ucirc; apprendre &agrave; m&rsquo;approprier
                     l&rsquo;environnement de d&eacute;bogage utilis&eacute; par l&rsquo;&eacute;quipe (PyCharm + uv + Python&nbsp;3.11)
                     pour diagnostiquer leurs causes.
                   </p>
@@ -368,7 +367,7 @@
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
-                <span class="code-tag">PyCharm</span> avait &eacute;t&eacute; effleur&eacute; en cours mais sans <span class="code-tag">uv</span>, et le d&eacute;bogueur pas-&agrave;-pas n&rsquo;avait pas &eacute;t&eacute; couvert. J&rsquo;ai d&ucirc; m&rsquo;approprier ces outils pendant le stage pour analyser des tests existants en &eacute;chec (<code class="inline-code">fileindexer</code>, <code class="inline-code">coldpdfburst</code>...).
+                <span class="code-tag">PyCharm</span> n&rsquo;avait pas &eacute;t&eacute; vu en cours mais nous avions vu <span class="code-tag">IDEA</span> qui est de JetBrains, c&rsquo;est &agrave; peu pr&egrave;s pareil. Nous avions vu comment lancer des tests, mais le d&eacute;bogueur pas-&agrave;-pas n&rsquo;avait pas &eacute;t&eacute; vu. J&rsquo;ai d&ucirc; m&rsquo;approprier ces outils pendant le stage pour analyser des tests existants en &eacute;chec (<code class="inline-code">fileindexer</code>, <code class="inline-code">coldpdfburst</code>...).
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Difficult&eacute; :</span>
@@ -380,7 +379,7 @@
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
-                <strong>Avant&nbsp;:</strong> je d&eacute;boguais &agrave; coup de <code class="inline-code">print()</code> dispers&eacute;s, en relan&ccedil;ant tout le script &agrave; chaque modification.
+                <strong>Avant&nbsp;:</strong> je d&eacute;boguais avec des <code class="inline-code">print()</code> dispers&eacute;s et je relan&ccedil;ais tout le script &agrave; chaque modification.
                 <strong>Apr&egrave;s&nbsp;:</strong> mon r&eacute;flexe est de poser un breakpoint et d&rsquo;inspecter l&rsquo;&eacute;tat des variables et la pile d&rsquo;appels dans l&rsquo;IDE, ce qui me permet de comprendre <em>en une seule ex&eacute;cution</em> ce qu&rsquo;un test fait r&eacute;ellement.
               </p>
             </v-card>
