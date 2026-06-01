@@ -34,8 +34,8 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="error" size="small" class="ma-1">Utiliser LibCST pour d&eacute;tecter les usages de d&eacute;pendances</v-chip>
-              <v-chip color="error" size="small" class="ma-1">Lire un fichier .coverage avec l&rsquo;API coverage.py</v-chip>
+              <v-chip color="#ff5252" size="small" class="ma-1">Utiliser LibCST pour d&eacute;tecter les usages de d&eacute;pendances</v-chip>
+              <v-chip color="#ffa726" size="small" class="ma-1">Lire un fichier .coverage avec l&rsquo;API coverage.py</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -72,10 +72,10 @@
                   </p>
                 </div>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-red">utiliser LibCST</span>, j’ai développé un visiteur (DependencyCallVisitor) permettant de parcourir le CST (Concrete Syntax Tree) des fichiers Python afin d’analyser le code sans l’exécuter. Ce visiteur détecte les appels vers des dépendances externes, y compris lorsque les imports utilisent des alias (import numpy as np) ou des imports ciblés (from PIL import Image). LibCST m’a également permis de récupérer des informations précises sur le code, comme le numéro de ligne exact des appels grâce aux métadonnées fournies par PositionProvider.
+                  Pour <span class="sf-t1a">utiliser LibCST</span>, j’ai développé un visiteur (DependencyCallVisitor) permettant de parcourir le CST (Concrete Syntax Tree) des fichiers Python afin d’analyser le code sans l’exécuter. Ce visiteur détecte les appels vers des dépendances externes, y compris lorsque les imports utilisent des alias (import numpy as np) ou des imports ciblés (from PIL import Image). LibCST m’a également permis de récupérer des informations précises sur le code, comme le numéro de ligne exact des appels grâce aux métadonnées fournies par PositionProvider.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-red">lire le fichier .coverage</span>, j&rsquo;ai utilis&eacute; l&rsquo;API
+                  Pour <span class="sf-t1b">lire le fichier .coverage</span>, j&rsquo;ai utilis&eacute; l&rsquo;API
                   <a href="https://coverage.readthedocs.io/" target="_blank" rel="noopener noreferrer">coverage.py</a>
                   via <code class="inline-code">coverage.CoverageData</code>. Le fichier est en interne une base SQLite,
                   mais l&rsquo;API &eacute;vite de la requ&ecirc;ter. La m&eacute;thode <code class="inline-code">contexts_by_lineno()</code>
@@ -96,8 +96,8 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="error" size="small" class="ma-1">Configurer un projet Python avec pyproject.toml et uv</v-chip>
-              <v-chip color="error" size="small" class="ma-1">Configurer deptry pour &eacute;viter les faux positifs sur les modules internes</v-chip>
+              <v-chip color="#ffd740" size="small" class="ma-1">Configurer un projet Python avec pyproject.toml et uv</v-chip>
+              <v-chip color="#69f0ae" size="small" class="ma-1">Configurer deptry pour &eacute;viter les faux positifs sur les modules internes</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -140,7 +140,7 @@
                   </ul>
                 </div>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-red">configurer le projet</span>, j&rsquo;ai utilis&eacute;
+                  Pour <span class="sf-t2a">configurer le projet</span>, j&rsquo;ai utilis&eacute;
                   <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a>, un gestionnaire moderne
                   qui remplace <code class="inline-code">pip</code> et <code class="inline-code">venv</code>. La commande
                   <code class="inline-code">uv sync</code> lit le <code class="inline-code">pyproject.toml</code>, cr&eacute;e un
@@ -151,7 +151,7 @@
                   <code class="inline-code">dependency-groups</code>.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-red">configurer deptry</span>, outil d&rsquo;audit des d&eacute;pendances, j&rsquo;ai utilis&eacute; la
+                  Pour <span class="sf-t2b">configurer deptry</span>, outil d&rsquo;audit des d&eacute;pendances, j&rsquo;ai utilis&eacute; la
                   section <code class="inline-code">[tool.deptry]</code>. Lors du premier audit, deptry signalait &agrave; tort les
                   modules internes (<code class="inline-code">wf</code>, <code class="inline-code">fs</code>,
                   <code class="inline-code">coldtrt</code>...) comme d&eacute;pendances manquantes (code <code class="inline-code">DEP001</code>),
@@ -172,8 +172,8 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="error" size="small" class="ma-1">Charger dynamiquement un module Python avec importlib</v-chip>
-              <v-chip color="error" size="small" class="ma-1">G&eacute;n&eacute;rer des classes de tests &agrave; la vol&eacute;e avec type(), ex&eacute;cutables par unittest et pytest</v-chip>
+              <v-chip color="#00bcd4" size="small" class="ma-1">Charger dynamiquement un module Python avec importlib</v-chip>
+              <v-chip color="#42a5f5" size="small" class="ma-1">G&eacute;n&eacute;rer des classes de tests &agrave; la vol&eacute;e avec type(), ex&eacute;cutables par unittest et pytest</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -224,7 +224,7 @@
                   </ul>
                 </div>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-red">utiliser importlib</span>, j&rsquo;ai d&rsquo;abord transform&eacute; le chemin stock&eacute;
+                  Pour <span class="sf-t3a">utiliser importlib</span>, j&rsquo;ai d&rsquo;abord transform&eacute; le chemin stock&eacute;
                   dans le JSON (<code class="inline-code">eztest/foo/bar.py</code>) en nom de module Python
                   (<code class="inline-code">foo.bar</code>) via la m&eacute;thode <code class="inline-code">formater_chemin_module</code>.
                   Ensuite, <code class="inline-code">importlib.import_module</code> charge le module &agrave; l&rsquo;ex&eacute;cution
@@ -233,7 +233,7 @@
                   tout import statique et permet de cibler n&rsquo;importe quelle classe de test du projet sans modifier le script.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-red">utiliser type()</span>, chaque entr&eacute;e du JSON donne lieu &agrave; une classe unique
+                  Pour <span class="sf-t3b">utiliser type()</span>, chaque entr&eacute;e du JSON donne lieu &agrave; une classe unique
                   nomm&eacute;e <code class="inline-code">{lib}_{call}_{method}TestCase</code> (soulignement gris ligne 54),
                   h&eacute;ritant de la classe d&rsquo;origine (et donc indirectement d&rsquo;<code class="inline-code">unittest.TestCase</code>).
                   Le dictionnaire <code class="inline-code">attrs</code> pass&eacute; &agrave; <code class="inline-code">type()</code>
@@ -260,8 +260,8 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="error" size="small" class="ma-1">Concevoir une structure JSON hi&eacute;rarchis&eacute;e pour cibler les tests par d&eacute;pendance</v-chip>
-              <v-chip color="error" size="small" class="ma-1">G&eacute;n&eacute;rer dynamiquement des suites de tests unittest &agrave; partir d&rsquo;un fichier JSON</v-chip>
+              <v-chip color="#ab47bc" size="small" class="ma-1">Concevoir une structure JSON hi&eacute;rarchis&eacute;e pour cibler les tests par d&eacute;pendance</v-chip>
+              <v-chip color="#ff80ab" size="small" class="ma-1">Exporter automatiquement l&rsquo;audit LibCST au format JSON pivot consommable par d&rsquo;autres scripts</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -304,17 +304,31 @@
                   </p>
                 </div>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-red">la structure JSON</span>, j&rsquo;ai invers&eacute; le regroupement par rapport &agrave; la
+                  Pour <span class="sf-t4a">la structure JSON</span>, j&rsquo;ai invers&eacute; le regroupement par rapport &agrave; la
                   premi&egrave;re version du script&nbsp;: au lieu de partir des fichiers du code, je pars de la d&eacute;pendance,
                   car c&rsquo;est elle qui d&eacute;clenche le besoin de rejouer des tests lors d&rsquo;une mise &agrave; jour.
                   J&rsquo;ai ajout&eacute; un niveau interm&eacute;diaire pour l&rsquo;appel exact (<code class="inline-code">PdfReader</code>
-                  vs <code class="inline-code">PdfWriter</code>), ce qui &eacute;vite de relancer toute la base de tests d&rsquo;une
+                  ), ce qui &eacute;vite de relancer toute la base de tests d&rsquo;une
                   d&eacute;pendance quand seule une de ses fonctions est impact&eacute;e par un changement d&rsquo;API. Le format JSON
                   a &eacute;t&eacute; choisi pour &ecirc;tre charg&eacute; nativement par Python via <code class="inline-code">json.load</code>,
                   sans d&eacute;pendance suppl&eacute;mentaire dans le script consommateur.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-red">générer les suites unittest</span>, j’ai écrit un script qui prend une dépendance en argument, charge le JSON et construit dynamiquement une unittest.TestSuite à partir des entrées du fichier. Chaque triplet (fichier, class, method) est utilisé pour importer dynamiquement le module avec importlib, récupérer la classe de test via getattr, puis générer une classe de test dédiée afin d’isoler chaque méthode avant de l’ajouter à la suite
+                  Pour <span class="sf-t4b">exporter automatiquement l&rsquo;audit au format JSON</span>, j&rsquo;ai ajout&eacute; &agrave; mon
+                  script LibCST une &eacute;tape finale qui &eacute;crit via <code class="inline-code">json.dump</code> le dictionnaire
+                  des d&eacute;pendances, de leurs appels et des tests associ&eacute;s dans un fichier
+                  <code class="inline-code">test_dependencies.json</code>. Le choix du JSON tient &agrave; trois raisons concr&egrave;tes&nbsp;:
+                  Python le lit nativement via <code class="inline-code">json.load</code> sans d&eacute;pendance suppl&eacute;mentaire
+                  dans le script qui s&rsquo;en sert, le format reste lisible par un humain (utile pour relire visuellement la
+                  <strong>Trace n&deg;4</strong> avant de lancer une suite ou ajouter manuellement un test), et il peut &ecirc;tre
+                  versionn&eacute; dans Git pour suivre l&rsquo;&eacute;volution du plan de tests &agrave; mesure que le code &eacute;volue.
+                  Chaque entr&eacute;e terminale visible dans les <strong>cadres jaunes</strong> suit un contrat minimal
+                  <code class="inline-code">{fichier, class, method}</code>&nbsp;: exactement ce que la fonction
+                  <code class="inline-code">build_test_class()</code> c&ocirc;t&eacute; lancement des tests
+                  (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) attend pour construire la
+                  classe de test dynamique. Ce passage par un fichier interm&eacute;diaire permet de relancer l&rsquo;audit et le
+                  lancement des tests ind&eacute;pendamment, et d&rsquo;ins&eacute;rer entre les deux une &eacute;tape de relecture manuelle
+                  de la liste de tests.
                 </p>
               </v-col>
             </v-row>
@@ -331,9 +345,13 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-red">Utiliser <a href="https://libcst.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer"><span class="code-tag">LibCST</span></a> pour d&eacute;tecter les usages de d&eacute;pendances</span> (<a href="#" class="trace-link" @click.prevent="tab = 't1'">Trace n&deg;1</a>) : rep&eacute;rer automatiquement les appels externes.</li>
-                <li><span class="sf-red">Lire un fichier <span class="code-tag">.coverage</span> avec l&rsquo;API <a href="https://coverage.readthedocs.io/" target="_blank" rel="noopener noreferrer"><span class="code-tag">coverage.py</span></a></span> : relier appels et tests pour cibler ceux &agrave; rejouer.</li>
+                <li><span class="sf-t1a">Utiliser <a href="https://libcst.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer"><span class="code-tag">LibCST</span></a> pour d&eacute;tecter les usages de d&eacute;pendances</span> (<a href="#" class="trace-link" @click.prevent="tab = 't1'">Trace n&deg;1</a>) : rep&eacute;rer automatiquement les appels externes.</li>
+                <li><span class="sf-t1b">Lire un fichier <span class="code-tag">.coverage</span> avec l&rsquo;API <a href="https://coverage.readthedocs.io/" target="_blank" rel="noopener noreferrer"><span class="code-tag">coverage.py</span></a></span> : relier appels et tests pour cibler ceux &agrave; rejouer.</li>
               </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte : </span>
+                Pour pr&eacute;parer la migration EzGED vers Python&nbsp;3.13, je devais savoir pr&eacute;cis&eacute;ment <em>o&ugrave;</em> chaque d&eacute;pendance externe &eacute;tait appel&eacute;e dans le code et <em>quels appels &eacute;taient d&eacute;j&agrave; couverts</em> par des tests. J&rsquo;ai combin&eacute; <span class="code-tag">LibCST</span> (parcours du code sans l&rsquo;ex&eacute;cuter) et l&rsquo;API <span class="code-tag">coverage.py</span> (lecture du fichier <code class="inline-code">.coverage</code> produit par pytest) pour g&eacute;n&eacute;rer un rapport HTML unique qui liste chaque appel avec son statut <code class="inline-code">TESTE</code>/<code class="inline-code">NON TESTE</code>.
+              </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage : </span>
                 D&eacute;couvert pendant le stage. Je n&rsquo;avais jamais fait d&rsquo;analyse statique ni utilis&eacute; de CST avant, j&rsquo;ai appris <span class="code-tag">LibCST</span> et <span class="code-tag">coverage.py</span> via la documentation officielle.
@@ -344,7 +362,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Moyen. Je sais maintenant <span class="sf-red">utiliser <span class="code-tag">LibCST</span></span> pour rep&eacute;rer des appels et <span class="sf-red">lire un <span class="code-tag">.coverage</span></span> pour relier code et tests.
+                Moyen. Je sais maintenant <span class="sf-t1a">utiliser <span class="code-tag">LibCST</span></span> pour rep&eacute;rer des appels et <span class="sf-t1b">lire un <span class="code-tag">.coverage</span></span> pour relier code et tests.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
@@ -363,14 +381,18 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-red">Charger dynamiquement un module Python avec <a href="https://docs.python.org/3/library/importlib.html" target="_blank" rel="noopener noreferrer"><span class="code-tag">importlib</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) : importer un module depuis un chemin JSON.</li>
-                <li><span class="sf-red">G&eacute;n&eacute;rer des classes de tests &agrave; la vol&eacute;e avec <span class="code-tag">type()</span></span> (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) : cr&eacute;er une classe cibl&eacute;e et ne garder qu&rsquo;une m&eacute;thode.</li>
-                <li><span class="sf-red">Concevoir une structure <span class="code-tag">JSON</span> hi&eacute;rarchis&eacute;e</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : lier d&eacute;pendance, appel et tests.</li>
-                <li><span class="sf-red">G&eacute;n&eacute;rer des suites <span class="code-tag">unittest</span> depuis le JSON</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : construire une suite compatible <span class="code-tag">unittest</span> / <span class="code-tag">pytest</span>.</li>
+                <li><span class="sf-t3a">Charger dynamiquement un module Python avec <a href="https://docs.python.org/3/library/importlib.html" target="_blank" rel="noopener noreferrer"><span class="code-tag">importlib</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) : importer un module depuis un chemin JSON.</li>
+                <li><span class="sf-t3b">G&eacute;n&eacute;rer des classes de tests &agrave; la vol&eacute;e avec <span class="code-tag">type()</span></span> (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) : cr&eacute;er une classe cibl&eacute;e et ne garder qu&rsquo;une m&eacute;thode.</li>
+                <li><span class="sf-t4a">Concevoir une structure <span class="code-tag">JSON</span> hi&eacute;rarchis&eacute;e</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : lier d&eacute;pendance, appel et tests.</li>
+                <li><span class="sf-t4b">Exporter l&rsquo;audit <span class="code-tag">LibCST</span> au format <span class="code-tag">JSON</span> pivot</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : d&eacute;coupler l&rsquo;analyse statique de l&rsquo;ex&eacute;cuteur de tests via un fichier &eacute;changeable.</li>
               </ul>
               <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte : </span>
+                La base de tests d&rsquo;EzGED est tr&egrave;s longue &agrave; rejouer enti&egrave;rement &agrave; chaque mont&eacute;e de version. J&rsquo;ai donc con&ccedil;u un workflow pilot&eacute; par un fichier JSON&nbsp;: mon script LibCST exporte la liste des tests pertinents par d&eacute;pendance et par appel, puis <code class="inline-code">test_dependencies.py</code> construit dynamiquement (via <span class="code-tag">importlib</span> + <span class="code-tag">type()</span>) uniquement les classes de tests qui couvrent les appels impact&eacute;s par la mise &agrave; jour.
+              </p>
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage : </span>
-                En cours, nous avions vu les tests unitaires et d&rsquo;int&eacute;gration, mais pas les suites dynamiques. J&rsquo;avais vu les mocks seulement en Java, jamais en Python, et je n&rsquo;avais jamais utilis&eacute; <span class="code-tag">pytest</span>. <span class="code-tag">importlib</span> et le reste ont &eacute;t&eacute; appris pendant le stage, via la documentation officielle.
+                En cours, nous avions vu les tests unitaires et d&rsquo;int&eacute;gration uniquement en Java, et les mocks aussi uniquement en Java, jamais en Python. Les suites dynamiques n&rsquo;avaient pas &eacute;t&eacute; abord&eacute;es et je n&rsquo;avais jamais utilis&eacute; <span class="code-tag">pytest</span>. <span class="code-tag">importlib</span> et la m&eacute;ta-programmation avec <span class="code-tag">type()</span> ont &eacute;t&eacute; appris pendant le stage via la documentation officielle.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Difficult&eacute; :</span>
@@ -378,7 +400,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Moyen &agrave; bon. Je sais maintenant <span class="sf-red">utiliser <span class="code-tag">importlib</span></span> et <span class="sf-red">g&eacute;n&eacute;rer des classes avec <span class="code-tag">type()</span></span> pour construire des tests cibl&eacute;s. Je garde la compatibilit&eacute; <span class="sf-red"><span class="code-tag">unittest</span> / <span class="code-tag">pytest</span></span> et je rejoue seulement les tests utiles.
+                Moyen &agrave; bon. Je sais maintenant <span class="sf-t3a">utiliser <span class="code-tag">importlib</span></span> et <span class="sf-t3b">g&eacute;n&eacute;rer des classes avec <span class="code-tag">type()</span></span> pour construire des tests cibl&eacute;s, <span class="sf-t4a">concevoir une structure <span class="code-tag">JSON</span> hi&eacute;rarchis&eacute;e</span> et <span class="sf-t4b">l&rsquo;exporter depuis l&rsquo;audit <span class="code-tag">LibCST</span></span> pour servir de pivot entre les deux scripts et je rejoue seulement les tests utiles.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
@@ -397,10 +419,14 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-red">Comprendre et utiliser un <span class="code-tag">pyproject.toml</span> avec <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer"><span class="code-tag">uv</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't2'">Trace n&deg;2</a>) : lire la configuration et refaire un environnement propre.</li>
-                <li><span class="sf-red">Configurer <a href="https://deptry.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">deptry</span></a> pour &eacute;viter les faux positifs</span> (<a href="#" class="trace-link" @click.prevent="tab = 't2'">Trace n&deg;2</a>) : s&eacute;parer modules internes et d&eacute;pendances externes.</li>
-                <li><span class="sf-red">Lire un fichier <span class="code-tag">.coverage</span> avec <a href="https://coverage.readthedocs.io/" target="_blank" rel="noopener noreferrer"><span class="code-tag">coverage.py</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't1'">Trace n&deg;1</a>) : relier les lignes aux tests couverts.</li>
+                <li><span class="sf-t2a">Comprendre et utiliser un <span class="code-tag">pyproject.toml</span> avec <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer"><span class="code-tag">uv</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't2'">Trace n&deg;2</a>) : lire la configuration et refaire un environnement propre.</li>
+                <li><span class="sf-t2b">Configurer <a href="https://deptry.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">deptry</span></a> pour &eacute;viter les faux positifs</span> (<a href="#" class="trace-link" @click.prevent="tab = 't2'">Trace n&deg;2</a>) : s&eacute;parer modules internes et d&eacute;pendances externes.</li>
+                <li><span class="sf-t1b">Lire un fichier <span class="code-tag">.coverage</span> avec <a href="https://coverage.readthedocs.io/" target="_blank" rel="noopener noreferrer"><span class="code-tag">coverage.py</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't1'">Trace n&deg;1</a>) : relier les lignes aux tests couverts.</li>
               </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte : </span>
+                Sur le projet EzGED h&eacute;rit&eacute;, j&rsquo;ai migr&eacute; la gestion des d&eacute;pendances vers un <code class="inline-code">pyproject.toml</code> pilot&eacute; par <span class="code-tag">uv</span> pour reproduire un environnement propre en quelques secondes, configur&eacute; <span class="code-tag">deptry</span> pour ne pas confondre les modules internes du projet avec des d&eacute;pendances externes, et exploit&eacute; <span class="code-tag">coverage.py</span> pour relier code et tests dans mes rapports d&rsquo;audit.
+              </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage : </span>
                 Sujet pas vu en cours. Avant le stage, je travaillais en <code class="inline-code">pip</code> + <code class="inline-code">venv</code> manuel, sans <span class="code-tag">pyproject.toml</span> ni gestionnaire moderne. <span class="code-tag">uv</span> m'a &eacute;t&eacute; confi&eacute; d&egrave;s le premier jour.
@@ -411,7 +437,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Bon. Je sais <span class="sf-red">utiliser un <span class="code-tag">pyproject.toml</span> avec <span class="code-tag">uv</span></span>, <span class="sf-red">configurer <span class="code-tag">deptry</span></span> et <span class="sf-red">lire un <span class="code-tag">.coverage</span></span> pour suivre la couverture. Je peux reprendre cette configuration sur un autre projet.
+                Bon. Je sais <span class="sf-t2a">utiliser un <span class="code-tag">pyproject.toml</span> avec <span class="code-tag">uv</span></span>, <span class="sf-t2b">configurer <span class="code-tag">deptry</span></span> et <span class="sf-t1b">lire un <span class="code-tag">.coverage</span></span> pour suivre la couverture. Je peux reprendre cette configuration sur un autre projet.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
@@ -720,10 +746,14 @@ function getDiffColorHex(difficulte) {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.sf-red {
-  color: #ff5252;
-  font-weight: 600;
-}
+.sf-t1a { color: #ff5252; font-weight: 600; }
+.sf-t1b { color: #ffa726; font-weight: 600; }
+.sf-t2a { color: #ffd740; font-weight: 600; }
+.sf-t2b { color: #69f0ae; font-weight: 600; }
+.sf-t3a { color: #00bcd4; font-weight: 600; }
+.sf-t3b { color: #42a5f5; font-weight: 600; }
+.sf-t4a { color: #ab47bc; font-weight: 600; }
+.sf-t4b { color: #ff80ab; font-weight: 600; }
 .g-row {
   row-gap: 12px;
 }

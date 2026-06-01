@@ -34,8 +34,8 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="success" size="small" class="ma-1">Configurer un pipeline CI/CD GitLab pour ex&eacute;cuter Renovate</v-chip>
-              <v-chip color="success" size="small" class="ma-1">Param&eacute;trer Renovate via le fichier renovate.json</v-chip>
+              <v-chip color="#80cbc4" size="small" class="ma-1">Configurer un pipeline CI/CD GitLab pour ex&eacute;cuter Renovate</v-chip>
+              <v-chip color="#b39ddb" size="small" class="ma-1">Param&eacute;trer Renovate via le fichier renovate.json</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -73,13 +73,13 @@
                   pipeline planifi&eacute;.
                 </p>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-green">configurer le pipeline CI/CD</span>, j&rsquo;ai d&ucirc; comprendre comment GitLab
+                  Pour <span class="sf-t5a">configurer le pipeline CI/CD</span>, j&rsquo;ai d&ucirc; comprendre comment GitLab
                   ex&eacute;cute un job conteneuris&eacute; et comment lui transmettre des secrets via des variables masqu&eacute;es.
                   Le token GitLab autorise Renovate &agrave; cr&eacute;er les Merge Requests, le token GitHub permet de r&eacute;cup&eacute;rer
                   les changelogs et notes de version utilis&eacute;s dans le rapport.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-green">param&eacute;trer Renovate</span>, je me suis appuy&eacute; sur la documentation
+                  Pour <span class="sf-t5b">param&eacute;trer Renovate</span>, je me suis appuy&eacute; sur la documentation
                   officielle du fichier <code class="inline-code">renovate.json</code> afin de regrouper toutes les d&eacute;pendances
                   Python en une seule Merge Request plut&ocirc;t qu&rsquo;une par paquet, ce qui rend les mises &agrave; jour bien plus
                   exploitables dans le contexte d&rsquo;EzGED o&ugrave; les d&eacute;pendances sont fortement interconnect&eacute;es.
@@ -97,8 +97,8 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="success" size="small" class="ma-1">Croiser les indicateurs Age et Confidence pour &eacute;valuer la stabilit&eacute; d&rsquo;une mise &agrave; jour</v-chip>
-              <v-chip color="success" size="small" class="ma-1">&Eacute;valuer la pertinence d&rsquo;une mise &agrave; jour de d&eacute;pendance avant validation</v-chip>
+              <v-chip color="#e6ee9c" size="small" class="ma-1">Croiser les indicateurs Age et Confidence pour &eacute;valuer la stabilit&eacute; d&rsquo;une mise &agrave; jour</v-chip>
+              <v-chip color="#ffab40" size="small" class="ma-1">&Eacute;valuer la pertinence d&rsquo;une mise &agrave; jour de d&eacute;pendance avant validation</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -132,7 +132,7 @@
                   les propositions (Dependency Dashboard + MR &agrave; valider).
                 </p>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-green">&eacute;valuer la pertinence d&rsquo;une mise &agrave; jour de d&eacute;pendance avant validation</span>, je ne me contente
+                  Pour <span class="sf-t6b">&eacute;valuer la pertinence d&rsquo;une mise &agrave; jour de d&eacute;pendance avant validation</span>, je ne me contente
                   pas du contenu brut de la MR&nbsp;: j&rsquo;ex&eacute;cute mon script d&rsquo;audit LibCST
                   (<a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't1' } })">Trace n&deg;1</a>) sur la branche
                   <code class="inline-code">renovate/major-...</code> avant fusion. Le rapport HTML produit me r&eacute;pond &agrave; trois
@@ -144,7 +144,7 @@
                   exactement quels modules relire et quels tests rejouer avant d&rsquo;accepter la fusion.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-green">interpr&eacute;ter le rapport</span>, je <span class="sf-green">croise les colonnes Age et Confidence</span> afin de prioriser les mont&eacute;es.
+                  Pour <span class="sf-t6a">interpr&eacute;ter le rapport</span>, je <span class="sf-t6a">croise les colonnes Age et Confidence</span> afin de prioriser les mont&eacute;es.
                   Une mise &agrave; jour <code class="inline-code">Confidence: high</code> avec un <code class="inline-code">Age</code>
                   significatif (ex.&nbsp;<code class="inline-code">certifi</code>, 23j, high) est consid&eacute;r&eacute;e comme stable
                   et fusionnable rapidement. Une mise &agrave; jour <code class="inline-code">Confidence: low</code> ou tr&egrave;s r&eacute;cente
@@ -166,9 +166,9 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="success" size="small" class="ma-1">Isoler le d&eacute;veloppement sur une branche Git d&eacute;di&eacute;e</v-chip>
-              <v-chip color="success" size="small" class="ma-1">D&eacute;couper le travail en commits courts et explicites</v-chip>
-              <v-chip color="success" size="small" class="ma-1">Pr&eacute;parer l&rsquo;int&eacute;gration du travail via une Merge Request GitLab</v-chip>
+              <v-chip color="#4fc3f7" size="small" class="ma-1">Isoler le d&eacute;veloppement sur une branche Git d&eacute;di&eacute;e</v-chip>
+              <v-chip color="#f48fb1" size="small" class="ma-1">D&eacute;couper le travail en commits courts et explicites</v-chip>
+              <v-chip color="#a5d6a7" size="small" class="ma-1">Pr&eacute;parer l&rsquo;int&eacute;gration du travail via une Merge Request GitLab</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -197,7 +197,7 @@
                   d&rsquo;analyse doit &ecirc;tre trac&eacute;e et int&eacute;gr&eacute;e proprement au projet d&rsquo;entreprise.
                 </p>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-green">isoler le d&eacute;veloppement sur une branche Git d&eacute;di&eacute;e</span>, j&rsquo;ai cr&eacute;&eacute;
+                  Pour <span class="sf-t7a">isoler le d&eacute;veloppement sur une branche Git d&eacute;di&eacute;e</span>, j&rsquo;ai cr&eacute;&eacute;
                   la branche <code class="inline-code">gestions_deps</code> depuis la branche principale d&rsquo;EzGED avec la
                   commande <code class="inline-code">git checkout -b gestions_deps</code>. Tous mes scripts (analyse des
                   d&eacute;pendances, rendu HTML, g&eacute;n&eacute;ration de tests) sont commit&eacute;s sur cette branche, ce qui permet
@@ -206,7 +206,7 @@
                   interviennent en parall&egrave;le.
                 </p>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-green">d&eacute;couper le travail en commits courts et explicites</span>, je segmente mes
+                  Pour <span class="sf-t7b">d&eacute;couper le travail en commits courts et explicites</span>, je segmente mes
                   d&eacute;veloppements en petites unit&eacute;s coh&eacute;rentes, chacune accompagn&eacute;e d&rsquo;un message clair. La trace
                   en montre trois cons&eacute;cutifs&nbsp;: un commit pour le nouveau rendu du fichier
                   <code class="inline-code">test_dependencies.json</code>, un autre pour le d&eacute;but du filtre HTML, puis celui
@@ -215,7 +215,7 @@
                   l&rsquo;identification pr&eacute;cise du moment o&ugrave; une modification a &eacute;t&eacute; introduite.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-green">pr&eacute;parer l&rsquo;int&eacute;gration via une Merge Request GitLab</span>, j&rsquo;utilise le
+                  Pour <span class="sf-t7c">pr&eacute;parer l&rsquo;int&eacute;gration via une Merge Request GitLab</span>, j&rsquo;utilise le
                   bouton <em>Create merge request</em> une fois la branche stable. La merge request regroupe l&rsquo;ensemble des
                   commits de <code class="inline-code">gestions_deps</code> en une demande d&rsquo;int&eacute;gration unique, accompagn&eacute;e
                   d&rsquo;une description du travail r&eacute;alis&eacute;. Elle constitue le point de contr&ocirc;le obligatoire avant la
@@ -234,8 +234,8 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="success" size="small" class="ma-1">Mod&eacute;liser un algorithme complexe sous forme de sch&eacute;ma fonctionnel</v-chip>
-              <v-chip color="success" size="small" class="ma-1">Documenter visuellement une solution technique pour la rendre lisible par l&rsquo;&eacute;quipe</v-chip>
+              <v-chip color="#9fa8da" size="small" class="ma-1">Mod&eacute;liser un algorithme complexe sous forme de sch&eacute;ma fonctionnel</v-chip>
+              <v-chip color="#ff8a65" size="small" class="ma-1">Choisir une forme adapt&eacute;e &agrave; chaque &eacute;tape du sch&eacute;ma (losange pour un choix, rectangle arrondi pour d&eacute;but/fin, rectangle pour une action)</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -270,8 +270,8 @@
                     </li>
                     <li class="mb-1">
                       <strong>Cadres jaunes</strong> : la triple boucle imbriqu&eacute;e qui constitue le c&oelig;ur du parcours du JSON.
-                      Pour chaque <em>librairie</em>, on parcourt chacune de ses <em>fonctions</em>, puis pour chaque fonction
-                      chacun de ses <em>tests</em>.
+                      Pour chaque <em>librairie</em>, on parcourt chacun de ses <em>appels de fonctions</em>, puis pour chaque
+                      appel de fonction chacun de ses <em>tests</em>.
                     </li>
                     <li class="mb-1">
                       <strong>Cadre bleu</strong> : sous-routine de cr&eacute;ation dynamique d&rsquo;une classe de test
@@ -293,21 +293,28 @@
                   </p>
                 </div>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-green">mod&eacute;liser l&rsquo;algorithme sous forme de sch&eacute;ma fonctionnel</span>, j&rsquo;ai
-                  choisi une symbologie standard&nbsp;: rectangles arrondis pour le d&eacute;but/fin, losanges pour les d&eacute;cisions
-                  et rectangles pour les actions. Les trois losanges jaunes mat&eacute;rialisent visuellement la
-                  <em>triple boucle imbriqu&eacute;e</em> (libs, puis fonctions, puis tests) qui serait p&eacute;nible &agrave;
-                  reconstituer mentalement depuis le code seul. Le cadre bleu isole &agrave; part la sous-routine de cr&eacute;ation
-                  dynamique pour qu&rsquo;elle se lise comme un bloc, ce qui correspond &agrave; la fonction
-                  <code class="inline-code">build_test_class</code> du code.
+                  Pour <span class="sf-t8a">mod&eacute;liser l&rsquo;algorithme sous forme de sch&eacute;ma fonctionnel</span>, j&rsquo;ai
+                  d&eacute;compos&eacute; le code en blocs logiques&nbsp;: les trois <strong>losanges jaunes</strong> mat&eacute;rialisent la
+                  <em>triple boucle imbriqu&eacute;e</em> (libs, puis appels de fonctions, puis tests) qui serait p&eacute;nible
+                  &agrave; reconstituer mentalement depuis le code seul, et le <strong>cadre bleu</strong> isole &agrave; part la
+                  sous-routine de cr&eacute;ation dynamique pour qu&rsquo;elle se lise comme un bloc, ce qui correspond &agrave; la fonction
+                  <code class="inline-code">build_test_class</code> du code. Les <strong>cercles rouges</strong> attirent
+                  l&rsquo;&oelig;il sur les transitions cl&eacute;s (<em>Oui / Non / Termin&eacute;</em>) qui d&eacute;cident si un test
+                  est rejou&eacute; ou ignor&eacute;. Le but est qu&rsquo;un d&eacute;veloppeur de l&rsquo;&eacute;quipe puisse comprendre le
+                  fonctionnement du script <strong>sans lire le code</strong>, ce qui en facilite la revue, la maintenance
+                  et l&rsquo;int&eacute;gration dans le pipeline GitLab.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-green">documenter visuellement la solution</span>, j&rsquo;ai veill&eacute; &agrave; ce que le
-                  sch&eacute;ma soit autonome&nbsp;: chaque branche est l&eacute;gend&eacute;e (<em>Il y en a une / Termin&eacute; / Oui /
-                  Non</em>) et les cercles rouges attirent l&rsquo;&oelig;il sur les conditions de filtrage qui d&eacute;cident si
-                  un test est rejou&eacute; ou ignor&eacute;. Le but est qu&rsquo;un d&eacute;veloppeur de l&rsquo;&eacute;quipe puisse comprendre
-                  le fonctionnement du script <strong>sans lire le code</strong>, ce qui en facilite la revue, la maintenance
-                  et l&rsquo;int&eacute;gration dans le pipeline GitLab.
+                  Pour <span class="sf-t8b">choisir une forme adapt&eacute;e &agrave; chaque &eacute;tape</span>, je me suis appuy&eacute; sur
+                  les formes habituelles des sch&eacute;mas, que n&rsquo;importe quel d&eacute;veloppeur reconna&icirc;t tout de suite&nbsp;:
+                  un <strong>losange</strong> pour chaque <em>choix</em> du script (&laquo;&nbsp;Librairie ignor&eacute;e par les
+                  options&nbsp;?&nbsp;&raquo;, &laquo;&nbsp;Fonction ignor&eacute;e par les options&nbsp;?&nbsp;&raquo;,
+                  &laquo;&nbsp;Il y en a une&nbsp;?&nbsp;&raquo;), un <strong>rectangle arrondi</strong> pour le
+                  <em>d&eacute;but</em> (<em>Lancement du script</em>) et la <em>fin</em> (<em>FIN</em>), et un
+                  <strong>rectangle simple</strong> pour chaque <em>action</em> (<em>Charger le fichier importlib</em>,
+                  <em>Cr&eacute;er la classe unique type()</em>, <em>Enregistrer la classe de test dynamique dans globals()</em>).
+                  Comme la forme indique d&eacute;j&agrave; le r&ocirc;le du bloc, le sch&eacute;ma se lit sans avoir besoin d&rsquo;une
+                  l&eacute;gende &agrave; c&ocirc;t&eacute;.
                 </p>
               </v-col>
             </v-row>
@@ -325,11 +332,15 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-green">Configurer un pipeline CI/CD <a href="https://docs.gitlab.com/ee/ci/" target="_blank" rel="noopener noreferrer"><span class="code-tag">GitLab</span></a> pour ex&eacute;cuter <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">Renovate</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't5'">Trace n&deg;5</a>, <a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : automatiser la veille des d&eacute;pendances.</li>
+                <li><span class="sf-t5a">Configurer un pipeline CI/CD <a href="https://docs.gitlab.com/ee/ci/" target="_blank" rel="noopener noreferrer"><span class="code-tag">GitLab</span></a> pour ex&eacute;cuter <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">Renovate</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't5'">Trace n&deg;5</a>, <a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : automatiser la veille des d&eacute;pendances.</li>
               </ul>
               <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte :</span>
+                J&rsquo;ai mis en place sur le GitLab interne d&rsquo;EzDEV (<code class="inline-code">gitlab.ezdev.fr</code>) un pipeline planifi&eacute; qui ex&eacute;cute <span class="code-tag">Renovate</span> de fa&ccedil;on hebdomadaire pour d&eacute;tecter automatiquement les mises &agrave; jour disponibles des d&eacute;pendances Python d&rsquo;EzGED, sans intervention manuelle de l&rsquo;&eacute;quipe.
+              </p>
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
-                Appris via les docs <span class="code-tag">GitLab CI/CD</span> et <span class="code-tag">Renovate</span>. J&rsquo;utilisais d&eacute;j&agrave; <span class="code-tag">GitLab</span> pour les MR, pas pour la CI/CD.
+                En cours, au semestre 2, nous avions vu comment utiliser <span class="code-tag">GitLab</span> pour g&eacute;rer du code, mais pas la partie CI/CD. J&rsquo;ai donc appris cette partie pendant le stage via les documentations officielles <span class="code-tag">GitLab CI/CD</span> et <span class="code-tag">Renovate</span>.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Difficult&eacute; :</span>
@@ -337,7 +348,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Bon. Je sais <span class="sf-green">configurer un pipeline CI/CD <span class="code-tag">GitLab</span></span> pour automatiser <span class="code-tag">Renovate</span>. Je n&rsquo;ai pas encore abord&eacute; les pipelines complexes.
+                Bon. Je sais <span class="sf-t5a">configurer un pipeline CI/CD <span class="code-tag">GitLab</span></span> pour automatiser <span class="code-tag">Renovate</span>. Je n&rsquo;ai pas encore abord&eacute; les pipelines complexes.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
@@ -356,10 +367,14 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-green">Param&eacute;trer <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">Renovate</span></a> via <code class="inline-code">renovate.json</code></span> (<a href="#" class="trace-link" @click.prevent="tab = 't5'">Trace n&deg;5</a>) : regrouper les mises &agrave; jour et garder un contr&ocirc;le manuel.</li>
-                <li><span class="sf-green">Croiser Age et Confidence</span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : &eacute;valuer la stabilit&eacute; d&rsquo;une mise &agrave; jour.</li>
-                <li><span class="sf-green">Auditer une Merge Request automatique avant validation</span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : croiser la veille avec un audit du code (LibCST) pour d&eacute;cider en connaissance de cause.</li>
+                <li><span class="sf-t5b">Param&eacute;trer <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">Renovate</span></a> via <code class="inline-code">renovate.json</code></span> (<a href="#" class="trace-link" @click.prevent="tab = 't5'">Trace n&deg;5</a>) : regrouper les mises &agrave; jour et garder un contr&ocirc;le manuel.</li>
+                <li><span class="sf-t6a">Croiser Age et Confidence</span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : &eacute;valuer la stabilit&eacute; d&rsquo;une mise &agrave; jour.</li>
+                <li><span class="sf-t6b">Auditer une Merge Request automatique avant validation</span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : croiser la veille avec un audit du code (LibCST) pour d&eacute;cider en connaissance de cause.</li>
               </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte :</span>
+                J&rsquo;ai param&eacute;tr&eacute; <span class="code-tag">Renovate</span> pour produire des Merge Requests group&eacute;es par &laquo;&nbsp;Toutes les d&eacute;pendances Python&nbsp;&raquo; plut&ocirc;t qu&rsquo;une MR par paquet, et activ&eacute; le <em>Dependency Dashboard</em>. J&rsquo;utilise ensuite les colonnes <em>Age</em>/<em>Confidence</em> pour prioriser les mises &agrave; jour &agrave; valider, et je croise avec mon audit LibCST (<a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't1' } })">Trace n&deg;1</a>) avant de fusionner.
+              </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
                 D&eacute;couvert pendant le stage. J&rsquo;ai &eacute;tudi&eacute; <span class="code-tag">Dependabot</span> puis choisi <span class="code-tag">Renovate</span> pour GitLab, via la documentation officielle.
@@ -370,7 +385,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Bon. Je sais <span class="sf-green">configurer <span class="code-tag">Renovate</span></span> et <span class="sf-green">lire son rapport</span> pour prioriser les mises &agrave; jour. Je n&rsquo;ai pas encore explor&eacute; les options avanc&eacute;es.
+                Bon. Je sais <span class="sf-t5b">configurer <span class="code-tag">Renovate</span></span> et <span class="sf-t6a">lire son rapport</span> pour prioriser les mises &agrave; jour. Je n&rsquo;ai pas encore explor&eacute; les options avanc&eacute;es.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
@@ -389,13 +404,17 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-green">Isoler le d&eacute;veloppement sur une branche d&eacute;di&eacute;e</span> (<a href="#" class="trace-link" @click.prevent="tab = 't7'">Trace n&deg;7</a>) : travailler sans bloquer l&rsquo;&eacute;quipe.</li>
-                <li><span class="sf-green">D&eacute;couper le travail en commits courts et explicites</span> : garder un historique clair.</li>
-                <li><span class="sf-green">Pr&eacute;parer l&rsquo;int&eacute;gration via une Merge Request <span class="code-tag">GitLab</span></span> : faire valider le travail avant fusion.</li>
+                <li><span class="sf-t7a">Isoler le d&eacute;veloppement sur une branche d&eacute;di&eacute;e</span> (<a href="#" class="trace-link" @click.prevent="tab = 't7'">Trace n&deg;7</a>) : travailler sans bloquer l&rsquo;&eacute;quipe.</li>
+                <li><span class="sf-t7b">D&eacute;couper le travail en commits courts et explicites</span> : garder un historique clair.</li>
+                <li><span class="sf-t7c">Pr&eacute;parer l&rsquo;int&eacute;gration via une Merge Request <span class="code-tag">GitLab</span></span> : faire valider le travail avant fusion.</li>
               </ul>
               <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte :</span>
+                Tous mes d&eacute;veloppements sur EzGED (script LibCST, rendu HTML, g&eacute;n&eacute;ration de tests, automatisation de mont&eacute;e de version&hellip;) ont &eacute;t&eacute; faits sur la branche d&eacute;di&eacute;e <code class="inline-code">gestions_deps</code>, d&eacute;coup&eacute;s en commits courts et int&eacute;gr&eacute;s &agrave; la branche principale via Merge Request. Cette discipline a permis &agrave; l&rsquo;&eacute;quipe de continuer &agrave; faire &eacute;voluer le code en parall&egrave;le sans interf&eacute;rence avec mes d&eacute;veloppements.
+              </p>
+              <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
-                Les bases <span class="code-tag">Git</span> &eacute;taient vues en cours. Le stage m&rsquo;a apport&eacute; la rigueur quotidienne (branches, messages, MR).
+                Les bases de <span class="code-tag">Git</span> ont &eacute;t&eacute; vues en cours au semestre 2. Le stage m&rsquo;a apport&eacute; la rigueur du quotidien&nbsp;: branches d&eacute;di&eacute;es, messages clairs, passage syst&eacute;matique par une Merge Request.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Difficult&eacute; :</span>
@@ -403,7 +422,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Bon. Je sais <span class="sf-green">travailler en branche</span>, <span class="sf-green">committer proprement</span> et <span class="sf-green">passer par une MR</span>. Je n&rsquo;ai pas encore g&eacute;r&eacute; de cas complexes (rebase, conflits multi-auteurs).
+                Bon. Je sais <span class="sf-t7a">travailler en branche</span>, <span class="sf-t7b">committer proprement</span> et <span class="sf-t7c">passer par une MR</span>. Je n&rsquo;ai pas encore g&eacute;r&eacute; de cas complexes (rebase, conflits multi-auteurs).
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
@@ -422,9 +441,13 @@
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-green">Mod&eacute;liser un algorithme complexe sous forme de sch&eacute;ma fonctionnel</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : rendre visible une triple boucle imbriqu&eacute;e + une sous-routine de cr&eacute;ation dynamique.</li>
-                <li><span class="sf-green">Documenter visuellement une solution technique</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : produire un sch&eacute;ma autonome lisible par l&rsquo;&eacute;quipe sans relire le code.</li>
+                <li><span class="sf-t8a">Mod&eacute;liser un algorithme complexe sous forme de sch&eacute;ma fonctionnel</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : rendre visible une triple boucle imbriqu&eacute;e + une sous-routine de cr&eacute;ation dynamique.</li>
+                <li><span class="sf-t8b">Choisir une forme adapt&eacute;e &agrave; chaque &eacute;tape</span> (<a href="#" class="trace-link" @click.prevent="tab = 't8'">Trace n&deg;8</a>) : losange pour un choix, rectangle arrondi pour le d&eacute;but/la fin, rectangle pour une action.</li>
               </ul>
+              <p class="text-body-2 mb-3">
+                <span class="sf-label">Contexte :</span>
+                Avant d&rsquo;int&eacute;grer <code class="inline-code">test_dependencies.py</code> dans la CI, je devais expliquer son fonctionnement (triple boucle imbriqu&eacute;e libs/appels/tests + g&eacute;n&eacute;ration dynamique de classes via <code class="inline-code">type()</code>). J&rsquo;ai produit un sch&eacute;ma fonctionnel qui se lit sans avoir besoin de relire le code, servant de support &agrave; la revue d&rsquo;&eacute;quipe avant int&eacute;gration.
+              </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
                 Le concept a &eacute;t&eacute; vu en cours, mais sans pratique sur un vrai outil. Le sch&eacute;ma a &eacute;t&eacute; r&eacute;alis&eacute; pour pr&eacute;senter le script <code class="inline-code">test_dependencies.py</code> &agrave; l&rsquo;&eacute;quipe sur <a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer">Canva</a>.
@@ -435,7 +458,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Bon. Je sais <span class="sf-green">choisir le bon format de documentation</span> (texte, code comment&eacute;, sch&eacute;ma) selon ce que je veux faire passer, et produire un livrable autonome.
+                Bon. Je sais <span class="sf-t8a">d&eacute;composer un algorithme en blocs lisibles</span> et <span class="sf-t8b">choisir la bonne forme pour chaque &eacute;tape</span> (texte, code comment&eacute;, sch&eacute;ma) selon ce que je veux faire passer, et produire un livrable autonome.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
@@ -739,10 +762,15 @@ function getDiffColorHex(difficulte) {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.sf-green {
-  color: #66bb6a;
-  font-weight: 600;
-}
+.sf-t5a { color: #80cbc4; font-weight: 600; }
+.sf-t5b { color: #b39ddb; font-weight: 600; }
+.sf-t6a { color: #e6ee9c; font-weight: 600; }
+.sf-t6b { color: #ffab40; font-weight: 600; }
+.sf-t7a { color: #4fc3f7; font-weight: 600; }
+.sf-t7b { color: #f48fb1; font-weight: 600; }
+.sf-t7c { color: #a5d6a7; font-weight: 600; }
+.sf-t8a { color: #9fa8da; font-weight: 600; }
+.sf-t8b { color: #ff8a65; font-weight: 600; }
 .g-row {
   row-gap: 12px;
 }
