@@ -102,7 +102,7 @@
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
               <v-chip color="#aed581" size="small" class="ma-1">Cat&eacute;goriser les anomalies de d&eacute;pendances (DEP001 manquante, DEP002 inutile, DEP003 transitive) pour prioriser les actions</v-chip>
-              <v-chip color="#ce93d8" size="small" class="ma-1">Adapter la configuration d&rsquo;un outil au projet</v-chip>
+              <v-chip color="#ce93d8" size="small" class="ma-1">Identifier le fichier source de chaque anomalie pour cibler les corrections</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -176,16 +176,14 @@
                   <code class="inline-code">DEP002</code> (nettoyage).
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-t10b">adapter la configuration d&rsquo;un outil au projet</span>, j&rsquo;ai d&rsquo;abord constat&eacute;
-                  qu&rsquo;une premi&egrave;re ex&eacute;cution de deptry produisait des centaines de faux positifs sur les modules internes
-                  d&rsquo;EzGED (<code class="inline-code">ezged</code>, <code class="inline-code">ezforms</code>,
-                  <code class="inline-code">lib</code>, <code class="inline-code">www3</code>...), car deptry les voyait comme
-                  des imports externes non d&eacute;clar&eacute;s dans <code class="inline-code">pyproject.toml</code>. J&rsquo;ai donc compl&eacute;t&eacute;
-                  la section <code class="inline-code">[tool.deptry] known_first_party</code> (voir
-                  <a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't2' } })">Trace n&deg;2</a>) en y listant
-                  ces modules internes. Le rapport visible ici en est le r&eacute;sultat&nbsp;: les 98 anomalies restantes sont toutes
-                  exploitables, ce qui m&rsquo;a permis de me concentrer sur les vrais points &agrave; comprendre et d&rsquo;avancer
-                  efficacement dans la prise en main du projet.
+                  Pour <span class="sf-t10b">identifier le fichier source de chaque anomalie</span>, j&rsquo;ai utilis&eacute;
+                  le chemin affich&eacute; en d&eacute;but de chaque ligne du rapport. Par exemple, la ligne
+                  <code class="inline-code">lib/ezbarcodereader.py: DEP001 'pyzbar'</code> me dit directement quel
+                  fichier ouvrir pour ajouter ou supprimer un import, sans avoir &agrave; chercher dans tous les
+                  dossiers du projet (316 fichiers analys&eacute;s ici). Comme chaque anomalie est rattach&eacute;e &agrave; un
+                  fichier pr&eacute;cis, je peux planifier les corrections fichier par fichier, estimer combien de
+                  modules je vais devoir modifier, et savoir tout de suite par o&ugrave; commencer (typiquement les
+                  fichiers qui accumulent plusieurs <code class="inline-code">DEP001</code>).
                 </p>
               </v-col>
             </v-row>
@@ -340,13 +338,13 @@
           <div class="mb-6">
             <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
               <div class="d-flex flex-wrap align-center justify-space-between mb-4">
-                <span class="text-body-1 font-weight-bold">Exploiter et adapter un outil d'analyse &agrave; son contexte</span>
+                <span class="text-body-1 font-weight-bold">Exploiter un rapport d&rsquo;outil d&rsquo;analyse pour passer &agrave; l&rsquo;action</span>
                 <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
                 <li><span class="sf-t9b">Interpr&eacute;ter les codes de r&egrave;gles <span class="code-tag">ruff</span> (F401, E713) et le marqueur [*]</span> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>) : exploiter la convention <em>lettre + num&eacute;ro</em> et le marqueur d&rsquo;auto-correction pour trier les erreurs.</li>
-                <li><span class="sf-t10b">Adapter la configuration d&rsquo;un outil au projet</span> (<a href="#" class="trace-link" @click.prevent="tab = 't10'">Trace n&deg;10</a>) : ajuster <span class="code-tag">deptry</span> via <code class="inline-code">pyproject.toml</code> pour &eacute;viter les faux positifs.</li>
+                <li><span class="sf-t10b">Identifier le fichier source de chaque anomalie</span> (<a href="#" class="trace-link" @click.prevent="tab = 't10'">Trace n&deg;10</a>) : utiliser le chemin affich&eacute; en t&ecirc;te de chaque ligne du rapport pour planifier les corrections fichier par fichier.</li>
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte :</span>
@@ -354,7 +352,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
-                Lecture de doc vue en cours, mais pas sur un outil complet. La configuration via <code class="inline-code">pyproject.toml</code> n&rsquo;&eacute;tait pas abord&eacute;e. J&rsquo;ai introduit <span class="code-tag">ruff</span> et <span class="code-tag">deptry</span> pour compl&eacute;ter l&rsquo;audit.
+                Lecture de doc vue en cours. La configuration via <code class="inline-code">pyproject.toml</code> n&rsquo;&eacute;tait pas abord&eacute;e. J&rsquo;ai introduit <span class="code-tag">ruff</span> et <span class="code-tag">deptry</span> pour compl&eacute;ter l&rsquo;audit.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Difficult&eacute; :</span>
@@ -362,7 +360,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Bon. Je sais <span class="sf-t9b">interpr&eacute;ter les codes de r&egrave;gles ruff</span> et <span class="sf-t10b">adapter un outil</span> &agrave; un projet pour produire un livrable clair.
+                Bon. Je sais <span class="sf-t9b">interpr&eacute;ter les codes de r&egrave;gles ruff</span> et <span class="sf-t10b">remonter d&rsquo;une anomalie au fichier concern&eacute;</span> pour produire un plan de corrections actionnable.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>

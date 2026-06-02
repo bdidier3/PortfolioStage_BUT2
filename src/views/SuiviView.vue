@@ -97,7 +97,7 @@
             </h3>
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
-              <v-chip color="#e6ee9c" size="small" class="ma-1">Croiser les indicateurs Age et Confidence pour &eacute;valuer la stabilit&eacute; d&rsquo;une mise &agrave; jour</v-chip>
+              <v-chip color="#e6ee9c" size="small" class="ma-1">Identifier les indicateurs pertinents pour &eacute;valuer la stabilit&eacute; d&rsquo;une mise &agrave; jour</v-chip>
               <v-chip color="#ffab40" size="small" class="ma-1">&Eacute;valuer la pertinence d&rsquo;une mise &agrave; jour de d&eacute;pendance avant validation</v-chip>
             </div>
 
@@ -132,26 +132,30 @@
                   les propositions (Dependency Dashboard + MR &agrave; valider).
                 </p>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-t6b">&eacute;valuer la pertinence d&rsquo;une mise &agrave; jour de d&eacute;pendance avant validation</span>, je ne me contente
-                  pas du contenu brut de la MR&nbsp;: j&rsquo;ex&eacute;cute mon script d&rsquo;audit LibCST
-                  (<a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't1' } })">Trace n&deg;1</a>) sur la branche
-                  <code class="inline-code">renovate/major-...</code> avant fusion. Le rapport HTML produit me r&eacute;pond &agrave; trois
-                  questions impossibles &agrave; trancher depuis le tableau de Renovate seul&nbsp;: <strong>o&ugrave;</strong> chaque d&eacute;pendance
-                  mise &agrave; jour est utilis&eacute;e dans EzGED (fichier + fonction parente), <strong>quels appels</strong> exacts sont
-                  concern&eacute;s par le changement (ex.&nbsp;<code class="inline-code">PyPDF2.PdfReader</code>,
-                  <code class="inline-code">requests.Session</code>), et <strong>quels tests</strong> les couvrent d&eacute;j&agrave;.
-                  Cette &eacute;tape transforme une Merge Request &laquo;&nbsp;opaque&nbsp;&raquo; en un livrable d&eacute;cidable&nbsp;: je sais
-                  exactement quels modules relire et quels tests rejouer avant d&rsquo;accepter la fusion.
+                  Pour <span class="sf-t6a">identifier les indicateurs pertinents</span> dans le tableau de la MR
+                  (<strong>cadre jaune</strong>), je m&rsquo;appuie sur deux colonnes que Renovate affiche pour chaque
+                  d&eacute;pendance&nbsp;: <code class="inline-code">Age</code> (depuis combien de jours la nouvelle version
+                  est publi&eacute;e) et <code class="inline-code">Confidence</code> (indice de fiabilit&eacute; calcul&eacute; par
+                  Renovate &agrave; partir des projets qui ont d&eacute;j&agrave; adopt&eacute; cette version). Une version r&eacute;cente
+                  avec peu de retours est risqu&eacute;e&nbsp;: <code class="inline-code">paramiko</code> &agrave; 5 jours et
+                  <code class="inline-code">Confidence: neutral</code> demande d&rsquo;attendre. &Agrave; l&rsquo;inverse, une
+                  version installant un peu de recul et largement valid&eacute;e est plus s&ucirc;re&nbsp;:
+                  <code class="inline-code">certifi</code> &agrave; 23 jours et <code class="inline-code">Confidence: high</code>
+                  peut &ecirc;tre fusionn&eacute;e rapidement. La combinaison de ces deux indicateurs me donne un signal
+                  fiable de stabilit&eacute; sans avoir &agrave; tester la version moi-m&ecirc;me.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-t6a">interpr&eacute;ter le rapport</span>, je <span class="sf-t6a">croise les colonnes Age et Confidence</span> afin de prioriser les mont&eacute;es.
-                  Une mise &agrave; jour <code class="inline-code">Confidence: high</code> avec un <code class="inline-code">Age</code>
-                  significatif (ex.&nbsp;<code class="inline-code">certifi</code>, 23j, high) est consid&eacute;r&eacute;e comme stable
-                  et fusionnable rapidement. Une mise &agrave; jour <code class="inline-code">Confidence: low</code> ou tr&egrave;s r&eacute;cente
-                  (ex.&nbsp;<code class="inline-code">paramiko</code>, 5j, neutral&nbsp;; <code class="inline-code">chardet</code>, low)
-                  signale qu&rsquo;il faut attendre des retours d&rsquo;exp&eacute;rience. Le regroupement
-                  <code class="inline-code">(major)</code> me permet d&rsquo;isoler les changements risqu&eacute;s et de lancer une
-                  v&eacute;rification manuelle via mon script LibCST avant de valider la Merge Request.
+                  Pour <span class="sf-t6b">&eacute;valuer la pertinence d&rsquo;une mise &agrave; jour avant validation</span>, je lis
+                  d&rsquo;abord le contenu de la MR&nbsp;: la liste des d&eacute;pendances modifi&eacute;es dans le
+                  <strong>cadre jaune</strong>, et surtout le suffixe <code class="inline-code">(major)</code> du titre
+                  isol&eacute; par le <strong>cadre rouge</strong>. Ce suffixe signale une mont&eacute;e majeure, donc un
+                  risque potentiel de cassure d&rsquo;API (signatures de fonctions modifi&eacute;es, fonctions supprim&eacute;es&hellip;).
+                  J&rsquo;utilise alors les onglets <em>Issues</em> et <em>Merge requests</em> du <strong>cadre bleu</strong>
+                  pour v&eacute;rifier que la MR est bien rattach&eacute;e au Dependency Dashboard et qu&rsquo;elle n&rsquo;est pas
+                  en conflit avec une autre MR ouverte. Si la mont&eacute;e est mineure et que les indicateurs Age/Confidence
+                  sont au vert, je valide directement&nbsp;; si elle est majeure, je compl&egrave;te par un audit du code
+                  (<a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't1' } })">Trace n&deg;1</a>)
+                  pour savoir quels fichiers d&rsquo;EzGED appellent r&eacute;ellement la d&eacute;pendance avant d&rsquo;accepter la fusion.
                 </p>
               </v-col>
             </v-row>
@@ -235,7 +239,7 @@
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
               <v-chip color="#9fa8da" size="small" class="ma-1">Mod&eacute;liser un algorithme complexe sous forme de sch&eacute;ma fonctionnel</v-chip>
-              <v-chip color="#ff8a65" size="small" class="ma-1">Choisir une forme adapt&eacute;e &agrave; chaque &eacute;tape du sch&eacute;ma (losange pour un choix, rectangle arrondi pour d&eacute;but/fin, rectangle pour une action)</v-chip>
+              <v-chip color="#ff8a65" size="small" class="ma-1">Choisir une forme adapt&eacute;e &agrave; chaque &eacute;tape du sch&eacute;ma</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -305,16 +309,17 @@
                   et l&rsquo;int&eacute;gration dans le pipeline GitLab.
                 </p>
                 <p class="text-body-2 mb-0">
-                  Pour <span class="sf-t8b">choisir une forme adapt&eacute;e &agrave; chaque &eacute;tape</span>, je me suis appuy&eacute; sur
-                  les formes habituelles des sch&eacute;mas, que n&rsquo;importe quel d&eacute;veloppeur reconna&icirc;t tout de suite&nbsp;:
-                  un <strong>losange</strong> pour chaque <em>choix</em> du script (&laquo;&nbsp;Librairie ignor&eacute;e par les
-                  options&nbsp;?&nbsp;&raquo;, &laquo;&nbsp;Fonction ignor&eacute;e par les options&nbsp;?&nbsp;&raquo;,
-                  &laquo;&nbsp;Il y en a une&nbsp;?&nbsp;&raquo;), un <strong>rectangle arrondi</strong> pour le
-                  <em>d&eacute;but</em> (<em>Lancement du script</em>) et la <em>fin</em> (<em>FIN</em>), et un
-                  <strong>rectangle simple</strong> pour chaque <em>action</em> (<em>Charger le fichier importlib</em>,
-                  <em>Cr&eacute;er la classe unique type()</em>, <em>Enregistrer la classe de test dynamique dans globals()</em>).
-                  Comme la forme indique d&eacute;j&agrave; le r&ocirc;le du bloc, le sch&eacute;ma se lit sans avoir besoin d&rsquo;une
-                  l&eacute;gende &agrave; c&ocirc;t&eacute;.
+                  Pour <span class="sf-t8b">choisir une forme adapt&eacute;e &agrave; chaque &eacute;tape</span>, je me suis appuy&eacute;
+                  sur la <strong>norme des diagrammes de flux</strong> (norme ISO&nbsp;5807) plut&ocirc;t que d&rsquo;inventer
+                  ma propre convention. L&rsquo;avantage est concret&nbsp;: un nouveau membre de l&rsquo;&eacute;quipe, ou un futur
+                  stagiaire qui reprendra le projet apr&egrave;s moi, n&rsquo;a pas besoin de moi pour comprendre le sch&eacute;ma.
+                  Cela &eacute;vite aussi le pi&egrave;ge des couleurs ou des formes invent&eacute;es qui demandent une l&eacute;gende
+                  s&eacute;par&eacute;e (et qui se p&eacute;rime d&egrave;s qu&rsquo;on perd la l&eacute;gende). Concr&egrave;tement, chaque type de
+                  ligne de code se traduit par une forme&nbsp;: un <code class="inline-code">if/else</code> du script
+                  devient un losange avec deux fl&egrave;ches sortantes &eacute;tiquet&eacute;es <em>Oui</em>/<em>Non</em>, un
+                  point d&rsquo;entr&eacute;e ou de sortie devient un rectangle arrondi, et chaque instruction simple
+                  (appel de fonction, affectation) devient un rectangle. La lecture du sch&eacute;ma suit donc le m&ecirc;me
+                  vocabulaire visuel que tout autre diagramme de flux que la personne aura d&eacute;j&agrave; rencontr&eacute;.
                 </p>
               </v-col>
             </v-row>
@@ -368,7 +373,7 @@
 
               <ul class="sf-list text-body-2 mb-3">
                 <li><span class="sf-t5b">Param&eacute;trer <a href="https://docs.renovatebot.com/" target="_blank" rel="noopener noreferrer"><span class="code-tag">Renovate</span></a> via <code class="inline-code">renovate.json</code></span> (<a href="#" class="trace-link" @click.prevent="tab = 't5'">Trace n&deg;5</a>) : regrouper les mises &agrave; jour et garder un contr&ocirc;le manuel.</li>
-                <li><span class="sf-t6a">Croiser Age et Confidence</span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : &eacute;valuer la stabilit&eacute; d&rsquo;une mise &agrave; jour.</li>
+                <li><span class="sf-t6a">Identifier les indicateurs pertinents</span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : utiliser Age et Confidence pour juger de la stabilit&eacute; d&rsquo;une mise &agrave; jour.</li>
                 <li><span class="sf-t6b">Auditer une Merge Request automatique avant validation</span> (<a href="#" class="trace-link" @click.prevent="tab = 't6'">Trace n&deg;6</a>) : croiser la veille avec un audit du code (LibCST) pour d&eacute;cider en connaissance de cause.</li>
               </ul>
               <p class="text-body-2 mb-3">
@@ -385,7 +390,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Bon. Je sais <span class="sf-t5b">configurer <span class="code-tag">Renovate</span></span> et <span class="sf-t6a">lire son rapport</span> pour prioriser les mises &agrave; jour. Je n&rsquo;ai pas encore explor&eacute; les options avanc&eacute;es.
+                Bon. Je sais <span class="sf-t5b">configurer <span class="code-tag">Renovate</span></span> et <span class="sf-t6a">identifier les bons indicateurs</span> pour prioriser les mises &agrave; jour. Je n&rsquo;ai pas encore explor&eacute; les options avanc&eacute;es.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>

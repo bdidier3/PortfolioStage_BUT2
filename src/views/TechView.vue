@@ -68,11 +68,21 @@
                   <p class="mb-0">
                     Le cadre bleu isole un cas particulier&nbsp;: <code class="inline-code">imp.find_module</code>,
                     signal&eacute; <strong>[!]</strong> car le module est supprim&eacute; entre Python&nbsp;3.11 et 3.13,
-                    un point bloquant &agrave; remonter avant migration.
+                    un point bloquant &agrave; remonter avant migration. Cette d&eacute;tection est automatique&nbsp;: le script
+                    utilise la biblioth&egrave;que <code class="inline-code">stdlib_list</code> pour comparer la liste des
+                    modules de la biblioth&egrave;que standard entre deux versions de Python et marque ceux qui ont
+                    disparu.
                   </p>
                 </div>
                 <p class="text-body-2 mb-2">
-                  Pour <span class="sf-t1a">utiliser LibCST</span>, j’ai développé un visiteur (DependencyCallVisitor) permettant de parcourir le CST (Concrete Syntax Tree) des fichiers Python afin d’analyser le code sans l’exécuter. Ce visiteur détecte les appels vers des dépendances externes, y compris lorsque les imports utilisent des alias (import numpy as np) ou des imports ciblés (from PIL import Image). LibCST m’a également permis de récupérer des informations précises sur le code, comme le numéro de ligne exact des appels grâce aux métadonnées fournies par PositionProvider.
+                  Pour <span class="sf-t1a">utiliser LibCST</span>, j&rsquo;ai cr&eacute;&eacute; une classe qui h&eacute;rite de
+                  <code class="inline-code">cst.CSTVisitor</code>&nbsp;: elle parcourt le CST (Concrete Syntax Tree) des
+                  fichiers Python pour analyser le code sans l&rsquo;ex&eacute;cuter. Cette classe d&eacute;tecte les appels vers
+                  des d&eacute;pendances externes, y compris lorsque les imports utilisent des alias
+                  (<code class="inline-code">import numpy as np</code>) ou des imports cibl&eacute;s
+                  (<code class="inline-code">from PIL import Image</code>). LibCST m&rsquo;a aussi permis de r&eacute;cup&eacute;rer
+                  le num&eacute;ro de ligne exact de chaque appel gr&acirc;ce aux m&eacute;tadonn&eacute;es fournies par
+                  <code class="inline-code">PositionProvider</code>.
                 </p>
                 <p class="text-body-2 mb-0">
                   Pour <span class="sf-t1b">lire le fichier .coverage</span>, j&rsquo;ai utilis&eacute; l&rsquo;API
@@ -226,11 +236,13 @@
                 <p class="text-body-2 mb-2">
                   Pour <span class="sf-t3a">utiliser importlib</span>, j&rsquo;ai d&rsquo;abord transform&eacute; le chemin stock&eacute;
                   dans le JSON (<code class="inline-code">eztest/foo/bar.py</code>) en nom de module Python
-                  (<code class="inline-code">foo.bar</code>) via la m&eacute;thode <code class="inline-code">formater_chemin_module</code>.
-                  Ensuite, <code class="inline-code">importlib.import_module</code> charge le module &agrave; l&rsquo;ex&eacute;cution
+                  (<code class="inline-code">foo.bar</code>) via une fonction utilitaire
+                  <code class="inline-code">formater_chemin_module</code> que j&rsquo;ai &eacute;crite dans le script. Ensuite,
+                  <code class="inline-code">importlib.import_module</code> importe le module &agrave; partir de ce nom
                   (soulignement bleu ligne 41) et <code class="inline-code">getattr(module, test_def["class"])</code>
                   r&eacute;cup&egrave;re la classe de test &agrave; partir de son nom (soulignement jaune ligne 42). Cela &eacute;vite
-                  tout import statique et permet de cibler n&rsquo;importe quelle classe de test du projet sans modifier le script.
+                  tout import statique et permet de cibler n&rsquo;importe quelle classe de test du projet sans modifier
+                  le script.
                 </p>
                 <p class="text-body-2 mb-0">
                   Pour <span class="sf-t3b">utiliser type()</span>, chaque entr&eacute;e du JSON donne lieu &agrave; une classe unique
@@ -261,7 +273,7 @@
             <div class="mb-3">
               <span class="text-body-2 font-weight-medium">Savoir-faire &eacute;l&eacute;mentaires&nbsp;: </span>
               <v-chip color="#ab47bc" size="small" class="ma-1">Concevoir une structure JSON hi&eacute;rarchis&eacute;e pour cibler les tests par d&eacute;pendance</v-chip>
-              <v-chip color="#ff80ab" size="small" class="ma-1">Exporter automatiquement l&rsquo;audit LibCST au format JSON pivot consommable par d&rsquo;autres scripts</v-chip>
+              <v-chip color="#ff80ab" size="small" class="ma-1">Exporter automatiquement l&rsquo;audit LibCST dans un fichier JSON r&eacute;utilisable par d&rsquo;autres scripts</v-chip>
             </div>
 
             <v-row align="start" no-gutters class="g-row">
@@ -384,7 +396,7 @@
                 <li><span class="sf-t3a">Charger dynamiquement un module Python avec <a href="https://docs.python.org/3/library/importlib.html" target="_blank" rel="noopener noreferrer"><span class="code-tag">importlib</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) : importer un module depuis un chemin JSON.</li>
                 <li><span class="sf-t3b">G&eacute;n&eacute;rer des classes de tests &agrave; la vol&eacute;e avec <span class="code-tag">type()</span></span> (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) : cr&eacute;er une classe cibl&eacute;e et ne garder qu&rsquo;une m&eacute;thode.</li>
                 <li><span class="sf-t4a">Concevoir une structure <span class="code-tag">JSON</span> hi&eacute;rarchis&eacute;e</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : lier d&eacute;pendance, appel et tests.</li>
-                <li><span class="sf-t4b">Exporter l&rsquo;audit <span class="code-tag">LibCST</span> au format <span class="code-tag">JSON</span> pivot</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : d&eacute;coupler l&rsquo;analyse statique de l&rsquo;ex&eacute;cuteur de tests via un fichier &eacute;changeable.</li>
+                <li><span class="sf-t4b">Exporter l&rsquo;audit <span class="code-tag">LibCST</span> dans un fichier <span class="code-tag">JSON</span> r&eacute;utilisable</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : s&eacute;parer l&rsquo;analyse statique du lancement des tests via un fichier que les deux scripts savent lire.</li>
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte : </span>
