@@ -19,9 +19,9 @@
       <v-app-bar-title>
         Baptiste DIDIER
         <a
-          href="mailto:baptiste.didier@proton.me"
+          href="mailto:baptiste.didier@edu.univ-fcomte.fr"
           style="color: #64b5f6; font-size: 0.82em; font-weight: 400;"
-        >(baptiste.didier@proton.me)</a>
+        >(baptiste.didier@edu.univ-fcomte.fr)</a>
       </v-app-bar-title>
     </v-app-bar>
 

@@ -3,7 +3,6 @@
 
     <!-- Presentation -->
     <v-card class="mb-5 pa-5" rounded="lg">
-      <div class="text-overline text-blue-lighten-2 mb-2">Portfolio &middot; BUT2 &middot; 2026</div>
       <div class="presentation-content mb-1">
         <img
           class="profile-photo"
@@ -22,7 +21,6 @@
 
     <!-- Contexte entreprise -->
     <v-card class="mb-5 pa-5" rounded="lg">
-      <div class="text-overline text-blue-lighten-2 mb-1">Entreprise</div>
       <h2 class="text-h6 font-weight-bold mb-4">Description du contexte entreprise du stage</h2>
       <img
         class="company-logo"
@@ -62,7 +60,6 @@
 
     <!-- Organigramme -->
     <v-card class="mb-5 pa-5" rounded="lg">
-      <div class="text-overline text-blue-lighten-2 mb-1">&Eacute;quipe</div>
       <h2 class="text-h6 font-weight-bold mb-4">Organigramme EzDEV</h2>
       <div class="d-flex flex-column align-center">
         <img
@@ -96,7 +93,6 @@
 
     <!-- Contexte du stage -->
     <v-card class="mb-5 pa-5" rounded="lg">
-      <div class="text-overline text-blue-lighten-2 mb-1">Contexte du stage</div>
       <h2 class="text-h6 font-weight-bold mb-4">Description du contexte sujet stage</h2>
       <p class="text-body-2 mb-3">
         Le logiciel <strong>EzGED</strong> est une solution de gestion &eacute;lectronique de documents qui a
@@ -117,7 +113,6 @@
 
     <!-- Synthese des savoir-faire -->
     <v-card class="mb-5 pa-5" rounded="lg">
-      <div class="text-overline text-blue-lighten-2 mb-1">Arsenal Technique</div>
       <h2 class="text-h6 font-weight-bold mb-2">Description des savoir-faire g&eacute;n&eacute;raux mis en jeu</h2>
       <p class="text-body-2 mb-4">
         Synth&egrave;se des savoir-faire (cf. cours 1) mobilis&eacute;s par le sujet.
@@ -193,7 +188,7 @@
     <!-- Footer -->
     <v-card class="pa-5 text-center" rounded="lg">
       <p class="text-body-2 text-medium-emphasis">
-        <a href="mailto:baptiste.didier@proton.me" class="text-blue-lighten-2">baptiste.didier@proton.me</a>
+        <a href="mailto:baptiste.didier@edu.univ-fcomte.fr" class="text-blue-lighten-2">baptiste.didier@edu.univ-fcomte.fr</a>
       </p>
       <div class="mt-2">
         <router-link to="/technique" class="text-blue-lighten-2 text-body-2">

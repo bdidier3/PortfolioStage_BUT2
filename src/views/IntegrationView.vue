@@ -302,33 +302,34 @@
           <div class="mb-6">
             <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
               <div class="d-flex flex-wrap align-center justify-space-between mb-4">
-                <span class="text-body-1 font-weight-bold">S'approprier un projet Python existant et cons&eacute;quent</span>
-                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
+                <span class="text-body-1 font-weight-bold">Auditer un projet Python h&eacute;rit&eacute; avec des outils automatiques</span>
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
                 <li><span class="sf-t9a">Prendre en main un projet inconnu via un audit automatique</span> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>) : obtenir une vue d&rsquo;ensemble rapide du code avec <span class="code-tag">ruff</span>.</li>
+                <li><span class="sf-t9b">Interpr&eacute;ter les codes de r&egrave;gles <span class="code-tag">ruff</span> (F401, E713) et le marqueur [*]</span> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>) : trier les erreurs auto-corrigibles de celles &agrave; examiner.</li>
                 <li><span class="sf-t10a">Cat&eacute;goriser les anomalies de d&eacute;pendances</span> (<a href="#" class="trace-link" @click.prevent="tab = 't10'">Trace n&deg;10</a>) : trier les retours <span class="code-tag">deptry</span> en DEP001 (manquantes), DEP002 (inutiles), DEP003 (transitives) pour prioriser.</li>
+                <li><span class="sf-t10b">Identifier le fichier source de chaque anomalie</span> (<a href="#" class="trace-link" @click.prevent="tab = 't10'">Trace n&deg;10</a>) : planifier les corrections fichier par fichier.</li>
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte :</span>
-                Le premier jour, j&rsquo;avais clon&eacute; un d&eacute;p&ocirc;t EzGED de plusieurs milliers de fichiers Python sans en conna&icirc;tre l&rsquo;architecture. J&rsquo;ai utilis&eacute; <span class="code-tag">ruff</span> et <span class="code-tag">deptry</span> pour cartographier en quelques minutes les zones &agrave; probl&egrave;me (imports inutiles, vieilles syntaxes, d&eacute;pendances obsol&egrave;tes ou transitives) avant m&ecirc;me de lire le code en d&eacute;tail, ce qui a servi de base &agrave; mes premiers &eacute;changes techniques avec Florian et Fabrice.
+                Le premier jour, j&rsquo;avais clon&eacute; un d&eacute;p&ocirc;t EzGED comportant beaucoup de fichiers Python sans en conna&icirc;tre l&rsquo;architecture. J&rsquo;ai utilis&eacute; <span class="code-tag">ruff</span> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>) et <span class="code-tag">deptry</span> (<a href="#" class="trace-link" @click.prevent="tab = 't10'">Trace n&deg;10</a>) pour cartographier en quelques minutes les zones &agrave; probl&egrave;me et prioriser les corrections, ce qui a servi de base &agrave; mes premiers &eacute;changes techniques avec Florian et Fabrice. J&rsquo;ai ensuite adapt&eacute; <span class="code-tag">deptry</span> au projet via <code class="inline-code">[tool.deptry] known_first_party</code> pour &eacute;liminer des centaines de faux positifs sur les modules internes d&rsquo;EzGED.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
-                Appris en autonomie pendant le stage avec les docs <span class="code-tag">ruff</span> et <span class="code-tag">deptry</span>. En cours, nous partions de z&eacute;ro sur des projets petits.
+                Appris en autonomie pendant le stage avec les docs officielles <span class="code-tag">ruff</span> et <span class="code-tag">deptry</span>. En cours, nous partions de z&eacute;ro sur des petits projets&nbsp;: la configuration d&rsquo;outils d&rsquo;audit via <code class="inline-code">pyproject.toml</code> n&rsquo;&eacute;tait pas abord&eacute;e.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Difficult&eacute; :</span>
-                Moyenne. Le plus dur est de trier le rapport et de prioriser.
+                Moyenne. Le plus dur est de trier le rapport (4958 erreurs ruff, 98 anomalies deptry), de comprendre les r&egrave;gles utiles et de bien configurer <span class="code-tag">deptry</span> pour le contexte EzGED.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Bon. Je sais <span class="sf-t9a">auditer un projet avec <span class="code-tag">ruff</span></span> et <span class="sf-t10a">cat&eacute;goriser les anomalies <span class="code-tag">deptry</span></span> pour orienter la prise en main.
+                Bon. Je sais <span class="sf-t9a">auditer un projet avec <span class="code-tag">ruff</span></span>, <span class="sf-t9b">interpr&eacute;ter ses codes de r&egrave;gles</span>, <span class="sf-t10a">cat&eacute;goriser les anomalies <span class="code-tag">deptry</span></span> et <span class="sf-t10b">remonter chaque anomalie &agrave; son fichier source</span> pour produire un plan de corrections actionnable.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
-                <strong>Avant&nbsp;:</strong> face &agrave; un projet inconnu, j&rsquo;ouvrais les fichiers un par un pour comprendre l&rsquo;architecture, m&eacute;thode qui ne passe pas l&rsquo;&eacute;chelle sur un projet de plusieurs milliers de fichiers. <strong>Apr&egrave;s&nbsp;:</strong> mon r&eacute;flexe est de lancer un audit automatique (<span class="code-tag">ruff</span> + <span class="code-tag">deptry</span>) pour obtenir en quelques minutes une cartographie des zones &agrave; risque et concentrer ma lecture l&agrave; o&ugrave; c&rsquo;est utile.
+                <strong>Avant&nbsp;:</strong> face &agrave; un projet inconnu, j&rsquo;ouvrais les fichiers un par un pour comprendre l&rsquo;architecture, et je consommais les outils en mode &laquo;&nbsp;configuration par d&eacute;faut&nbsp;&raquo; en acceptant le bruit. <strong>Apr&egrave;s&nbsp;:</strong> mon r&eacute;flexe est de lancer un audit automatique (<span class="code-tag">ruff</span> + <span class="code-tag">deptry</span>) pour cartographier les zones &agrave; risque, et je sais lire la doc d&rsquo;un outil pour l&rsquo;adapter au contexte d&rsquo;un projet sp&eacute;cifique.
               </p>
             </v-card>
           </div>
@@ -338,57 +339,21 @@
           <div class="mb-6">
             <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
               <div class="d-flex flex-wrap align-center justify-space-between mb-4">
-                <span class="text-body-1 font-weight-bold">Exploiter un rapport d&rsquo;outil d&rsquo;analyse pour passer &agrave; l&rsquo;action</span>
-                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
+                <span class="text-body-1 font-weight-bold">Adopter l&rsquo;environnement de d&eacute;veloppement de l&rsquo;&eacute;quipe et diagnostiquer des tests</span>
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
-                <li><span class="sf-t9b">Interpr&eacute;ter les codes de r&egrave;gles <span class="code-tag">ruff</span> (F401, E713) et le marqueur [*]</span> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>) : exploiter la convention <em>lettre + num&eacute;ro</em> et le marqueur d&rsquo;auto-correction pour trier les erreurs.</li>
-                <li><span class="sf-t10b">Identifier le fichier source de chaque anomalie</span> (<a href="#" class="trace-link" @click.prevent="tab = 't10'">Trace n&deg;10</a>) : utiliser le chemin affich&eacute; en t&ecirc;te de chaque ligne du rapport pour planifier les corrections fichier par fichier.</li>
-              </ul>
-              <p class="text-body-2 mb-3">
-                <span class="sf-label">Contexte :</span>
-                J&rsquo;ai appris seul &agrave; lire les codes de r&egrave;gles <span class="code-tag">ruff</span> (F401 imports inutilis&eacute;s, E713 test d&rsquo;appartenance&hellip;) et &agrave; utiliser le marqueur <code class="inline-code">[*]</code> pour trier les corrections auto-fixables. J&rsquo;ai ensuite adapt&eacute; <span class="code-tag">deptry</span> au projet via <code class="inline-code">[tool.deptry] known_first_party</code> pour &eacute;liminer des centaines de faux positifs sur les modules internes d&rsquo;EzGED.
-              </p>
-              <p class="text-body-2 mb-3">
-                <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
-                Lecture de doc vue en cours. La configuration via <code class="inline-code">pyproject.toml</code> n&rsquo;&eacute;tait pas abord&eacute;e. J&rsquo;ai introduit <span class="code-tag">ruff</span> et <span class="code-tag">deptry</span> pour compl&eacute;ter l&rsquo;audit.
-              </p>
-              <p class="text-body-2 mb-3">
-                <span class="sf-label">Difficult&eacute; :</span>
-                Moyenne. Il faut comprendre les r&egrave;gles utiles et bien configurer <span class="code-tag">deptry</span>.
-              </p>
-              <p class="text-body-2 mb-3">
-                <span class="sf-label">&Eacute;valuation :</span>
-                Bon. Je sais <span class="sf-t9b">interpr&eacute;ter les codes de r&egrave;gles ruff</span> et <span class="sf-t10b">remonter d&rsquo;une anomalie au fichier concern&eacute;</span> pour produire un plan de corrections actionnable.
-              </p>
-              <p class="text-body-2 mb-0">
-                <span class="sf-label">Avant / Apr&egrave;s stage :</span>
-                <strong>Avant&nbsp;:</strong> je consommais des outils en mode &laquo;&nbsp;configuration par d&eacute;faut&nbsp;&raquo;, et si le r&eacute;sultat &eacute;tait bruit&eacute; je l&rsquo;acceptais tel quel. <strong>Apr&egrave;s&nbsp;:</strong> je sais lire une doc technique pour identifier les options de configuration utiles, et adapter un outil (ex. <code class="inline-code">known_first_party</code> pour deptry) au contexte d&rsquo;un projet sp&eacute;cifique.
-              </p>
-            </v-card>
-          </div>
-
-          <v-divider class="my-6" />
-
-          <div class="mb-6">
-            <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
-              <div class="d-flex flex-wrap align-center justify-space-between mb-4">
-                <span class="text-body-1 font-weight-bold">Adopter l&rsquo;environnement de d&eacute;veloppement de l&rsquo;&eacute;quipe</span>
-                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
-              </div>
-
-              <ul class="sf-list text-body-2 mb-3">
+                <li><span class="sf-t9a">Installer et utiliser les outils de l&rsquo;&eacute;quipe via <span class="code-tag">uv</span></span> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>) : reproduire l&rsquo;environnement standard (<code class="inline-code">uv run ruff check</code>) d&egrave;s la prise en main.</li>
                 <li><span class="sf-t11a">Configurer un environnement de d&eacute;bogage Python avec <span class="code-tag">PyCharm</span> et <span class="code-tag">uv</span></span> (<a href="#" class="trace-link" @click.prevent="tab = 't11'">Trace n&deg;11</a>) : rattacher l&rsquo;IDE &agrave; l&rsquo;interpr&eacute;teur du projet et cr&eacute;er une configuration unittest cibl&eacute;e.</li>
                 <li><span class="sf-t11b">Diagnostiquer un test unitaire avec un d&eacute;bogueur pas-&agrave;-pas</span> (<a href="#" class="trace-link" @click.prevent="tab = 't11'">Trace n&deg;11</a>) : breakpoint, inspection des variables, pile d&rsquo;appels, step-into.</li>
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte :</span>
-                L&rsquo;&eacute;quipe d&rsquo;EzDEV utilise <span class="code-tag">PyCharm</span> + <span class="code-tag">uv</span> comme environnement standard. J&rsquo;ai d&ucirc; configurer mon IDE pour pointer vers l&rsquo;interpr&eacute;teur g&eacute;r&eacute; par <span class="code-tag">uv</span> dans <code class="inline-code">.venv/</code> et apprendre le d&eacute;bogueur pas-&agrave;-pas pour diagnostiquer une partie des tests EzGED en &eacute;chec (<code class="inline-code">fileindexer</code>, <code class="inline-code">coldpdfburst</code>, <code class="inline-code">test_o365lib</code>&hellip;) que je devais comprendre avant la mont&eacute;e de version.
+                L&rsquo;&eacute;quipe d&rsquo;EzDEV utilise <span class="code-tag">PyCharm</span> + <span class="code-tag">uv</span> comme environnement standard. D&egrave;s les premiers jours, j&rsquo;ai install&eacute; les outils d&rsquo;audit via <code class="inline-code">uv run</code> (<a href="#" class="trace-link" @click.prevent="tab = 't9'">Trace n&deg;9</a>), puis configur&eacute; mon IDE pour pointer vers l&rsquo;interpr&eacute;teur g&eacute;r&eacute; par <span class="code-tag">uv</span> dans <code class="inline-code">.venv/</code> (<a href="#" class="trace-link" @click.prevent="tab = 't11'">Trace n&deg;11</a>) afin de diagnostiquer pas-&agrave;-pas une partie des tests EzGED en &eacute;chec (<code class="inline-code">fileindexer</code>, <code class="inline-code">coldpdfburst</code>, <code class="inline-code">test_o365lib</code>&hellip;) avant la mont&eacute;e de version.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage :</span>
-                <span class="code-tag">PyCharm</span> n&rsquo;avait pas &eacute;t&eacute; vu en cours mais nous avions vu <span class="code-tag">IDEA</span> qui est de JetBrains, c&rsquo;est &agrave; peu pr&egrave;s pareil. Nous avions vu comment lancer des tests, mais le d&eacute;bogueur pas-&agrave;-pas n&rsquo;avait pas &eacute;t&eacute; vu. J&rsquo;ai d&ucirc; m&rsquo;approprier ces outils pendant le stage pour analyser des tests existants en &eacute;chec (<code class="inline-code">fileindexer</code>, <code class="inline-code">coldpdfburst</code>...).
+                <span class="code-tag">PyCharm</span> et <span class="code-tag">uv</span> n&rsquo;avaient pas &eacute;t&eacute; vus en cours&nbsp;; nous avions vu <span class="code-tag">IntelliJ IDEA</span> (m&ecirc;me &eacute;diteur que PyCharm) et le lancement de tests, mais ni le d&eacute;bogueur pas-&agrave;-pas, ni un gestionnaire moderne comme <span class="code-tag">uv</span>. J&rsquo;ai d&ucirc; m&rsquo;approprier ces outils pendant le stage pour analyser les tests existants en &eacute;chec.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Difficult&eacute; :</span>
@@ -396,12 +361,11 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Bon. Je sais <span class="sf-t11a">configurer un IDE Python sur un projet existant</span> et <span class="sf-t11b">m&rsquo;en servir pour diagnostiquer un test en &eacute;chec</span>. Je n&rsquo;ai pas encore explor&eacute; les watches conditionnels ni le d&eacute;bogage distant.
+                Bon. Je sais <span class="sf-t9a">installer et utiliser les outils standard de l&rsquo;&eacute;quipe avec <span class="code-tag">uv</span></span>, <span class="sf-t11a">configurer un IDE Python sur un projet existant</span> et <span class="sf-t11b">m&rsquo;en servir pour diagnostiquer un test en &eacute;chec</span>. Je n&rsquo;ai pas encore explor&eacute; les watches conditionnels ni le d&eacute;bogage distant.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
-                <strong>Avant&nbsp;:</strong> je d&eacute;boguais avec des <code class="inline-code">print()</code> dispers&eacute;s et je relan&ccedil;ais tout le script &agrave; chaque modification.
-                <strong>Apr&egrave;s&nbsp;:</strong> mon r&eacute;flexe est de poser un breakpoint et d&rsquo;inspecter l&rsquo;&eacute;tat des variables et la pile d&rsquo;appels dans l&rsquo;IDE, ce qui me permet de comprendre <em>en une seule ex&eacute;cution</em> ce qu&rsquo;un test fait r&eacute;ellement.
+                <strong>Avant&nbsp;:</strong> je travaillais en <code class="inline-code">pip install</code> direct dans le syst&egrave;me et je d&eacute;boguais avec des <code class="inline-code">print()</code> dispers&eacute;s, en relan&ccedil;ant tout le script &agrave; chaque modification. <strong>Apr&egrave;s&nbsp;:</strong> je sais reproduire l&rsquo;environnement d&rsquo;une &eacute;quipe via <span class="code-tag">uv</span> + <code class="inline-code">pyproject.toml</code>, et mon r&eacute;flexe pour comprendre un test est de poser un breakpoint et d&rsquo;inspecter variables et pile d&rsquo;appels dans l&rsquo;IDE.
               </p>
             </v-card>
           </div>
@@ -413,7 +377,7 @@
     <!-- Footer -->
     <v-card class="pa-5 text-center mt-5" rounded="lg">
       <p class="text-body-2 text-medium-emphasis">
-        <a href="mailto:baptiste.didier@proton.me" class="text-blue-lighten-2">baptiste.didier@proton.me</a>
+        <a href="mailto:baptiste.didier@edu.univ-fcomte.fr" class="text-blue-lighten-2">baptiste.didier@edu.univ-fcomte.fr</a>
       </p>
       <div class="mt-2">
         <router-link to="/" class="text-blue-lighten-2 text-body-2">

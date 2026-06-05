@@ -353,16 +353,16 @@
             <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
               <div class="d-flex flex-wrap align-center justify-space-between mb-4">
                 <span class="text-body-1 font-weight-bold">Analyse statique de code Python avec un CST</span>
-                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
                 <li><span class="sf-t1a">Utiliser <a href="https://libcst.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer"><span class="code-tag">LibCST</span></a> pour d&eacute;tecter les usages de d&eacute;pendances</span> (<a href="#" class="trace-link" @click.prevent="tab = 't1'">Trace n&deg;1</a>) : rep&eacute;rer automatiquement les appels externes.</li>
-                <li><span class="sf-t1b">Lire un fichier <span class="code-tag">.coverage</span> avec l&rsquo;API <a href="https://coverage.readthedocs.io/" target="_blank" rel="noopener noreferrer"><span class="code-tag">coverage.py</span></a></span> : relier appels et tests pour cibler ceux &agrave; rejouer.</li>
+                <li><span class="sf-t1b">Lire un fichier <span class="code-tag">.coverage</span> avec l&rsquo;API <a href="https://coverage.readthedocs.io/" target="_blank" rel="noopener noreferrer"><span class="code-tag">coverage.py</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't1'">Trace n&deg;1</a>) : relier appels et tests pour cibler ceux &agrave; rejouer.</li>
+                <li><span class="sf-t4b">Exporter automatiquement l&rsquo;audit <span class="code-tag">LibCST</span> dans un fichier <span class="code-tag">JSON</span> r&eacute;utilisable</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : transformer le r&eacute;sultat de l&rsquo;analyse statique en livrable exploitable par d&rsquo;autres scripts.</li>
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte : </span>
-                Pour pr&eacute;parer la migration EzGED vers Python&nbsp;3.13, je devais savoir pr&eacute;cis&eacute;ment <em>o&ugrave;</em> chaque d&eacute;pendance externe &eacute;tait appel&eacute;e dans le code et <em>quels appels &eacute;taient d&eacute;j&agrave; couverts</em> par des tests. J&rsquo;ai combin&eacute; <span class="code-tag">LibCST</span> (parcours du code sans l&rsquo;ex&eacute;cuter) et l&rsquo;API <span class="code-tag">coverage.py</span> (lecture du fichier <code class="inline-code">.coverage</code> produit par pytest) pour g&eacute;n&eacute;rer un rapport HTML unique qui liste chaque appel avec son statut <code class="inline-code">TESTE</code>/<code class="inline-code">NON TESTE</code>.
+                Pour pr&eacute;parer la migration EzGED vers Python&nbsp;3.13, je devais savoir pr&eacute;cis&eacute;ment <em>o&ugrave;</em> chaque d&eacute;pendance externe &eacute;tait appel&eacute;e dans le code et <em>quels appels &eacute;taient d&eacute;j&agrave; couverts</em> par des tests. J&rsquo;ai combin&eacute; <span class="code-tag">LibCST</span> (parcours du code sans l&rsquo;ex&eacute;cuter) et l&rsquo;API <span class="code-tag">coverage.py</span> (lecture du fichier <code class="inline-code">.coverage</code> produit par pytest) pour g&eacute;n&eacute;rer un rapport HTML unique (<a href="#" class="trace-link" @click.prevent="tab = 't1'">Trace n&deg;1</a>) et un export JSON (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) qui listent chaque appel avec son statut <code class="inline-code">TESTE</code>/<code class="inline-code">NON TESTE</code> et les tests associ&eacute;s.
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte d&rsquo;apprentissage : </span>
@@ -374,11 +374,11 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Moyen. Je sais maintenant <span class="sf-t1a">utiliser <span class="code-tag">LibCST</span></span> pour rep&eacute;rer des appels et <span class="sf-t1b">lire un <span class="code-tag">.coverage</span></span> pour relier code et tests.
+                Moyen &agrave; bon. Je sais maintenant <span class="sf-t1a">utiliser <span class="code-tag">LibCST</span></span> pour rep&eacute;rer des appels, <span class="sf-t1b">lire un <span class="code-tag">.coverage</span></span> pour relier code et tests, et <span class="sf-t4b">exporter le r&eacute;sultat dans un fichier <span class="code-tag">JSON</span></span> r&eacute;utilisable par d&rsquo;autres scripts.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
-                <strong>Avant&nbsp;:</strong> aucune connaissance de l&rsquo;analyse statique ni des CST, je lisais le code &agrave; la main pour trouver les usages. <strong>Apr&egrave;s&nbsp;:</strong> je peux &eacute;crire un visiteur LibCST autonome, croiser ses r&eacute;sultats avec une base <code class="inline-code">.coverage</code> et r&eacute;utiliser cette approche sur d&rsquo;autres projets.
+                <strong>Avant&nbsp;:</strong> aucune connaissance de l&rsquo;analyse statique ni des CST, je lisais le code &agrave; la main pour trouver les usages. <strong>Apr&egrave;s&nbsp;:</strong> je peux &eacute;crire un visiteur LibCST autonome, croiser ses r&eacute;sultats avec une base <code class="inline-code">.coverage</code>, exporter l&rsquo;ensemble en JSON pour le rejouer plus tard, et r&eacute;utiliser cette approche sur d&rsquo;autres projets.
               </p>
             </v-card>
           </div>
@@ -389,14 +389,12 @@
             <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
               <div class="d-flex flex-wrap align-center justify-space-between mb-4">
                 <span class="text-body-1 font-weight-bold">G&eacute;n&eacute;ration dynamique de classes de tests &agrave; partir d'un fichier JSON</span>
-                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
                 <li><span class="sf-t3a">Charger dynamiquement un module Python avec <a href="https://docs.python.org/3/library/importlib.html" target="_blank" rel="noopener noreferrer"><span class="code-tag">importlib</span></a></span> (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) : importer un module depuis un chemin JSON.</li>
                 <li><span class="sf-t3b">G&eacute;n&eacute;rer des classes de tests &agrave; la vol&eacute;e avec <span class="code-tag">type()</span></span> (<a href="#" class="trace-link" @click.prevent="tab = 't3'">Trace n&deg;3</a>) : cr&eacute;er une classe cibl&eacute;e et ne garder qu&rsquo;une m&eacute;thode.</li>
-                <li><span class="sf-t4a">Concevoir une structure <span class="code-tag">JSON</span> hi&eacute;rarchis&eacute;e</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : lier d&eacute;pendance, appel et tests.</li>
-                <li><span class="sf-t4b">Exporter l&rsquo;audit <span class="code-tag">LibCST</span> dans un fichier <span class="code-tag">JSON</span> r&eacute;utilisable</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : s&eacute;parer l&rsquo;analyse statique du lancement des tests via un fichier que les deux scripts savent lire.</li>
+                <li><span class="sf-t4a">Concevoir une structure <span class="code-tag">JSON</span> hi&eacute;rarchis&eacute;e</span> (<a href="#" class="trace-link" @click.prevent="tab = 't4'">Trace n&deg;4</a>) : lier d&eacute;pendance, appel et tests pour cibler les tests &agrave; rejouer.</li>
               </ul>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">Contexte : </span>
@@ -412,7 +410,7 @@
               </p>
               <p class="text-body-2 mb-3">
                 <span class="sf-label">&Eacute;valuation :</span>
-                Moyen &agrave; bon. Je sais maintenant <span class="sf-t3a">utiliser <span class="code-tag">importlib</span></span> et <span class="sf-t3b">g&eacute;n&eacute;rer des classes avec <span class="code-tag">type()</span></span> pour construire des tests cibl&eacute;s, <span class="sf-t4a">concevoir une structure <span class="code-tag">JSON</span> hi&eacute;rarchis&eacute;e</span> et <span class="sf-t4b">l&rsquo;exporter depuis l&rsquo;audit <span class="code-tag">LibCST</span></span> pour servir de pivot entre les deux scripts et je rejoue seulement les tests utiles.
+                Moyen &agrave; bon. Je sais maintenant <span class="sf-t3a">utiliser <span class="code-tag">importlib</span></span> et <span class="sf-t3b">g&eacute;n&eacute;rer des classes avec <span class="code-tag">type()</span></span> pour construire des tests cibl&eacute;s, et <span class="sf-t4a">concevoir une structure <span class="code-tag">JSON</span> hi&eacute;rarchis&eacute;e</span> qui sert de pivot entre l&rsquo;audit et le lancement des tests, pour ne rejouer que les tests utiles.
               </p>
               <p class="text-body-2 mb-0">
                 <span class="sf-label">Avant / Apr&egrave;s stage :</span>
@@ -427,7 +425,6 @@
             <v-card variant="flat" class="pa-4 bilan-card" rounded="lg">
               <div class="d-flex flex-wrap align-center justify-space-between mb-4">
                 <span class="text-body-1 font-weight-bold">Outillage et configuration d'un projet Python moderne</span>
-                <v-chip size="small" color="amber-darken-2" variant="tonal">Bilan</v-chip>
               </div>
 
               <ul class="sf-list text-body-2 mb-3">
@@ -465,7 +462,7 @@
     <!-- Footer -->
     <v-card class="pa-5 text-center mt-5" rounded="lg">
       <p class="text-body-2 text-medium-emphasis">
-        <a href="mailto:baptiste.didier@proton.me" class="text-blue-lighten-2">baptiste.didier@proton.me</a>
+        <a href="mailto:baptiste.didier@edu.univ-fcomte.fr" class="text-blue-lighten-2">baptiste.didier@edu.univ-fcomte.fr</a>
       </p>
       <div class="mt-2">
         <router-link to="/suivi" class="text-blue-lighten-2 text-body-2">
