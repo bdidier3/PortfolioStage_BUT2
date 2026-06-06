@@ -55,17 +55,17 @@
                   La <strong>Trace n&deg;5</strong> montre un extrait de la documentation que j&rsquo;ai r&eacute;dig&eacute;e pour
                   expliquer la mise en place de Renovate sur EzGED. Elle d&eacute;crit les deux fichiers de configuration
                   n&eacute;cessaires et la proc&eacute;dure compl&egrave;te pour automatiser la d&eacute;tection des mises &agrave; jour
-                  de d&eacute;pendances Python. Le cadre rouge isole le fichier <code class="inline-code">.gitlab-ci.yml</code>
+                  de d&eacute;pendances Python. Le <strong>cadre rouge (A)</strong> isole le fichier <code class="inline-code">.gitlab-ci.yml</code>
                   qui d&eacute;finit le job Renovate&nbsp;: l&rsquo;image Docker
                   <code class="inline-code">renovate/renovate:43.111.3</code>, les variables d&rsquo;environnement
                   (<code class="inline-code">RENOVATE_PLATFORM</code>, <code class="inline-code">RENOVATE_ENDPOINT</code>
                   pointant vers <code class="inline-code">gitlab.ezdev.fr</code>, les deux tokens d&rsquo;acc&egrave;s) et la r&egrave;gle
                   <code class="inline-code">$CI_PIPELINE_SOURCE == &quot;schedule&quot;</code> qui limite l&rsquo;ex&eacute;cution aux
-                  pipelines planifi&eacute;s. Les cadres verts montrent le fichier
+                  pipelines planifi&eacute;s. Le <strong>cadre vert (B)</strong> montre le fichier
                   <code class="inline-code">renovate.json</code> &agrave; la racine du d&eacute;p&ocirc;t&nbsp;: h&eacute;ritage
                   <code class="inline-code">config:recommended</code>, d&eacute;sactivation de l&rsquo;<code class="inline-code">automerge</code>
                   pour garder un contr&ocirc;le manuel, activation du <code class="inline-code">dependencyDashboard</code> et
-                  d&eacute;signation du reviewer notifi&eacute; &agrave; chaque mise &agrave; jour. Le cadre jaune met en &eacute;vidence le
+                  d&eacute;signation du reviewer notifi&eacute; &agrave; chaque mise &agrave; jour. Le <strong>cadre jaune (C)</strong> met en &eacute;vidence le
                   bloc <code class="inline-code">matchManagers</code> qui regroupe <code class="inline-code">pip_requirements</code>,
                   <code class="inline-code">poetry</code> et <code class="inline-code">pip_setup</code> sous un seul groupe
                   &laquo;&nbsp;Toutes les d&eacute;pendances Python&nbsp;&raquo;. Le bas de la trace d&eacute;crit la cr&eacute;ation des
@@ -120,20 +120,20 @@
                   g&eacute;n&eacute;r&eacute;e par Renovate sur le d&eacute;p&ocirc;t <code class="inline-code">test_renovate</code>.
                   L&rsquo;utilisateur <code class="inline-code">RENOVATE_TOKEN</code> propose de fusionner sa branche
                   <code class="inline-code">renovate/major-toutes-les-...</code> dans <code class="inline-code">main</code>.
-                  Le tableau du cadre jaune liste les d&eacute;pendances ayant une mont&eacute;e majeure disponible
+                  Le tableau du <strong>cadre jaune (B)</strong> liste les d&eacute;pendances ayant une mont&eacute;e majeure disponible
                   (<code class="inline-code">attrs</code>, <code class="inline-code">bcrypt</code>,
                   <code class="inline-code">certifi</code>, <code class="inline-code">cryptography</code>,
                   <code class="inline-code">paramiko</code>, <code class="inline-code">pywin32</code>,
                   <code class="inline-code">twisted</code>...) avec la version actuelle et cible (colonne
                   <code class="inline-code">Change</code>), l&rsquo;anciennet&eacute; (<code class="inline-code">Age</code>) et
-                  un indice de fiabilit&eacute; (<code class="inline-code">Confidence</code>). Le cadre rouge souligne le
+                  un indice de fiabilit&eacute; (<code class="inline-code">Confidence</code>). Le <strong>soulignement rouge (A)</strong> isole le
                   suffixe <code class="inline-code">(major)</code>&nbsp;: Renovate isole les mont&eacute;es majeures, plus risqu&eacute;es.
-                  Le cadre bleu met en &eacute;vidence les onglets <em>Issues</em> et <em>Merge requests</em>, o&ugrave; sont centralis&eacute;es
+                  Le <strong>cadre bleu (C)</strong> met en &eacute;vidence les onglets <em>Issues</em> et <em>Merge requests</em>, o&ugrave; sont centralis&eacute;es
                   les propositions (Dependency Dashboard + MR &agrave; valider).
                 </p>
                 <p class="text-body-2 mb-2">
                   Pour <span class="sf-t6a">identifier les indicateurs pertinents</span> dans le tableau de la MR
-                  (<strong>cadre jaune</strong>), je m&rsquo;appuie sur deux colonnes que Renovate affiche pour chaque
+                  (<strong>cadre jaune (B)</strong>), je m&rsquo;appuie sur deux colonnes que Renovate affiche pour chaque
                   d&eacute;pendance&nbsp;: <code class="inline-code">Age</code> (depuis combien de jours la nouvelle version
                   est publi&eacute;e) et <code class="inline-code">Confidence</code> (indice de fiabilit&eacute; calcul&eacute; par
                   Renovate &agrave; partir des projets qui ont d&eacute;j&agrave; adopt&eacute; cette version). Une version r&eacute;cente
@@ -147,10 +147,10 @@
                 <p class="text-body-2 mb-0">
                   Pour <span class="sf-t6b">&eacute;valuer la pertinence d&rsquo;une mise &agrave; jour avant validation</span>, je lis
                   d&rsquo;abord le contenu de la MR&nbsp;: la liste des d&eacute;pendances modifi&eacute;es dans le
-                  <strong>cadre jaune</strong>, et surtout le suffixe <code class="inline-code">(major)</code> du titre
-                  isol&eacute; par le <strong>cadre rouge</strong>. Ce suffixe signale une mont&eacute;e majeure, donc un
+                  <strong>cadre jaune (B)</strong>, et surtout le suffixe <code class="inline-code">(major)</code> du titre
+                  isol&eacute; par le <strong>soulignement rouge (A)</strong>. Ce suffixe signale une mont&eacute;e majeure, donc un
                   risque potentiel de cassure d&rsquo;API (signatures de fonctions modifi&eacute;es, fonctions supprim&eacute;es&hellip;).
-                  J&rsquo;utilise alors les onglets <em>Issues</em> et <em>Merge requests</em> du <strong>cadre bleu</strong>
+                  J&rsquo;utilise alors les onglets <em>Issues</em> et <em>Merge requests</em> du <strong>cadre bleu (C)</strong>
                   pour v&eacute;rifier que la MR est bien rattach&eacute;e au Dependency Dashboard et qu&rsquo;elle n&rsquo;est pas
                   en conflit avec une autre MR ouverte. Si la mont&eacute;e est mineure et que les indicateurs Age/Confidence
                   sont au vert, je valide directement&nbsp;; si elle est majeure, je compl&egrave;te par un audit du code
@@ -190,11 +190,11 @@
               <v-col cols="12" md="6">
                 <p class="text-body-2 mb-2">
                   La <strong>Trace n&deg;7</strong> repr&eacute;sente l&rsquo;historique des commits du d&eacute;p&ocirc;t EzGED, consult&eacute;
-                  depuis l&rsquo;interface web de GitLab. Le cadre rouge identifie la branche d&eacute;di&eacute;e
+                  depuis l&rsquo;interface web de GitLab. Le <strong>cadre rouge (A)</strong> identifie la branche d&eacute;di&eacute;e
                   <code class="inline-code">gestions_deps</code>, cr&eacute;&eacute;e pour isoler le d&eacute;veloppement li&eacute; &agrave; la gestion
-                  des d&eacute;pendances Python du reste du projet. Le cadre bleu met en &eacute;vidence le message d&rsquo;un commit du
+                  des d&eacute;pendances Python du reste du projet. Le <strong>cadre bleu (B)</strong> met en &eacute;vidence le message d&rsquo;un commit du
                   12/05/2026, qui d&eacute;crit pr&eacute;cis&eacute;ment l&rsquo;&eacute;volution apport&eacute;e au script d&rsquo;audit bas&eacute; sur
-                  LibCST. Le cadre vert pointe le bouton <em>Create merge request</em>, qui permet de proposer l&rsquo;int&eacute;gration
+                  LibCST. Le <strong>cadre vert (C)</strong> pointe le bouton <em>Create merge request</em>, qui permet de proposer l&rsquo;int&eacute;gration
                   de la branche dans la branche principale d&rsquo;EzGED. En dessous apparaissent deux commits du 11/05/2026
                   illustrant le d&eacute;coupage progressif du travail (nouveau rendu du fichier JSON, puis d&eacute;but du filtre HTML).
                   Cette trace s&rsquo;inscrit dans le suivi quotidien de mon travail sur EzGED, o&ugrave; chaque &eacute;volution du script

@@ -55,18 +55,18 @@
                   <p class="mb-2">
                     La <strong>Trace n&deg;1</strong> montre l&rsquo;interface HTML g&eacute;n&eacute;r&eacute;e par mon script d&rsquo;analyse des d&eacute;pendances.
                     Elle liste les fichiers Python d&rsquo;EzGED contenant au moins un appel vers une d&eacute;pendance externe
-                    (chemins dans les cadres gris, avec le pourcentage de couverture de code testé dans celui-ci).
+                    (chemins dans les <strong>cadres gris (A)</strong>, avec le pourcentage de couverture de code testé dans celui-ci).
                   </p>
                   <p class="mb-2">Chaque fichier est d&eacute;pliable et affiche, pour chaque appel d&eacute;tect&eacute;&nbsp;:</p>
                   <ul class="pl-4 mb-2">
                     <li>la ligne (colonne Ligne),</li>
-                    <li>le statut de couverture (cadre jaune avec <code class="inline-code">TESTE</code> / <code class="inline-code">NON TESTE</code>),</li>
-                    <li>les tests qui l&rsquo;ex&eacute;cutent (cadre rouge, colonne Contexte),</li>
-                    <li>l&rsquo;appel lui-m&ecirc;me (soulign&eacute; en vert),</li>
+                    <li>le statut de couverture (<strong>cadre jaune (C)</strong> avec <code class="inline-code">TESTE</code> / <code class="inline-code">NON TESTE</code>),</li>
+                    <li>les tests qui l&rsquo;ex&eacute;cutent (<strong>cadre rouge (B)</strong>, colonne Contexte),</li>
+                    <li>l&rsquo;appel lui-m&ecirc;me (<strong>soulign&eacute; en vert (D)</strong>),</li>
                     <li>et la fonction parente avec son score.</li>
                   </ul>
                   <p class="mb-0">
-                    Le cadre bleu isole un cas particulier&nbsp;: <code class="inline-code">imp.find_module</code>,
+                    Le <strong>cadre bleu (E)</strong> isole un cas particulier&nbsp;: <code class="inline-code">imp.find_module</code>,
                     signal&eacute; <strong>[!]</strong> car le module est supprim&eacute; entre Python&nbsp;3.11 et 3.13,
                     un point bloquant &agrave; remonter avant migration. Cette d&eacute;tection est automatique&nbsp;: le script
                     utilise la biblioth&egrave;que <code class="inline-code">stdlib_list</code> pour comparer la liste des
@@ -130,22 +130,22 @@
                   </p>
                   <ul class="pl-4 mb-0">
                     <li class="mb-1">
-                      <strong>Cadre jaune</strong> : <code class="inline-code">requires-python = ">=3.11"</code> qui définit la version minimale de Python requise pour le projet.
+                      <strong>Cadre jaune (A)</strong> : <code class="inline-code">requires-python = ">=3.11"</code> qui définit la version minimale de Python requise pour le projet.
                     </li>
                     <li class="mb-1">
-                      <strong>Cadres rouges</strong> : la liste <code class="inline-code">dependencies</code> o&ugrave; chaque paquet est &eacute;pingl&eacute; &agrave; une version pr&eacute;cise
+                      <strong>Cadre rouge (B)</strong> : la liste <code class="inline-code">dependencies</code> o&ugrave; chaque paquet est &eacute;pingl&eacute; &agrave; une version pr&eacute;cise
                       (soulign&eacute; en bleu&nbsp;: <code class="inline-code">annotated-types==0.7.0</code>), ce qui garantit la reproductibilit&eacute; de l&rsquo;environnement.
                     </li>
                     <li class="mb-1">
-                      <strong>Ligne blanche</strong> : la section <code class="inline-code">[dependency-groups] dev</code> regroupe &agrave; part les outils utilis&eacute;s uniquement en d&eacute;veloppement
+                      <strong>Ligne blanche (C)</strong> : la section <code class="inline-code">[dependency-groups] dev</code> regroupe &agrave; part les outils utilis&eacute;s uniquement en d&eacute;veloppement
                       (<code class="inline-code">coverage</code>, <code class="inline-code">deptry</code>, <code class="inline-code">pytest</code>, <code class="inline-code">ruff</code>, <code class="inline-code">libcst</code>, <code class="inline-code">jinja2</code>...), afin de ne pas les installer en production.
                     </li>
                     <li class="mb-1">
-                      <strong>Ligne verte</strong> : la section <code class="inline-code">[tool.deptry]</code> d&eacute;clare via <code class="inline-code">known_first_party</code> les modules internes du projet
+                      <strong>Ligne verte (D)</strong> : la section <code class="inline-code">[tool.deptry]</code> d&eacute;clare via <code class="inline-code">known_first_party</code> les modules internes du projet
                       (<code class="inline-code">wf</code>, <code class="inline-code">fs</code>, <code class="inline-code">libjobdext</code>...) pour qu&rsquo;ils ne soient pas confondus avec des d&eacute;pendances externes.
                     </li>
                     <li>
-                      <strong>Ligne grise</strong> : <code>exclude</code> permet d'exclure certains fichiers du projet de l'analyse que l'on ne veut pas auditer.
+                      <strong>Ligne grise (E)</strong> : <code>exclude</code> permet d'exclure certains fichiers du projet de l'analyse que l'on ne veut pas auditer.
                     </li>
                   </ul>
                 </div>
@@ -214,21 +214,21 @@
                   <p class="mb-2">La trace met en &eacute;vidence les points cl&eacute;s du m&eacute;canisme&nbsp;:</p>
                   <ul class="pl-4 mb-0">
                     <li class="mb-1">
-                      <strong>Soulignement bleu (ligne 41)</strong> : chargement du module source via <code class="inline-code">importlib.import_module</code>.
+                      <strong>Soulignement bleu (A) (ligne 41)</strong> : chargement du module source via <code class="inline-code">importlib.import_module</code>.
                     </li>
                     <li class="mb-1">
-                      <strong>Soulignement jaune (ligne 42)</strong> : r&eacute;cup&eacute;ration de la classe d&rsquo;origine avec <code class="inline-code">getattr</code>.
+                      <strong>Soulignement jaune (B) (ligne 42)</strong> : r&eacute;cup&eacute;ration de la classe d&rsquo;origine avec <code class="inline-code">getattr</code>.
                     </li>
                     <li class="mb-1">
-                      <strong>Cadre vert (lignes 50-52)</strong> : neutralisation des autres m&eacute;thodes
+                      <strong>Cadre vert (C) (lignes 50-52)</strong> : neutralisation des autres m&eacute;thodes
                       <code class="inline-code">test_*</code> de la classe parente, afin que les tests des autres d&eacute;pendances
                       ne se m&eacute;langent pas dans la classe g&eacute;n&eacute;r&eacute;e.
                     </li>
                     <li class="mb-1">
-                      <strong>Soulignement gris (ligne 54)</strong> : cr&eacute;ation de la classe dynamique avec <code class="inline-code">type()</code>.
+                      <strong>Soulignement gris (D) (ligne 54)</strong> : cr&eacute;ation de la classe dynamique avec <code class="inline-code">type()</code>.
                     </li>
                     <li>
-                      <strong>Cadre rouge (ligne 73)</strong> : injection de la classe cr&eacute;&eacute;e dans <code class="inline-code">globals()</code>
+                      <strong>Cadre rouge (E) (ligne 73)</strong> : injection de la classe cr&eacute;&eacute;e dans <code class="inline-code">globals()</code>
                       pour qu&rsquo;elle soit d&eacute;couverte par pytest.
                     </li>
                   </ul>
@@ -296,15 +296,15 @@
                   </p>
                   <ul class="pl-4 mb-2">
                     <li>
-                      <strong>1<sup>er</sup> niveau (soulign&eacute; en rouge)</strong> : le nom de la d&eacute;pendance Python
+                      <strong>1<sup>er</sup> niveau (soulign&eacute; en rouge (A))</strong> : le nom de la d&eacute;pendance Python
                       (<code class="inline-code">reportlab</code> et <code class="inline-code">pypdf2</code>),
                     </li>
                     <li>
-                      <strong>2<sup>e</sup> niveau (soulign&eacute; en vert)</strong> : le chemin complet de l&rsquo;appel d&eacute;tect&eacute;
+                      <strong>2<sup>e</sup> niveau (soulign&eacute; en vert (B))</strong> : le chemin complet de l&rsquo;appel d&eacute;tect&eacute;
                       (<code class="inline-code">reportlab.pdfgen.canvas.Canvas</code> et <code class="inline-code">PyPDF2.PdfReader</code>),
                     </li>
                     <li>
-                      <strong>3<sup>e</sup> niveau (cadres jaunes)</strong> : la liste des tests qui exercent cet appel,
+                      <strong>3<sup>e</sup> niveau (cadres jaunes (C))</strong> : la liste des tests qui exercent cet appel,
                       avec leurs champs <code class="inline-code">fichier</code>, <code class="inline-code">class</code> et <code class="inline-code">method</code>.
                     </li>
                   </ul>

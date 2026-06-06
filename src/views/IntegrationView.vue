@@ -226,24 +226,27 @@
                   </p>
                   <ul class="pl-4 mb-2">
                     <li class="mb-1">
-                      <strong>Cadre rose (haut-droit)</strong> : barre de la configuration de lancement
+                      <strong>Cadre rose (F) (haut-droit)</strong> : barre de la configuration de lancement
                       &laquo;&nbsp;Unittests for test_o365lib.O365O...mailbox&nbsp;&raquo; avec les boutons Run/Debug actifs.
                     </li>
                     <li class="mb-1">
-                      <strong>Bouton Debug surlign&eacute; bleu (sidebar gauche)</strong> : panneau Debug ouvert,
-                      l&rsquo;ex&eacute;cution est suspendue.
+                      <strong>Cadre blanc (D) (sidebar gauche)</strong> : bouton <em>Debug</em> de PyCharm.
+                      C&rsquo;est lui qui lance la configuration en mode d&eacute;bogage (et non en mode <em>Run</em> standard),
+                      ce qui active les breakpoints et ouvre le panneau <em>Debug</em> visible ici&nbsp;: sans ce mode,
+                      l&rsquo;ex&eacute;cution ignorerait le breakpoint ligne 350 et le test irait jusqu&rsquo;au bout sans permettre
+                      l&rsquo;inspection pas-&agrave;-pas.
                     </li>
                     <li class="mb-1">
-                      <strong>Cadre rouge (ligne 350)</strong> : breakpoint pos&eacute; sur
+                      <strong>Cadre rouge (E) (ligne 350)</strong> : breakpoint pos&eacute; sur
                       <code class="inline-code">result = self.o365.set_mailbox(folder_name=folder_name)</code>,
                       qui est l&rsquo;appel sous test.
                     </li>
                     <li class="mb-1">
-                      <strong>Cadre vert (bas-gauche)</strong> : barre d&rsquo;outils pas-&agrave;-pas
+                      <strong>Cadre vert (C) (bas-gauche)</strong> : barre d&rsquo;outils pas-&agrave;-pas
                       (<em>resume, stop, step over, step into, step out, run to cursor</em>).
                     </li>
                     <li class="mb-1">
-                      <strong>Cadre bleu (panneau MainThread)</strong> : pile d&rsquo;appels unittest. La m&eacute;thode
+                      <strong>Cadre bleu (B) (panneau MainThread)</strong> : pile d&rsquo;appels unittest. La m&eacute;thode
                       <code class="inline-code">test_set_mailbox</code> est appel&eacute;e par
                       <code class="inline-code">_callTestMethod</code>, lui-m&ecirc;me appel&eacute; depuis
                       <code class="inline-code">case.py:run</code>, qui est orchestr&eacute; en remontant par
@@ -251,7 +254,7 @@
                       et enfin <code class="inline-code">main.py</code> au sommet de la pile.
                     </li>
                     <li>
-                      <strong>Cadre jaune (panneau Threads &amp; Variables)</strong> : valeurs courantes
+                      <strong>Cadre jaune (A) (panneau Threads &amp; Variables)</strong> : valeurs courantes
                       (<code class="inline-code">folder_name = 'test'</code>,
                       <code class="inline-code">tasks = {'del_mailbox': 'test'}</code>,
                       <code class="inline-code">self.o365 = &lt;O365Outlook&gt;</code>,
@@ -273,7 +276,7 @@
                   (<em>Settings &gt; Python Interpreter &gt; Add Local Interpreter &gt; Existing &gt;
                   .venv/Scripts/python.exe</em>), confirm&eacute; en bas de l&rsquo;&eacute;cran par
                   <code class="inline-code">uv (trunk4) [Python 3.11.15]</code>. J&rsquo;ai ensuite cr&eacute;&eacute; une
-                  configuration de lancement <strong>Unittests</strong> cibl&eacute;e sur la m&eacute;thode de test (cadre rose),
+                  configuration de lancement <strong>Unittests</strong> cibl&eacute;e sur la m&eacute;thode de test (<strong>cadre rose (F)</strong>),
                   ce qui permet de relancer rapidement le test seul plut&ocirc;t que toute la suite. Cette mise en place a
                   &eacute;t&eacute; faite en parall&egrave;le du travail sur <code class="inline-code">pyproject.toml</code>
                   (<a href="#" class="trace-link" @click.prevent="$router.push({ path: '/technique', query: { tab: 't2' } })">Trace n&deg;2</a>) qui d&eacute;clare
@@ -281,12 +284,12 @@
                 </p>
                 <p class="text-body-2 mb-0">
                   Pour <span class="sf-t11b">diagnostiquer le test pas-&agrave;-pas</span>, j&rsquo;ai pos&eacute; un breakpoint
-                  (cadre rouge ligne 350) juste avant l&rsquo;appel suspect&nbsp;: l&rsquo;ex&eacute;cution s&rsquo;y arr&ecirc;te et le
-                  panneau <em>Threads &amp; Variables</em> (cadre jaune) me donne en direct l&rsquo;&eacute;tat des variables
+                  (<strong>cadre rouge (E)</strong> ligne 350) juste avant l&rsquo;appel suspect&nbsp;: l&rsquo;ex&eacute;cution s&rsquo;y arr&ecirc;te et le
+                  panneau <em>Threads &amp; Variables</em> (<strong>cadre jaune (A)</strong>) me donne en direct l&rsquo;&eacute;tat des variables
                   locales et de <code class="inline-code">self</code>, ce qui est bien plus efficace que des
                   <code class="inline-code">print()</code> dispers&eacute;s dans le code. Les contr&ocirc;les pas-&agrave;-pas
-                  (cadre vert) permettent ensuite d&rsquo;avancer ligne par ligne ou d&rsquo;entrer dans
-                  <code class="inline-code">set_mailbox</code>. Enfin, la pile d&rsquo;appels (cadre bleu) rend visible
+                  (<strong>cadre vert (C)</strong>) permettent ensuite d&rsquo;avancer ligne par ligne ou d&rsquo;entrer dans
+                  <code class="inline-code">set_mailbox</code>. Enfin, la pile d&rsquo;appels (<strong>cadre bleu (B)</strong>) rend visible
                   la cha&icirc;ne d&rsquo;orchestration de <em>unittest</em>
                   (<code class="inline-code">case.py</code>, <code class="inline-code">suite.py</code>,
                   <code class="inline-code">runner.py</code>), ce qui m&rsquo;aide &agrave; distinguer un bug du test d&rsquo;un
