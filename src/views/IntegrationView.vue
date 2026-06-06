@@ -382,6 +382,9 @@
       <p class="text-body-2 text-medium-emphasis">
         <a href="mailto:baptiste.didier@edu.univ-fcomte.fr" class="text-blue-lighten-2">baptiste.didier@edu.univ-fcomte.fr</a>
       </p>
+      <p class="text-caption text-medium-emphasis mt-2">
+                Je tiens à remercier mon professeur référent, M. Bruno VIEZZI, de l'IUT Nord Franche-Comté, ainsi que M. Fabrice CARITEY et M. Florian MASY, mes tuteurs au sein de l'entreprise EzDev, pour leur accompagnement et leurs conseils tout au long de ce stage.
+      </p>
       <div class="mt-2">
         <router-link to="/" class="text-blue-lighten-2 text-body-2">
           Aller sur la page Accueil
